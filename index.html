@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Potential Intelligence™ — A behavioral framework that explains why sales performance varies. Join the validation pilot.">
+<title>Potential Intelligence™ · Sales Architecture Pilot</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ═══ RESET & BASE ═══ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Outfit',sans-serif;
+  background:#0d0f15;
+  color:white;
+  line-height:1.65;
+  font-size:16px;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+/* ═══ CSS VARIABLES ═══ */
+:root{
+  --gold:#c8922a;
+  --gold2:#e8a832;
+  --gold3:rgba(232,168,50,.1);
+  --ink:#0d0f15;
+  --ink2:#1a1d28;
+  --ink3:#212435;
+  --line:rgba(255,255,255,.09);
+  --muted:rgba(255,255,255,.55);
+  --soft:rgba(255,255,255,.06);
+  --green:#1b5c35;
+  --green2:rgba(27,92,53,.25);
+  --red:#ab2c2c;
+  --red2:rgba(171,44,44,.2);
+  --gap:clamp(1rem,4vw,1.5rem);
+  --pad:clamp(1.25rem,6vw,4rem);
+  --r:6px;
+}
+
+/* ═══ BACKGROUND ═══ */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 85% -10%,rgba(200,146,42,.12),transparent),
+    radial-gradient(ellipse 50% 60% at -5% 110%,rgba(192,125,32,.07),transparent);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ═══ NAV ═══ */
+.nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(13,15,21,.9);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{
+  max-width:1120px;margin:0 auto;
+  padding:14px var(--pad);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.logo{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-weight:700;
+  color:white;white-space:nowrap;
+  flex-shrink:0;
+}
+.logo em{color:var(--gold2);font-style:normal}
+.nav-cta{
+  display:inline-flex;align-items:center;
+  background:var(--gold2);color:var(--ink)!important;
+  padding:9px 16px;border-radius:3px;
+  font-size:11px;font-weight:800;
+  letter-spacing:.8px;text-transform:uppercase;
+  white-space:nowrap;flex-shrink:0;
+  transition:transform .15s,box-shadow .15s;
+}
+.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(232,168,50,.28)}
+.nav-links{
+  display:flex;gap:4px;align-items:center;flex-wrap:wrap;
+}
+.nav-links a{
+  font-size:12px;font-weight:600;
+  color:var(--muted);padding:6px 10px;border-radius:3px;
+  transition:color .15s,background .15s;
+}
+.nav-links a:hover{color:var(--gold2);background:var(--gold3)}
+
+/* ═══ LAYOUT ═══ */
+.wrap{max-width:1120px;margin:0 auto;padding:0 var(--pad);position:relative;z-index:1}
+section{padding:clamp(3rem,8vw,5.5rem) 0}
+section+section{border-top:1px solid var(--line)}
+
+/* ═══ TYPE ═══ */
+.eyebrow{
+  font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold2);margin-bottom:.6rem;
+}
+h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,5vw,3rem);font-weight:700;
+  color:white;line-height:1.1;letter-spacing:-.02em;
+  margin-bottom:.75rem;
+}
+.lead{
+  font-size:clamp(.95rem,2.2vw,1.08rem);
+  color:var(--muted);line-height:1.75;
+  max-width:780px;margin-bottom:2rem;
+}
+
+/* ═══ HERO ═══ */
+.hero{
+  padding:clamp(3.5rem,10vw,6rem) 0 clamp(3rem,8vw,5rem);
+}
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:clamp(2rem,5vw,3.5rem);
+  align-items:center;
+}
+.badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;
+  color:var(--gold2);
+  background:var(--gold3);border:1px solid rgba(232,168,50,.22);
+  padding:7px 14px;border-radius:2px;margin-bottom:1.6rem;
+}
+.badge::before{
+  content:'';width:6px;height:6px;border-radius:50%;
+  background:var(--gold2);
+  animation:glow 2.2s ease-in-out infinite;
+}
+@keyframes glow{0%,100%{opacity:1;box-shadow:0 0 6px var(--gold2)}50%{opacity:.3;box-shadow:none}}
+.hero h1{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.4rem,5.5vw,4rem);font-weight:700;
+  line-height:1;letter-spacing:-.035em;margin-bottom:1.2rem;
+}
+.hero h1 em{color:var(--gold2);font-style:normal}
+.hero-sub{
+  font-size:clamp(1rem,2vw,1.18rem);
+  color:rgba(255,255,255,.78);line-height:1.65;
+  max-width:640px;margin-bottom:1.6rem;
+}
+.hero-note{font-size:.84rem;color:rgba(255,255,255,.38);line-height:1.6;margin-top:.75rem}
+.btn-row{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1rem}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  padding:.85rem 1.4rem;border-radius:3px;
+  font-size:.75rem;font-weight:800;letter-spacing:.9px;text-transform:uppercase;
+  transition:transform .15s,box-shadow .15s,border-color .15s;
+  white-space:nowrap;
+}
+.btn-primary{background:var(--gold2);color:var(--ink)!important}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(232,168,50,.28)}
+.btn-outline{border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.85)!important}
+.btn-outline:hover{border-color:var(--gold2);color:var(--gold2)!important}
+
+/* Hero card */
+.hero-card{
+  background:var(--ink2);
+  border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(1.4rem,3vw,2rem);
+  box-shadow:0 32px 80px rgba(0,0,0,.35);
+}
+.hc-top{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  padding-bottom:1.1rem;border-bottom:1px solid var(--line);margin-bottom:1.1rem;gap:12px;
+}
+.hc-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.55rem;color:white;line-height:1.15;
+}
+.hc-sub{font-size:.78rem;color:var(--muted);margin-top:.35rem}
+.hc-pill{
+  font-size:.7rem;font-weight:800;
+  color:var(--gold2);background:var(--gold3);
+  border:1px solid rgba(232,168,50,.2);
+  padding:5px 10px;border-radius:2px;white-space:nowrap;flex-shrink:0;
+}
+.hc-quote{
+  background:rgba(255,255,255,.04);border-left:3px solid var(--gold2);
+  padding:1rem 1.1rem;margin-bottom:1.1rem;
+  font-size:.9rem;color:rgba(255,255,255,.75);line-height:1.6;font-style:italic;
+}
+.hc-bars{display:grid;gap:.65rem}
+.hc-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.hc-label{font-size:.78rem;color:var(--muted)}
+.hc-track{
+  width:80px;height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;
+  flex-shrink:0;
+}
+.hc-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.hc-footer{
+  margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--line);
+  font-size:.75rem;color:rgba(255,255,255,.34);line-height:1.55;
+}
+
+/* ═══ CARDS ═══ */
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+
+.card{
+  background:var(--soft);border:1px solid var(--line);
+  border-radius:var(--r);padding:clamp(1.2rem,3vw,1.6rem);
+}
+.card.solid{background:var(--ink2)}
+.card.green-tint{background:var(--green2);border-color:rgba(27,92,53,.4)}
+.card.red-tint{background:var(--red2);border-color:rgba(171,44,44,.35)}
+.card.gold-tint{background:rgba(200,146,42,.1);border-color:rgba(200,146,42,.25)}
+
+.kk{font-size:9px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold2);margin-bottom:.5rem}
+.ctitle{font-size:1rem;font-weight:800;color:white;margin-bottom:.55rem;line-height:1.3}
+.cbody{font-size:.875rem;color:var(--muted);line-height:1.68}
+
+/* ═══ QUOTE BLOCK ═══ */
+.quote-box{
+  background:var(--ink2);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(1.6rem,4vw,2.2rem);position:relative;overflow:hidden;
+}
+.quote-box::before{
+  content:'\201C';
+  font-family:'Cormorant Garamond',serif;
+  position:absolute;top:-10px;left:18px;
+  font-size:100px;color:rgba(232,168,50,.14);line-height:1;
+  pointer-events:none;
+}
+.quote-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.4rem,3.5vw,2rem);
+  line-height:1.3;color:rgba(255,255,255,.92);
+  position:relative;z-index:1;margin-bottom:.9rem;
+}
+.quote-cap{font-size:.83rem;color:rgba(255,255,255,.42)}
+
+/* ═══ PROBLEM ROWS ═══ */
+.p-row{
+  display:flex;gap:1rem;align-items:flex-start;
+  padding:1.1rem 1.2rem;
+  background:var(--soft);border:1px solid var(--line);border-radius:var(--r);
+  margin-bottom:.75rem;
+}
+.p-num{
+  width:32px;height:32px;border-radius:50%;flex-shrink:0;
+  background:var(--gold2);color:var(--ink);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:800;margin-top:2px;
+}
+.p-title{font-size:.95rem;font-weight:800;color:white;margin-bottom:.35rem}
+.p-body{font-size:.875rem;color:var(--muted);line-height:1.62}
+
+/* ═══ REPORT ROWS ═══ */
+.rrow{
+  display:grid;
+  grid-template-columns:190px 1fr auto;
+  gap:16px;align-items:center;
+  padding:1rem 1.2rem;
+  background:var(--soft);border:1px solid var(--line);border-radius:var(--r);
+  margin-bottom:.75rem;
+}
+.rrow-name{font-size:.95rem;font-weight:800;color:white}
+.rrow-desc{font-size:.875rem;color:var(--muted);line-height:1.58}
+.rrow-tag{
+  font-size:.7rem;font-weight:800;
+  color:var(--gold2);background:var(--gold3);
+  border:1px solid rgba(232,168,50,.18);
+  padding:.28rem .65rem;border-radius:2px;white-space:nowrap;
+}
+
+/* ═══ STEP CARDS ═══ */
+.step-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.8rem;font-weight:700;color:var(--gold2);
+  line-height:1;margin-bottom:.65rem;
+}
+
+/* ═══ SCENARIO NUMBERS ═══ */
+.big-pct{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,8vw,4rem);font-weight:700;
+  color:var(--gold2);line-height:1;margin:.6rem 0;
+}
+
+/* ═══ FAQ ═══ */
+.faq-item{
+  padding:1.1rem 1.2rem;
+  background:var(--soft);border:1px solid var(--line);border-radius:var(--r);
+  margin-bottom:.75rem;
+}
+.faq-q{font-size:.95rem;font-weight:800;color:white;margin-bottom:.4rem}
+.faq-a{font-size:.875rem;color:var(--muted);line-height:1.65}
+
+/* ═══ CTA FINAL ═══ */
+.cta-final{
+  text-align:center;
+  padding:clamp(2.5rem,7vw,4.5rem) clamp(1.5rem,5vw,3rem);
+  background:var(--ink2);border:1px solid var(--line);
+  border-radius:var(--r);margin-top:2rem;
+  position:relative;overflow:hidden;
+}
+.cta-final::before{
+  content:'';position:absolute;
+  right:-180px;top:-180px;
+  width:500px;height:500px;border-radius:50%;
+  border:1px solid rgba(232,168,50,.08);
+  pointer-events:none;
+}
+.cta-final h2{font-size:clamp(1.8rem,4.5vw,2.8rem)!important}
+.cta-final p{
+  max-width:640px;margin:.9rem auto 1.8rem;
+  color:var(--muted);font-size:clamp(.95rem,2vw,1.05rem);line-height:1.72;
+}
+
+/* ═══ TEAM ═══ */
+.team-card{
+  background:var(--ink2);border:1px solid var(--line);border-radius:var(--r);
+  padding:clamp(1.4rem,3vw,2rem);
+}
+.team-name{font-size:1.05rem;font-weight:800;color:white;margin-bottom:.3rem}
+.team-role{font-size:.85rem;font-weight:700;color:var(--gold2);margin-bottom:.75rem}
+.team-body{font-size:.875rem;color:var(--muted);line-height:1.68}
+
+/* ═══ FOOTER ═══ */
+footer{
+  border-top:1px solid var(--line);
+  padding:2rem var(--pad);
+  text-align:center;
+  color:rgba(255,255,255,.32);font-size:.8rem;line-height:1.7;
+}
+footer strong{color:rgba(255,255,255,.7)}
+
+/* ═══ SAMPLE REPORT EMBED ═══ */
+.report-embed{
+  border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+  margin-top:1.5rem;
+  box-shadow:0 24px 60px rgba(0,0,0,.4);
+}
+.report-embed iframe{
+  width:100%;border:none;display:block;
+  background:white;
+  min-height:700px;
+}
+.report-open-link{
+  display:flex;justify-content:center;margin-top:1rem;
+}
+.report-open-link a{
+  font-size:.82rem;font-weight:700;
+  color:var(--gold2);
+  padding:.5rem 1rem;
+  border:1px solid rgba(232,168,50,.2);
+  border-radius:3px;
+  background:var(--gold3);
+  transition:background .15s;
+}
+.report-open-link a:hover{background:rgba(232,168,50,.18)}
+
+/* ═══ MOBILE ═══ */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero-inner{grid-template-columns:1fr}
+  .grid2,.grid3,.grid4{grid-template-columns:1fr}
+  .rrow{grid-template-columns:1fr;gap:8px}
+  .rrow-tag{justify-self:start}
+  .hc-track{width:60px}
+  .hero-card{display:none} /* card hidden on mobile — full width focus on CTA */
+}
+
+@media(min-width:769px) and (max-width:1024px){
+  .grid3{grid-template-columns:repeat(2,1fr)}
+  .grid4{grid-template-columns:repeat(2,1fr)}
+}
+
+/* ═══ ANIMATIONS ═══ */
+@media(prefers-reduced-motion:no-preference){
+  .fade-in{
+    opacity:0;transform:translateY(18px);
+    transition:opacity .55s ease,transform .55s ease;
+  }
+  .fade-in.visible{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#top" class="logo">Potential <em>Intelligence™</em></a>
+    <nav class="nav-links" aria-label="Page sections">
+      <a href="#problem">Problem</a>
+      <a href="#scenario">Scenario</a>
+      <a href="#report">Report</a>
+      <a href="#team">Team</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a href="https://tally.so/r/jaGY4J" target="_blank" rel="noopener" class="nav-cta">Take assessment</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-inner">
+      <div>
+        <div class="badge">Pilot validation · Sales architecture</div>
+        <h1>A new way to understand <em>why sales performance varies</em>.</h1>
+        <p class="hero-sub">Two reps. Same product. Same training. Same quota. Different outcomes. Potential Intelligence™ helps reveal the behavioral pattern behind that difference.</p>
+        <div class="btn-row">
+          <a href="https://tally.so/r/jaGY4J" target="_blank" rel="noopener" class="btn btn-primary">Take the assessment — free</a>
+          <a href="#report" class="btn btn-outline">See the report</a>
+        </div>
+        <p class="hero-note">Validation pilot for Sales Leaders, HR Partners, founders, and revenue teams.<br>This is validation — not evaluation. No labels. No judgment.</p>
+      </div>
+
+      <div class="hero-card" aria-hidden="true">
+        <div class="hc-top">
+          <div>
+            <div class="hc-title">Sales Architecture<br>Report</div>
+            <div class="hc-sub">Individual pilot output · Sample</div>
+          </div>
+          <div class="hc-pill">Pilot</div>
+        </div>
+        <div class="hc-quote">"Creates revenue through strategic discovery and consultative influence — needs structure around cadence and follow-through."</div>
+        <div class="hc-bars">
+          <div class="hc-row"><span class="hc-label">Strategic Reframing</span><div class="hc-track"><div class="hc-fill" style="width:88%"></div></div></div>
+          <div class="hc-row"><span class="hc-label">Action Direction</span><div class="hc-track"><div class="hc-fill" style="width:84%"></div></div></div>
+          <div class="hc-row"><span class="hc-label">Meaning Amplification</span><div class="hc-track"><div class="hc-fill" style="width:81%"></div></div></div>
+          <div class="hc-row"><span class="hc-label">Operational Architecture</span><div class="hc-track"><div class="hc-fill" style="width:52%"></div></div></div>
+        </div>
+        <div class="hc-footer">Sample structure. Live reports generated from your assessment responses.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="wrap">
+    <div class="eyebrow fade-in">The problem</div>
+    <h2 class="fade-in">Sales teams coach the behavior they can see — not the architecture that creates it.</h2>
+    <p class="lead fade-in">A rep misses follow-up. Another avoids urgency. A third builds trust easily but struggles to close. The usual answer is more training. Often it does not explain why the pattern repeats.</p>
+
+    <div class="grid2" style="margin-bottom:2rem">
+      <div class="quote-box fade-in">
+        <div class="quote-text">"Same product. Same training. Same CRM. Different outcomes."</div>
+        <div class="quote-cap">The pilot starts from this question: what is different in the rep's natural sales architecture?</div>
+      </div>
+      <div>
+        <div class="p-row fade-in">
+          <div class="p-num">1</div>
+          <div>
+            <div class="p-title">Performance variance is not always a skill gap.</div>
+            <div class="p-body">Sometimes the issue is role fit, energy cost, decision style, or how a seller naturally creates trust and urgency.</div>
+          </div>
+        </div>
+        <div class="p-row fade-in">
+          <div class="p-num">2</div>
+          <div>
+            <div class="p-title">Generic coaching misses the real friction point.</div>
+            <div class="p-body">One rep needs structure. Another needs urgency activation. Another needs emotional safety. Same coaching does not unlock everyone.</div>
+          </div>
+        </div>
+        <div class="p-row fade-in">
+          <div class="p-num">3</div>
+          <div>
+            <div class="p-title">Role fit is often judged too late.</div>
+            <div class="p-body">A person may struggle in transactional outbound but thrive in enterprise discovery or expansion. This framework helps see that pattern earlier.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENARIO -->
+<section id="scenario">
+  <div class="wrap">
+    <div class="eyebrow fade-in">Concrete scenario</div>
+    <h2 class="fade-in">Two AEs. Same onboarding. Same quota. Different results.</h2>
+    <p class="lead fade-in">Sarah closes 78% of her qualified pipeline. Marcus closes 41%. Both know the product. Both attended the same training. The difference is not only skill — it may be how each naturally reads buyers, creates urgency, and follows through.</p>
+
+    <div class="grid2" style="margin-bottom:2rem">
+      <div class="card solid fade-in">
+        <div class="kk">Sarah</div>
+        <div class="ctitle">High decision momentum</div>
+        <div class="cbody">Converts interest into clear next steps naturally. Creates urgency and ownership faster in the sales cycle.</div>
+        <div class="big-pct">78%</div>
+        <div class="cbody">Close rate on qualified pipeline</div>
+      </div>
+      <div class="card solid fade-in">
+        <div class="kk">Marcus</div>
+        <div class="ctitle">Strong discovery, slower commitment</div>
+        <div class="cbody">Builds trust and gets positive buyer feedback. Deals stay warm — but can stay there without movement toward decision.</div>
+        <div class="big-pct">41%</div>
+        <div class="cbody">Close rate on qualified pipeline</div>
+      </div>
+    </div>
+
+    <div class="card gold-tint fade-in">
+      <div class="kk">What the framework reveals</div>
+      <div class="ctitle">The difference is not effort or skills — it is behavioral architecture.</div>
+      <div class="cbody" style="max-width:720px">Marcus may be naturally strong in strategic discovery and trust-building (high vectors) but has a high-effort relationship with operational follow-through and urgency activation. Knowing this changes the coaching conversation completely. Instead of "work harder on closing" — it becomes "let's build a follow-up structure that removes the energy cost."</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section id="report">
+  <div class="wrap">
+    <div class="eyebrow fade-in">What you receive</div>
+    <h2 class="fade-in">A premium individual report built for real coaching conversations.</h2>
+    <p class="lead fade-in">The output is not a personality profile. It is a structured sales behavior map designed to help the participant and manager discuss how this person naturally sells — and where to focus.</p>
+
+    <div style="margin-bottom:1.5rem">
+      <div class="rrow fade-in">
+        <div class="rrow-name">Natural Sales Pattern</div>
+        <div class="rrow-desc">Plain-language summary: how this person creates revenue, what environment fits, what to validate in real deals.</div>
+        <div class="rrow-tag">Executive Summary</div>
+      </div>
+      <div class="rrow fade-in">
+        <div class="rrow-name">Sales Cycle Translation</div>
+        <div class="rrow-desc">How the pattern appears across discovery, positioning, urgency, follow-through, and expansion.</div>
+        <div class="rrow-tag">Revenue Process</div>
+      </div>
+      <div class="rrow fade-in">
+        <div class="rrow-name">Strengths & High-Effort Zones</div>
+        <div class="rrow-desc">What feels natural, what costs more energy, and where structure or role design improves consistency.</div>
+        <div class="rrow-tag">Coaching Insight</div>
+      </div>
+      <div class="rrow fade-in">
+        <div class="rrow-name">Environment Fit</div>
+        <div class="rrow-desc">Where this person is more likely to perform well and which environments should be evaluated carefully.</div>
+        <div class="rrow-tag">Role Alignment</div>
+      </div>
+      <div class="rrow fade-in">
+        <div class="rrow-name">Vector Distribution</div>
+        <div class="rrow-desc">The deeper behavioral architecture: 9 vectors across 3 operating zones with sales-specific interpretation.</div>
+        <div class="rrow-tag">Methodology Layer</div>
+      </div>
+      <div class="rrow fade-in">
+        <div class="rrow-name">Validation Questions</div>
+        <div class="rrow-desc">Structured feedback for participant and manager. The most important part of the pilot.</div>
+        <div class="rrow-tag">Pilot Feedback</div>
+      </div>
+    </div>
+
+    <!-- SAMPLE REPORT EMBED -->
+    <div class="eyebrow fade-in" style="margin-top:2.5rem">Sample report preview</div>
+    <p class="lead fade-in" style="margin-bottom:1rem">Below is an example of the individual Sales Architecture Report participants receive after completing the assessment.</p>
+
+    <div class="report-embed fade-in">
+      <iframe
+        src="reports/sample_report.html"
+        title="Sample Sales Architecture Report"
+        loading="lazy"
+        scrolling="yes">
+      </iframe>
+    </div>
+    <div class="report-open-link">
+      <a href="reports/sample_report.html" target="_blank" rel="noopener">Open full report in new tab ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="process">
+  <div class="wrap">
+    <div class="eyebrow fade-in">How it works</div>
+    <h2 class="fade-in">Simple pilot process.</h2>
+    <p class="lead fade-in">The goal is not to prove the framework is perfect. It is to learn what is accurate, useful, confusing, or wrong.</p>
+
+    <div class="grid4">
+      <div class="card fade-in">
+        <div class="step-num">01</div>
+        <div class="ctitle">Take the assessment</div>
+        <div class="cbody">Answer structured questions about real sales behavior and work patterns. ~12 minutes.</div>
+      </div>
+      <div class="card fade-in">
+        <div class="step-num">02</div>
+        <div class="ctitle">Receive the report</div>
+        <div class="cbody">A pilot Sales Architecture Report is generated with pattern summary, sales cycle map, and coaching notes.</div>
+      </div>
+      <div class="card fade-in">
+        <div class="step-num">03</div>
+        <div class="ctitle">Reflect on accuracy</div>
+        <div class="cbody">The participant reviews what feels accurate, useful, unclear, or wrong. Disagreement is valuable.</div>
+      </div>
+      <div class="card fade-in">
+        <div class="step-num">04</div>
+        <div class="ctitle">Share feedback</div>
+        <div class="cbody">Feedback refines scoring, language, and practical usefulness before the product launches.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow fade-in">What makes this different</div>
+    <h2 class="fade-in">Not a personality test. Not a skills checklist.</h2>
+    <p class="lead fade-in">Most tools measure who a person is. Potential Intelligence™ maps how a person's natural behavioral architecture affects revenue execution in a specific sales environment.</p>
+
+    <div class="grid3">
+      <div class="card fade-in">
+        <div class="kk">Pattern-first</div>
+        <div class="ctitle">How behaviors combine</div>
+        <div class="cbody">Not isolated traits — but how vectors interact across perception, motivation, and execution.</div>
+      </div>
+      <div class="card fade-in">
+        <div class="kk">Revenue-linked</div>
+        <div class="ctitle">Translates to sales stages</div>
+        <div class="cbody">Discovery, positioning, urgency, follow-through, expansion — each stage mapped to the behavioral pattern.</div>
+      </div>
+      <div class="card fade-in">
+        <div class="kk">Non-judgmental</div>
+        <div class="ctitle">Natural vs high-effort</div>
+        <div class="cbody">High or low means how sustainably a behavior appears — especially under pressure. Not good vs bad.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO FOR -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow fade-in">Who this is for</div>
+    <h2 class="fade-in">Built for people responsible for sales performance and talent.</h2>
+
+    <div class="grid3">
+      <div class="card fade-in">
+        <div class="kk">Sales Leaders</div>
+        <div class="ctitle">Understand why reps perform differently</div>
+        <div class="cbody">Use the report to improve coaching precision, pipeline conversations, and 1:1 quality. Move from "try harder" to "here's what's actually happening."</div>
+      </div>
+      <div class="card fade-in">
+        <div class="kk">HR & Talent Partners</div>
+        <div class="ctitle">See fit beyond resumes</div>
+        <div class="cbody">Use the report to discuss role fit, development plans, learning design, and team composition before a hire becomes a coaching problem.</div>
+      </div>
+      <div class="card fade-in">
+        <div class="kk">Founders & Operators</div>
+        <div class="ctitle">Build sales roles around natural strengths</div>
+        <div class="cbody">Understand founder-led sales patterns, early sales hiring, and whether the role you're filling matches the person you're considering.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="wrap">
+    <div class="eyebrow fade-in">Why you can trust the process</div>
+    <h2 class="fade-in">Built from HR diagnostics and enterprise sales experience.</h2>
+    <p class="lead fade-in">Potential Intelligence™ is being developed at the intersection of human behavior, revenue execution, HR diagnostics, and real-world sales practice.</p>
+
+    <div class="grid2">
+      <div class="team-card fade-in">
+        <div class="team-name">Asselya Zhanybek</div>
+        <div class="team-role">Methodology & Product · HR, Talent Diagnostics, Learning Systems</div>
+        <div class="team-body">15+ years in HR consulting, talent assessment, and workforce intelligence. Built large-scale competency frameworks and diagnostic tools for corporate and government clients across Central Asia. Now based in San Diego, building Potential Intelligence™ as a practical framework for understanding how people actually perform in revenue roles — not just how they describe themselves on assessments.</div>
+      </div>
+      <div class="team-card fade-in">
+        <div class="team-name">Nurlan Zhanybek</div>
+        <div class="team-role">Sales Validation Advisor · Enterprise Sales, Microsoft & Pearson</div>
+        <div class="team-body">15+ years in enterprise sales including Microsoft (8 years) and Pearson, where he ranked #2 in US enterprise sales (Q3 2025) with a $1.6M quota across 90 enterprise accounts. Nurlan pressure-tests the framework against real sales behavior, buyer conversations, and quota-driven environments — ensuring the product stays grounded in how enterprise sales actually works.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="wrap">
+    <div class="eyebrow fade-in">FAQ</div>
+    <h2 class="fade-in">Common questions</h2>
+
+    <div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">Is this a personality test?</div>
+        <div class="faq-a">No. The report maps revenue behavior patterns — how a person reads buyers, creates value, moves deals, and responds to different sales environments. It is designed for coaching and role design, not personality labeling.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">Is this a performance evaluation?</div>
+        <div class="faq-a">No. This is a validation-stage research report. It should not be used to judge, rank, hire, fire, or penalize anyone. The goal is learning — for the participant, the manager, and the methodology.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">What if a participant disagrees with their report?</div>
+        <div class="faq-a">That is exactly what we need to know. Disagreement is the most valuable feedback in a pilot. It helps us improve the questions, scoring logic, and interpretation before the product launches. No report should be shared without a follow-up conversation.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">Can a manager see the report?</div>
+        <div class="faq-a">Only with the participant's agreement. The pilot works best when the report becomes a shared coaching tool — not a judgment delivered from above.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">Are the scores scientifically validated?</div>
+        <div class="faq-a">Not yet — this is an early-stage pilot. The scoring logic is being tested through participant and manager feedback. That is the explicit purpose of this validation stage.</div>
+      </div>
+      <div class="faq-item fade-in">
+        <div class="faq-q">How long does the assessment take?</div>
+        <div class="faq-a">Approximately 10–14 minutes. The questions focus on real sales behavior patterns — not hypothetical preferences or trait descriptions.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section>
+  <div class="wrap">
+    <div class="cta-final fade-in">
+      <div class="eyebrow">Join the validation pilot</div>
+      <h2>Take the assessment.<br>Help shape the next version.</h2>
+      <p>You receive a pilot Sales Architecture Report and share honest feedback about what feels accurate, useful, confusing, or missing. Participation is free. Feedback is the currency.</p>
+      <div class="btn-row" style="justify-content:center">
+        <a href="https://tally.so/r/jaGY4J" target="_blank" rel="noopener" class="btn btn-primary">Take the assessment — free</a>
+        <a href="reports/sample_report.html" target="_blank" rel="noopener" class="btn btn-outline">Open sample report</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <strong>Potential Intelligence™</strong> · Sales Architecture Pilot · Validation Stage<br>
+    Revenue Behavior Mapping · Individual Reports · Sales &amp; HR Research Version<br>
+    This pilot is for methodology validation and should not be used as a final performance evaluation.
+  </div>
+</footer>
+
+<!-- SCROLL ANIMATION -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
