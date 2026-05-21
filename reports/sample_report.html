@@ -4,897 +4,1111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Potential Intelligence™ · Pilot Report</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Potential Intelligence™ · Sales Architecture Report v2.1 · 2ElA6WM</title>
+
 <style>
 :root {
-  --ink:    #111218;
-  --ink2:   #1e2130;
-  --gold:   #c07d20;
-  --gold2:  #e8a832;
-  --gold3:  #fff6e0;
-  --cream:  #f8f4ee;
-  --soft:   #f4f1eb;
-  --line:   #e6e0d4;
-  --muted:  #6b6878;
-  --green:  #1b5c35;
-  --green2: #e0f2e9;
-  --red:    #ab2c2c;
-  --red2:   #fce8e8;
-  --amber:  #8f5608;
-  --amber2: #fff0cc;
-  --blue:   #1a3870;
-  --blue2:  #e4edf8;
-  --slate:  #374155;
-  --slate2: #ebeef5;
-  --teal:   #1a5858;
-  --teal2:  #e0f0f0;
+  --ink:   #0e0f14;
+  --ink2:  #1a1d2a;
+  --gold:  #b8820e;
+  --gold2: #d4a020;
+  --gold3: #f0c040;
+  --cream: #f9f6f0;
+  --soft:  #f2ede4;
+  --line:  #e4ddd0;
+  --muted: #6a6470;
+  --green: #1a5c38;
+  --green2:#dff0e8;
+  --red:   #b02828;
+  --red2:  #fce8e8;
+  --amber: #9a5e10;
+  --amber2:#fff3d0;
+  --blue:  #1c3d7a;
+  --blue2: #e4edf8;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
+* { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
 body {
-  font-family: 'Outfit', sans-serif;
-  background: #ccc8c0;
-  color: var(--ink);
-  padding: 48px 16px;
-  line-height: 1.65;
-  font-size: 15px;
-}
-.doc {
-  max-width: 1100px;
-  margin: 0 auto;
-  background: white;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 40px 120px rgba(17,18,24,0.22);
+  font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+  background:#c8c4bc;
+  color:var(--ink);
+  padding:40px 16px;
+  font-size:15px;
+  line-height:1.65;
 }
 
-/* ═══ COVER ═══ */
-.cover {
-  background: var(--ink2);
-  position: relative;
-  overflow: hidden;
+/* ── TAB SWITCHER ── */
+.switcher {
+  max-width:960px; margin:0 auto 28px;
+  background:var(--ink2);
+  border-radius:6px;
+  padding:20px 24px;
+  display:flex; align-items:center; justify-content:space-between;
+  gap:16px; flex-wrap:wrap;
 }
-.cover-inner {
-  display: grid;
-  grid-template-columns: 1fr 300px;
-  min-height: 460px;
+.switcher-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.4); }
+.tab-row { display:flex; gap:8px; flex-wrap:wrap; }
+.tab-btn {
+  padding:10px 20px; border-radius:3px;
+  font-size:12px; font-weight:700; letter-spacing:.5px;
+  border:1px solid rgba(255,255,255,.15);
+  color:rgba(255,255,255,.55);
+  background:transparent; cursor:pointer;
+  transition:all .2s;
 }
-.cover-left {
-  padding: 64px 60px 56px;
-  position: relative;
-  z-index: 2;
+.tab-btn:hover { color:var(--gold3); border-color:rgba(240,192,64,.3); }
+.tab-btn.active { background:var(--gold2); color:var(--ink2); border-color:var(--gold2); }
+
+/* ── REPORT CONTAINERS ── */
+.report-wrap {
+  max-width:960px; margin:0 auto;
+  display:none;
 }
-.cover-right {
-  background: rgba(255,255,255,0.04);
-  border-left: 1px solid rgba(255,255,255,0.07);
-  padding: 52px 36px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  z-index: 2;
-}
-.cover::before {
-  content: '';
-  position: absolute;
-  right: 240px; top: -180px;
-  width: 560px; height: 560px;
-  border-radius: 50%;
-  border: 1px solid rgba(192,125,32,0.07);
-  z-index: 1;
-}
-.pilot-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold2);
-  background: rgba(192,125,32,0.1);
-  border: 1px solid rgba(192,125,32,0.2);
-  padding: 6px 14px;
-  border-radius: 2px;
-  margin-bottom: 26px;
-}
-.pilot-tag::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--gold2);
-  animation: blink 2s infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.25} }
-.c-brand {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 50px;
-  font-weight: 700;
-  color: white;
-  line-height: 1.04;
-  letter-spacing: -0.02em;
-  margin-bottom: 5px;
-}
-.c-brand span { color: var(--gold2); }
-.c-sub {
-  font-size: 14px;
-  color: rgba(255,255,255,0.38);
-  letter-spacing: 0.5px;
-  margin-bottom: 28px;
-}
-.c-rule { height: 1px; background: rgba(255,255,255,0.08); margin-bottom: 28px; }
-.c-thesis {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 21px;
-  font-weight: 400;
-  font-style: italic;
-  color: rgba(255,255,255,0.8);
-  line-height: 1.62;
-  max-width: 560px;
-  padding-left: 18px;
-  border-left: 2px solid var(--gold);
-  margin-bottom: 28px;
-}
-.c-thesis strong { font-style: normal; color: var(--gold2); font-weight: 600; }
-.c-tags { display: flex; gap: 7px; flex-wrap: wrap; }
-.c-tag {
-  font-size: 11px; font-weight: 600;
-  padding: 5px 11px;
-  border: 1px solid rgba(255,255,255,0.11);
-  border-radius: 2px;
-  color: rgba(255,255,255,0.48);
+.report-wrap.visible { display:block; }
+
+.report {
+  background:white;
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow:0 28px 90px rgba(14,15,20,.2);
 }
 
-/* Right panel */
-.r-label {
-  font-size: 9px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: rgba(255,255,255,0.28); margin-bottom: 5px;
-}
-.r-val {
-  font-size: 13.5px; font-weight: 600;
-  color: rgba(255,255,255,0.68); line-height: 1.4;
-}
-.r-div { height: 1px; background: rgba(255,255,255,0.07); }
-.r-note {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.09);
-  border-radius: 3px;
-  padding: 16px;
-  font-size: 12.5px;
-  color: rgba(255,255,255,0.52);
-  line-height: 1.65;
-}
-.r-note strong { color: var(--gold2); }
+/* ════════════════════════════════════
+   VERSION 1 — PARTICIPANT
+════════════════════════════════════ */
 
-/* ═══ GOLD BAR ═══ */
-.gbar { height: 3px; background: linear-gradient(90deg, var(--gold), var(--gold2), rgba(232,168,50,.1)); }
+/* Participant cover — warm, human */
+.p-cover {
+  background:linear-gradient(135deg, #1a1d2a 0%, #2a2040 100%);
+  padding:60px 56px 52px;
+  position:relative; overflow:hidden;
+}
+.p-cover::before {
+  content:''; position:absolute; right:-80px; top:-80px;
+  width:380px; height:380px; border-radius:50%;
+  border:1px solid rgba(240,192,64,.1);
+}
+.p-badge {
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+  color:var(--gold3); background:rgba(240,192,64,.1); border:1px solid rgba(240,192,64,.22);
+  padding:6px 12px; border-radius:2px; margin-bottom:22px;
+}
+.p-badge::before { content:''; width:6px;height:6px;border-radius:50%;background:var(--gold3); }
+.p-cover-brand { font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:18px; font-weight:700; color:white; margin-bottom:3px; }
+.p-cover-brand em { color:var(--gold3); font-style:normal; }
+.p-cover-sub { font-size:9px; color:rgba(255,255,255,.32); letter-spacing:2.5px; text-transform:uppercase; margin-bottom:28px; }
+.p-cover-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.38); margin-bottom:7px; }
+.p-cover-type { font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:38px; font-weight:700; color:white; line-height:1.1; margin-bottom:6px; }
+.p-cover-type em { color:var(--gold3); font-style:normal; }
+.p-cover-role { font-size:13px; color:rgba(255,255,255,.48); margin-bottom:26px; }
+.p-cover-quote {
+  font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:21px; font-style:italic;
+  color:rgba(255,255,255,.85); line-height:1.62;
+  border-left:2px solid var(--gold2); padding-left:18px; max-width:640px;
+}
+.p-cover-quote strong { font-style:normal; color:var(--gold3); }
 
-/* ═══ SECTIONS ═══ */
-.sec { padding: 52px 60px; border-bottom: 1px solid var(--line); }
-.sec.tint { background: var(--soft); }
-.sec.dark { background: var(--ink2); color: white; }
+/* Participant sections */
+.p-sec { padding:44px 56px; border-bottom:1px solid var(--line); }
+.p-sec.tint { background:var(--soft); }
+.p-sec.focus { background:var(--ink2); color:white; }
+.p-sec-num { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.focus .p-sec-num { color:var(--gold3); }
+.p-h2 { font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:28px; font-weight:700; color:var(--ink); margin-bottom:10px; line-height:1.15; }
+.focus .p-h2 { color:white; }
+.p-lead { font-size:15px; color:var(--muted); line-height:1.75; margin-bottom:22px; max-width:800px; }
+.focus .p-lead { color:rgba(255,255,255,.58); }
 
-.ey {
-  font-size: 9px; font-weight: 700;
-  letter-spacing: 3px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 8px;
+/* Story boxes */
+.story-box {
+  background:var(--soft); border-left:3px solid var(--gold2);
+  padding:20px 24px; border-radius:0 4px 4px 0;
+  font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:20px; font-style:italic;
+  color:var(--ink); line-height:1.62; margin-bottom:18px;
 }
-.dark .ey { color: var(--gold2); }
+.story-box strong { font-style:normal; color:var(--gold); }
 
-h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 32px; color: var(--ink2);
-  font-weight: 700; margin-bottom: 8px;
-  line-height: 1.16; letter-spacing: -0.01em;
+.insight-box {
+  background:var(--ink2); color:white; border-radius:4px;
+  padding:20px 24px; margin:16px 0;
+  font-size:14px; line-height:1.72;
 }
-.dark h2 { color: white; }
+.insight-box strong { color:var(--gold3); }
 
-.lead {
-  font-size: 14.5px; color: var(--muted);
-  margin-bottom: 28px; line-height: 1.72;
-  max-width: 860px;
-}
-.dark .lead { color: rgba(255,255,255,0.55); }
+/* Strength/friction cards for participant */
+.pcard-grid { display:grid; grid-template-columns:1fr 1fr; gap:13px; margin-bottom:16px; }
+.pcard { border-radius:4px; padding:18px 20px; border:1px solid var(--line); background:white; }
+.tint .pcard { background:white; }
+.pcard.s { border-left:4px solid var(--green); }
+.pcard.f { border-left:4px solid var(--amber); }
+.pcard-label { font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+.s .pcard-label { color:var(--green); }
+.f .pcard-label { color:var(--amber); }
+.pcard-title { font-size:14px; font-weight:700; color:var(--ink); margin-bottom:6px; }
+.pcard-body { font-size:12.5px; color:var(--muted); line-height:1.65; }
 
-.g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+/* 30-day plan */
+.plan-row { display:grid; grid-template-columns:90px 1fr; gap:0; margin-bottom:8px; border-radius:3px; overflow:hidden; }
+.plan-week { padding:12px 14px; background:var(--ink); color:var(--gold3); font-size:11px; font-weight:800; display:flex; align-items:center; justify-content:center; text-align:center; line-height:1.3; }
+.plan-content { padding:12px 16px; background:white; border:1px solid var(--line); border-left:none; }
+.plan-focus { font-size:13px; font-weight:700; color:var(--ink); margin-bottom:3px; }
+.plan-action { font-size:12px; color:var(--muted); line-height:1.55; }
 
-/* ═══ CARDS ═══ */
-.card {
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  padding: 20px;
-  background: white;
-}
-.tint .card { background: white; }
-.dark .card { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.1); }
-.card.green  { border-color: #a8d4b8; background: var(--green2); }
-.card.red    { border-color: #efb4b4; background: var(--red2); }
-.card.gold   { border-color: #d0bc8c; background: var(--amber2); }
-.card.blue   { border-color: #b4c8e4; background: var(--blue2); }
-.card.teal   { border-color: #a0cccc; background: var(--teal2); }
-.card.slate  { border-color: #bcc4d2; background: var(--slate2); }
+/* Participant footer */
+.p-footer { text-align:center; padding:32px; background:var(--soft); border-top:1px solid var(--line); font-size:12px; color:var(--muted); line-height:1.7; }
+.p-footer strong { color:var(--ink); }
 
-.kk {
-  font-size: 9px; font-weight: 700;
-  letter-spacing: 2.5px; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 6px;
-}
-.dark .kk { color: var(--gold2); }
-.ct { font-size: 14px; font-weight: 700; color: var(--ink2); margin-bottom: 7px; line-height: 1.3; }
-.dark .ct { color: white; }
-.cb { font-size: 13px; color: var(--muted); line-height: 1.68; }
-.dark .cb { color: rgba(255,255,255,.6); }
 
-/* ═══ SECTION 2 — Opening ═══ */
-.opening {
-  background: var(--soft);
-  border-left: 3px solid var(--gold);
-  padding: 24px 28px;
-  border-radius: 0 3px 3px 0;
-  margin-bottom: 22px;
+/* ════════════════════════════════════
+   VERSION 2 — MANAGER
+════════════════════════════════════ */
+.m-cover {
+  background:var(--ink2);
+  padding:48px 56px 44px;
+  position:relative; overflow:hidden;
+  border-bottom:4px solid var(--green);
 }
-.opening h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 21px; font-style: italic;
-  color: var(--ink2); line-height: 1.52;
-  margin-bottom: 10px;
+.m-cover::before {
+  content:''; position:absolute; right:-60px; top:-60px;
+  width:300px; height:300px; border-radius:50%;
+  border:1px solid rgba(26,92,56,.2);
 }
-.opening p { font-size: 13.5px; color: var(--muted); line-height: 1.7; }
+.m-cover-grid { display:grid; grid-template-columns:1fr auto; gap:28px; align-items:start; position:relative; z-index:2; }
+.m-cover-badge {
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+  color:#6de898; background:rgba(26,92,56,.2); border:1px solid rgba(26,92,56,.35);
+  padding:5px 12px; border-radius:2px; margin-bottom:20px;
+}
+.m-cover-brand { font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:17px; font-weight:700; color:white; }
+.m-cover-brand em { color:#6de898; font-style:normal; }
+.m-cover-sub { font-size:9px; color:rgba(255,255,255,.3); letter-spacing:2px; text-transform:uppercase; margin-bottom:22px; }
+.m-cover-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:5px; }
+.m-cover-title { font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:30px; font-weight:700; color:white; line-height:1.12; margin-bottom:5px; }
+.m-cover-role { font-size:13px; color:rgba(255,255,255,.45); margin-bottom:20px; }
+.m-cover-verdict {
+  background:rgba(26,92,56,.15); border:1px solid rgba(26,92,56,.3); border-radius:3px;
+  padding:14px 18px;
+  font-size:14px; color:rgba(255,255,255,.8); line-height:1.65;
+}
+.m-cover-verdict strong { color:#6de898; }
 
-.disclaimer {
-  background: var(--amber2);
-  border: 1px solid #d4c090;
-  border-radius: 3px;
-  padding: 14px 18px;
-  font-size: 13px;
-  color: var(--amber);
-  line-height: 1.65;
-  margin-top: 14px;
+/* Manager KPI block */
+.m-kpi-block {
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+  border-radius:4px; padding:18px; min-width:180px;
 }
-.disclaimer strong { color: var(--ink2); }
+.m-kpi-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:6px; }
+.m-kpi-row { padding:6px 0; border-bottom:1px solid rgba(255,255,255,.08); }
+.m-kpi-row:last-child { border-bottom:none; }
+.m-kpi-name { font-size:11px; color:rgba(255,255,255,.5); margin-bottom:2px; }
+.m-kpi-val { font-family:'SFMono-Regular', Consolas, 'Liberation Mono', monospace; font-size:16px; font-weight:700; }
+.kv-h { color:#6de898; }
+.kv-m { color:var(--gold3); }
+.kv-l { color:#e08080; }
 
-/* ═══ SECTION 3 — Pattern Summary ═══ */
-.pattern-summary {
-  background: var(--ink2);
-  border-radius: 4px;
-  padding: 32px 36px;
-  margin-bottom: 22px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.ps-item { }
-.ps-label {
-  font-size: 9px; font-weight: 700;
-  letter-spacing: 2.5px; text-transform: uppercase;
-  color: rgba(255,255,255,0.32); margin-bottom: 7px;
-}
-.ps-val {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px; font-weight: 700;
-  color: var(--gold2); line-height: 1.3;
-  margin-bottom: 5px;
-}
-.ps-desc { font-size: 12.5px; color: rgba(255,255,255,0.52); line-height: 1.55; }
-.ps-div { grid-column: 1 / -1; height: 1px; background: rgba(255,255,255,0.07); }
+/* Manager sections */
+.m-sec { padding:40px 56px; border-bottom:1px solid var(--line); }
+.m-sec.tint { background:var(--soft); }
+.m-sec.action { background:#f0fdf4; border-left:5px solid var(--green); padding-left:51px; }
+.m-sec.risk { background:#fff8f0; border-left:5px solid var(--amber); padding-left:51px; }
+.m-sec-ey { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.m-h2 { font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:26px; font-weight:700; color:var(--ink); margin-bottom:8px; line-height:1.15; }
+.m-lead { font-size:14px; color:var(--muted); line-height:1.72; margin-bottom:20px; }
 
-.validate-note {
-  background: rgba(192,125,32,0.1);
-  border: 1px solid rgba(192,125,32,0.2);
-  border-radius: 3px;
-  padding: 16px 20px;
-  font-size: 13px;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.65;
-}
-.validate-note strong { color: var(--gold2); }
+/* Deal routing */
+.routing-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.route-card { border-radius:4px; padding:16px 18px; border:1px solid var(--line); background:white; }
+.route-card.yes { border-color:#aad4b8; background:var(--green2); border-left:4px solid var(--green); }
+.route-card.no  { border-color:#f0b8b8; background:var(--red2); border-left:4px solid var(--red); }
+.route-label { font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+.yes .route-label { color:var(--green); }
+.no  .route-label { color:var(--red); }
+.route-title { font-size:13px; font-weight:700; color:var(--ink); margin-bottom:6px; }
+.route-list { font-size:12px; color:var(--muted); line-height:1.65; }
 
-/* ═══ SECTION 4 — Sales Cycle ═══ */
-.cycle-strip {
-  display: grid;
-  grid-template-columns: repeat(6,1fr);
-  gap: 8px;
-  margin-bottom: 24px;
-}
-.stile {
-  border-radius: 3px;
-  padding: 14px 8px;
-  text-align: center;
-  border: 1px solid var(--line);
-  background: white;
-  border-top: 4px solid var(--line);
-}
-.stile.h { border-top-color: var(--green); }
-.stile.m { border-top-color: var(--gold); }
-.stile.l { border-top-color: var(--red); }
-.stile-name { font-size: 12px; font-weight: 700; color: var(--ink2); margin-bottom: 4px; }
-.stile-r { font-size: 11px; font-weight: 600; }
-.stile.h .stile-r { color: var(--green); }
-.stile.m .stile-r { color: var(--amber); }
-.stile.l .stile-r { color: var(--red); }
+/* Coaching table */
+.coach-table { width:100%; border-collapse:collapse; border:1px solid var(--line); background:white; }
+.coach-table th { background:var(--ink2); color:var(--gold3); padding:10px 14px; text-align:left; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+.coach-table td { padding:13px 14px; border-bottom:1px solid var(--line); font-size:13px; vertical-align:top; line-height:1.58; }
+.coach-table tr:last-child td { border-bottom:none; }
+.coach-table tr:nth-child(even) td { background:var(--soft); }
 
-.cycle-table { width: 100%; border-collapse: collapse; border: 1px solid var(--line); background: white; }
-.cycle-table th { background: var(--ink2); color: var(--gold2); padding: 11px 14px; text-align: left; font-size: 10px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; }
-.cycle-table td { padding: 15px 14px; border-bottom: 1px solid var(--line); font-size: 13px; vertical-align: top; line-height: 1.62; }
-.cycle-table tr:last-child td { border-bottom: none; }
-.cycle-table tr:nth-child(even) td { background: var(--soft); }
-.s-name { font-size: 14px; font-weight: 700; color: var(--ink2); margin-bottom: 3px; }
-.s-sub { font-size: 11.5px; color: var(--muted); }
-.sbadge { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 2px; }
-.sb-h { background: var(--green2); color: var(--green); }
-.sb-m { background: var(--amber2); color: var(--amber); }
-.sb-l { background: var(--red2); color: var(--red); }
+/* Script boxes */
+.script-box {
+  background:var(--ink2); color:var(--gold3);
+  padding:13px 16px; border-radius:3px;
+  font-size:12.5px; line-height:1.65; font-style:italic; margin-top:8px;
+}
+.script-box strong { color:white; font-style:normal; }
 
-/* ═══ SECTION 5 — Strengths & Friction ═══ */
-.sf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.sf-card {
-  border-radius: 3px;
-  padding: 18px 20px;
-  border: 1px solid var(--line);
-  background: white;
+/* Risk flag */
+.risk-flag {
+  background:var(--amber2); border:1px solid #d4b888; border-radius:3px;
+  padding:14px 18px; margin-bottom:10px;
+  font-size:13px; color:#5a3808; line-height:1.65;
 }
-.sf-card.s { border-left: 4px solid var(--green); }
-.sf-card.f { border-left: 4px solid var(--red); }
-.sf-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
-.sf-card.s .sf-label { color: var(--green); }
-.sf-card.f .sf-label { color: var(--red); }
-.sf-title { font-size: 14px; font-weight: 700; color: var(--ink2); margin-bottom: 7px; }
-.sf-body { font-size: 13px; color: var(--muted); line-height: 1.65; }
+.risk-flag strong { color:var(--ink); }
 
-/* ═══ SECTION 6 — Environment Fit ═══ */
-.env-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.env-card { border-radius: 3px; padding: 22px; border: 1px solid var(--line); }
-.env-card.fit  { border-color: #a8d4b8; background: var(--green2); }
-.env-card.risk { border-color: #efb4b4; background: var(--red2); }
-.env-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
-.env-card.fit  .env-label { color: var(--green); }
-.env-card.risk .env-label { color: var(--red); }
-.env-title { font-size: 15px; font-weight: 700; color: var(--ink2); margin-bottom: 12px; }
-.env-item {
-  font-size: 13px; color: var(--ink);
-  padding: 5px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  display: flex; gap: 8px; line-height: 1.5;
-  align-items: flex-start;
+/* Pipeline now */
+.pipeline-box {
+  border:1px solid var(--line); border-radius:4px; padding:18px 20px; background:white; margin-bottom:10px;
 }
-.env-item:last-child { border-bottom: none; }
-.env-dot { font-size: 12px; flex-shrink: 0; margin-top: 1px; }
-.env-card.fit  .env-dot { color: var(--green); }
-.env-card.risk .env-dot { color: var(--red); }
+.pipeline-box.critical { border-color:#f0b8b8; background:var(--red2); }
+.pipeline-box.watch { border-color:#d4b888; background:var(--amber2); }
+.pb-label { font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+.critical .pb-label { color:var(--red); }
+.watch .pb-label { color:var(--amber); }
+.pb-title { font-size:13px; font-weight:700; color:var(--ink); margin-bottom:5px; }
+.pb-body { font-size:12.5px; color:var(--muted); line-height:1.62; }
 
-/* ═══ SECTION 7 — Vectors ═══ */
-.vec-note {
-  background: var(--blue2);
-  border-left: 3px solid var(--blue);
-  border-radius: 0 3px 3px 0;
-  padding: 14px 18px;
-  font-size: 13.5px;
-  color: var(--blue);
-  line-height: 1.65;
-  margin-bottom: 24px;
-}
-.vec-note strong { color: var(--ink2); }
+.m-footer { text-align:center; padding:28px; background:var(--soft); border-top:1px solid var(--line); font-size:12px; color:var(--muted); }
 
-.vgrid { display: grid; grid-template-columns: repeat(3,1fr); gap: 13px; }
-.vcard {
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  padding: 20px 18px;
-  background: white;
-  border-top: 4px solid var(--line);
-}
-.vcard.c { border-top-color: var(--green); }
-.vcard.s { border-top-color: var(--gold); }
-.vcard.e { border-top-color: #c0a0c0; }
 
-.v-zone {
-  font-size: 9px; font-weight: 700;
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 10px;
+/* ════════════════════════════════════
+   VERSION 3 — HR
+════════════════════════════════════ */
+.h-cover {
+  background:var(--ink);
+  padding:52px 56px 46px;
+  position:relative; overflow:hidden;
+  border-bottom:4px solid var(--blue);
 }
-.c .v-zone { color: var(--green); }
-.s .v-zone { color: var(--amber); }
-.e .v-zone { color: #8060a0; }
+.h-cover::before {
+  content:''; position:absolute; right:-80px; top:-80px;
+  width:360px; height:360px; border-radius:50%;
+  border:1px solid rgba(28,61,122,.25);
+}
+.h-cover-badge {
+  display:inline-flex; align-items:center; gap:7px;
+  font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+  color:#88b4e8; background:rgba(28,61,122,.2); border:1px solid rgba(28,61,122,.35);
+  padding:5px 12px; border-radius:2px; margin-bottom:20px;
+}
+.h-cover-grid { display:grid; grid-template-columns:1fr auto; gap:28px; align-items:start; position:relative; z-index:2; }
+.h-cover-brand { font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:17px; font-weight:700; color:white; margin-bottom:3px; }
+.h-cover-brand em { color:#88b4e8; font-style:normal; }
+.h-cover-sub { font-size:9px; color:rgba(255,255,255,.3); letter-spacing:2px; text-transform:uppercase; margin-bottom:20px; }
+.h-cover-name { font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:30px; font-weight:700; color:white; margin-bottom:4px; }
+.h-cover-role { font-size:13px; color:rgba(255,255,255,.45); margin-bottom:18px; }
+.h-cover-summary {
+  background:rgba(28,61,122,.15); border:1px solid rgba(28,61,122,.3); border-radius:3px;
+  padding:14px 18px; font-size:13.5px; color:rgba(255,255,255,.78); line-height:1.65;
+}
+.h-cover-summary strong { color:#88b4e8; }
 
-/* Level badge instead of number */
-.v-level {
-  display: inline-block;
-  font-size: 12px; font-weight: 800;
-  padding: 5px 14px;
-  border-radius: 3px;
-  margin-bottom: 10px;
-  letter-spacing: 0.3px;
+/* HR signal panel */
+.h-signal-panel {
+  background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1);
+  border-radius:4px; padding:16px; min-width:200px;
 }
-.vl-high { background: var(--green2); color: var(--green); }
-.vl-mid  { background: var(--amber2); color: var(--amber); }
-.vl-sup  { background: #ede8f4; color: #6040a0; }
+.h-signal-label { font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:10px; text-align:center; }
+.h-signal-item { padding:8px 0; border-bottom:1px solid rgba(255,255,255,.07); }
+.h-signal-item:last-child { border-bottom:none; }
+.h-signal-name { font-size:11px; color:rgba(255,255,255,.45); margin-bottom:3px; }
+.h-signal-val { font-size:13px; font-weight:700; }
+.sv-h { color:#88e898; }
+.sv-m { color:var(--gold3); }
+.sv-l { color:#e08888; }
+.sv-w { color:#88b4e8; }
 
-.v-track { height: 5px; background: var(--line); border-radius: 3px; overflow: hidden; margin-bottom: 12px; }
-.v-fill { height: 100%; border-radius: 3px; }
-.vfg { background: linear-gradient(90deg, var(--green), #3db870); }
-.vfa { background: linear-gradient(90deg, var(--gold), var(--gold2)); }
-.vfe { background: linear-gradient(90deg, #9070b8, #b090d0); }
+/* HR sections */
+.h-sec { padding:40px 56px; border-bottom:1px solid var(--line); }
+.h-sec.tint { background:var(--soft); }
+.h-sec.dark { background:var(--ink2); color:white; }
+.h-sec-ey { font-size:9px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
+.dark .h-sec-ey { color:var(--gold3); }
+.h-h2 { font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif; font-size:26px; font-weight:700; color:var(--ink); margin-bottom:8px; }
+.dark .h-h2 { color:white; }
+.h-lead { font-size:14px; color:var(--muted); line-height:1.72; margin-bottom:20px; }
+.dark .h-lead { color:rgba(255,255,255,.55); }
 
-.v-name { font-size: 14px; font-weight: 700; color: var(--ink2); margin-bottom: 5px; line-height: 1.28; }
-.v-desc { font-size: 12px; color: var(--muted); line-height: 1.6; margin-bottom: 10px; }
-.v-sales {
-  font-size: 12px; color: var(--ink);
-  background: var(--soft);
-  border-left: 2px solid var(--gold);
-  padding: 8px 10px;
-  border-radius: 0 3px 3px 0;
-  line-height: 1.55;
-}
-.v-sales strong { color: var(--amber); }
+/* HR tables */
+.h-table { width:100%; border-collapse:collapse; border:1px solid var(--line); background:white; margin:14px 0; }
+.h-table th { background:var(--ink2); color:var(--gold3); padding:10px 14px; text-align:left; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; }
+.h-table td { padding:12px 14px; border-bottom:1px solid var(--line); font-size:13px; vertical-align:top; line-height:1.55; }
+.h-table tr:last-child td { border-bottom:none; }
+.h-table tr:nth-child(even) td { background:var(--soft); }
 
-.zone-legend {
-  display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 10px; margin-top: 20px;
-}
-.zl-item {
-  border-radius: 3px; padding: 14px 16px;
-  border: 1px solid var(--line); background: white;
-  border-left: 4px solid var(--line);
-}
-.zl-item.c { border-left-color: var(--green); }
-.zl-item.s { border-left-color: var(--gold); }
-.zl-item.e { border-left-color: #9070b8; }
-.zl-title { font-size: 12px; font-weight: 700; color: var(--ink2); margin-bottom: 4px; }
-.zl-desc { font-size: 12px; color: var(--muted); line-height: 1.55; }
+/* Fit matrix */
+.fit-matrix { display:grid; grid-template-columns:repeat(3,1fr); gap:11px; }
+.fit-card { border-radius:4px; padding:16px 18px; border:1px solid var(--line); background:white; border-top:4px solid var(--line); }
+.fit-card.strong { border-top-color:var(--green); }
+.fit-card.mod    { border-top-color:var(--gold2); }
+.fit-card.low    { border-top-color:var(--red); }
+.fit-label { font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+.strong .fit-label { color:var(--green); }
+.mod    .fit-label { color:var(--amber); }
+.low    .fit-label { color:var(--red); }
+.fit-role { font-size:13px; font-weight:700; color:var(--ink); margin-bottom:5px; }
+.fit-why { font-size:12px; color:var(--muted); line-height:1.55; }
 
-/* ═══ SECTION 8 — Validation ═══ */
-.q-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.q-box { border: 1px solid var(--line); border-radius: 3px; padding: 22px; background: white; }
-.q-title { font-size: 14px; font-weight: 700; color: var(--ink2); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
-.q-item {
-  font-size: 13px; color: var(--muted);
-  padding: 7px 0;
-  border-bottom: 1px solid var(--line);
-  line-height: 1.55;
-  display: flex; gap: 10px; align-items: flex-start;
-}
-.q-item:last-child { border-bottom: none; }
-.q-n { font-size: 12px; font-weight: 800; color: var(--gold); flex-shrink: 0; min-width: 18px; }
+/* Leadership signal */
+.leadership-box { border-radius:4px; padding:20px; border:1px solid var(--line); background:white; margin-bottom:12px; }
+.leadership-box.yes { border-color:#aad4b8; background:var(--green2); border-left:5px solid var(--green); }
+.leadership-box.no  { border-color:#f0b8b8; background:var(--red2); border-left:5px solid var(--red); }
+.lb-label { font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:5px; }
+.yes .lb-label { color:var(--green); }
+.no  .lb-label { color:var(--red); }
+.lb-title { font-size:14px; font-weight:700; color:var(--ink); margin-bottom:6px; }
+.lb-body { font-size:12.5px; color:var(--muted); line-height:1.65; }
 
-.callout {
-  background: var(--ink2); color: white;
-  border-radius: 3px; padding: 22px 26px; margin-top: 18px;
-}
-.callout h3 {
-  font-family: 'Cormorant Garamond', serif;
-  color: var(--gold2); font-size: 19px; font-weight: 700; margin-bottom: 8px;
-}
-.callout p { color: rgba(255,255,255,0.65); font-size: 13.5px; line-height: 1.72; }
+/* Retention risk */
+.retention-row { display:flex; gap:12px; align-items:flex-start; padding:10px 0; border-bottom:1px solid var(--line); }
+.retention-row:last-child { border-bottom:none; }
+.ret-icon { font-size:18px; flex-shrink:0; margin-top:2px; }
+.ret-title { font-size:13px; font-weight:700; color:var(--ink); margin-bottom:3px; }
+.ret-body { font-size:12px; color:var(--muted); line-height:1.55; }
 
-/* ═══ FOOTER ═══ */
-.footer {
-  text-align: center; padding: 44px;
-  color: var(--muted); font-size: 13px;
-  background: var(--soft); border-top: 1px solid var(--line);
-  line-height: 1.72;
+/* Hiring note */
+.hiring-box {
+  background:var(--blue2); border:1px solid #b4cce8; border-radius:4px;
+  padding:18px 20px;
 }
-.footer strong { color: var(--ink2); }
+.hiring-box h4 { font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px; }
+.hiring-box p { font-size:13px; color:#2a3a5a; line-height:1.65; }
 
-@media (max-width: 860px) {
-  .cover-inner { grid-template-columns: 1fr; }
-  .cover-right { border-left: none; border-top: 1px solid rgba(255,255,255,.07); }
-  .cover-left { padding: 44px 28px; }
-  .sec { padding: 44px 28px; }
-  .g2, .g3, .sf-grid, .env-grid, .q-grid, .vgrid, .zone-legend, .cycle-strip { grid-template-columns: 1fr; }
-  .pattern-summary { grid-template-columns: 1fr; }
-  .c-brand { font-size: 38px; }
+.h-footer { text-align:center; padding:28px; background:var(--soft); border-top:1px solid var(--line); font-size:12px; color:var(--muted); }
+
+/* ── SHARED ── */
+.pill { display:inline-block; padding:3px 9px; border-radius:2px; font-size:11px; font-weight:700; margin:2px; }
+.pg { background:var(--green2); color:var(--green); }
+.pa { background:var(--amber2); color:var(--amber); }
+.pr { background:var(--red2); color:var(--red); }
+.pb { background:var(--blue2); color:var(--blue); }
+.gbar { height:3px; background:linear-gradient(90deg,var(--gold),var(--gold3),rgba(240,192,64,.1)); }
+
+
+
+/* ── BUSINESS ARCHITECTURE SNAPSHOT ── */
+.arch-snapshot {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin:18px 0 8px;
 }
-@media print {
-  body { background: white; padding: 0; }
-  .doc { box-shadow: none; border-radius: 0; }
-  .sec { break-inside: avoid; }
+.arch-card {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:4px;
+  padding:16px 18px;
+  border-top:4px solid var(--gold2);
 }
+.arch-label {
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:7px;
+}
+.arch-title {
+  font-size:14px;
+  font-weight:800;
+  color:var(--ink);
+  margin-bottom:6px;
+  line-height:1.35;
+}
+.arch-body {
+  font-size:12.5px;
+  color:var(--muted);
+  line-height:1.6;
+}
+.client-note {
+  background:#f8fafc;
+  border:1px solid var(--line);
+  border-left:4px solid var(--gold2);
+  border-radius:0 4px 4px 0;
+  padding:14px 18px;
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.65;
+  margin:14px 0 4px;
+}
+.client-note strong { color:var(--ink); }
+.confidence-note {
+  font-size:11.5px;
+  color:var(--muted);
+  line-height:1.55;
+  margin-top:10px;
+  padding-top:10px;
+  border-top:1px dashed var(--line);
+}
+
+@media(max-width:768px) {
+  .switcher { flex-direction:column; align-items:flex-start; }
+  .p-cover,.m-cover,.h-cover { padding:36px 24px; }
+  .p-sec,.m-sec,.h-sec { padding:32px 24px; }
+  .pcard-grid,.routing-grid,.fit-matrix,.arch-snapshot { grid-template-columns:1fr; }
+  .m-cover-grid,.h-cover-grid { grid-template-columns:1fr; }
+  .plan-row { grid-template-columns:1fr; }
+  .plan-week { border-radius:3px 3px 0 0; }
+}
+
+.g2 { display:grid; grid-template-columns:1fr 1fr; }
+.dark .card { background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); border-radius:4px; padding:18px; }
+.dark .kicker { color:var(--gold3); font-size:9px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:6px; }
+.dark .ct { color:white; font-size:14px; font-weight:800; margin-bottom:8px; }
+.dark .cb { color:rgba(255,255,255,.62); font-size:12.5px; line-height:1.65; }
+@media(max-width:768px) { .g2 { grid-template-columns:1fr; } }
 </style>
 </head>
 <body>
-<div class="doc">
 
-<!-- ══════════ COVER ══════════ -->
-<div class="cover">
-  <div class="cover-inner">
-    <div class="cover-left">
-      <div class="pilot-tag">Pilot · Validation Edition · Revenue Behavior Mapping</div>
-      <div class="c-brand">Potential<br><span>Intelligence™</span></div>
-      <div class="c-sub">Sales Architecture Report · Early-Stage Research Version</div>
-      <div class="c-rule"></div>
-      <div class="c-thesis">
-        This report explores <strong>how a person naturally creates revenue</strong> — how they read buyers, what activates their energy, how they move deals, and where structure helps them perform consistently.
-      </div>
-      <div class="c-tags">
-        <span class="c-tag">Pilot Assessment</span>
-        <span class="c-tag">Natural Sales Architecture</span>
-        <span class="c-tag">Sample Scores — For Validation</span>
-        <span class="c-tag">No Labels · No Judgment</span>
+<!-- TAB SWITCHER -->
+<div class="switcher">
+  <div class="switcher-label">Select report version</div>
+  <div class="tab-row">
+    <button class="tab-btn active" onclick="showTab('participant')">👤 Participant Report</button>
+    <button class="tab-btn" onclick="showTab('manager')">📊 Sales Manager Report</button>
+    <button class="tab-btn" onclick="showTab('hr')">🏢 HR / Talent Report</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     REPORT 1 — PARTICIPANT
+══════════════════════════════════════ -->
+<div class="report-wrap visible" id="tab-participant">
+<div class="report">
+
+<div class="p-cover">
+  <div class="p-badge">Your Individual Report · Pilot</div>
+  <div class="p-cover-brand">Potential <em>Intelligence™</em></div>
+  <div class="p-cover-sub">Sales Architecture Report · For You</div>
+  <div class="p-cover-label">Your natural selling style</div>
+  <div class="p-cover-type">The <em>Strategic Clarifier</em></div>
+  <div class="p-cover-role">Enterprise Account Executive · Assessment ID: 2ElA6WM</div>
+  <div class="p-cover-quote">
+    You don't sell by pushing. You sell by helping the buyer see their problem differently — and then showing them the clearest path forward. <strong>That is both your greatest strength and the key to your next level.</strong>
+  </div>
+</div>
+<div class="gbar"></div>
+
+<!-- How you sell -->
+<div class="p-sec">
+  <div class="p-sec-num">Section 1 · How you naturally sell</div>
+  <div class="p-h2">This is your selling architecture.</div>
+
+  <div class="arch-snapshot">
+    <div class="arch-card">
+      <div class="arch-label">Buyer Reading</div>
+      <div class="arch-title">Strategic Reframing</div>
+      <div class="arch-body">You notice hidden assumptions, wrong problem frames, and the decision logic behind what the buyer says.</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-label">Natural Motivation</div>
+      <div class="arch-title">Message &amp; Meaning Clarity</div>
+      <div class="arch-body">You are energized when complexity becomes clear and each stakeholder finally sees the business meaning.</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-label">Execution Style</div>
+      <div class="arch-title">Structured Follow-through</div>
+      <div class="arch-body">You create results through process, commitments, CRM discipline, and clear next steps.</div>
+    </div>
+  </div>
+  <div class="client-note"><strong>How to read this:</strong> this is not a personality label. It is a practical map of how your sales execution tends to work when you are at your best.</div>
+
+  <div class="story-box">
+    "When you walk into a discovery call, your mind isn't just collecting facts. It's searching for the <strong>frame the buyer is using to understand their own problem</strong> — and whether that frame is actually correct."
+  </div>
+
+  <p style="font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:14px">This is rare. Most sellers listen to what the buyer says and pitch to that. You listen for what the buyer <em>assumes</em> — and then gently, precisely, help them see the problem from a different angle. Buyers who have worked with you likely describe you as someone who "really gets the business" or "helped us think about this differently."</p>
+
+  <p style="font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:14px">Your three natural mechanisms:</p>
+
+  <div class="pcard-grid">
+    <div class="pcard s">
+      <div class="pcard-label">How you read buyers</div>
+      <div class="pcard-title">You look for the hidden frame</div>
+      <div class="pcard-body">You don't just hear what the buyer says — you notice how they're thinking about the problem. You catch assumptions, inconsistencies, and unstated beliefs. This makes your discovery conversations different from most.</div>
+    </div>
+    <div class="pcard s">
+      <div class="pcard-label">What activates your best work</div>
+      <div class="pcard-title">Complexity becoming clarity</div>
+      <div class="pcard-body">You're energized when something complex starts to make sense — when you find the right framing for a stakeholder, when a confused buyer says "I hadn't thought of it that way." That moment is your fuel.</div>
+    </div>
+    <div class="pcard s">
+      <div class="pcard-label">How you execute</div>
+      <div class="pcard-title">Through structure and process</div>
+      <div class="pcard-body">You execute through systematic follow-through: tracking commitments, maintaining CRM, building repeatable approaches. When deals are moving, you're reliable and consistent.</div>
+    </div>
+    <div class="pcard f">
+      <div class="pcard-label">Where energy costs more</div>
+      <div class="pcard-title">When the deal goes quiet</div>
+      <div class="pcard-body">When a deal stalls and there's no clear next signal, activity can drop. Not because you've given up — but because you're wired to move through clarity, and when clarity disappears, so does the natural impulse to act.</div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <strong>The insight that changes everything:</strong> Your selling engine runs on meaning — on the satisfaction of making complexity clear for someone. Use that engine deliberately. Every reframing moment is a potential momentum moment. The bridge is simple: <em>"Based on what you just told me, the next clear step is..."</em>
+  </div>
+</div>
+
+<!-- Where you're strong -->
+<div class="p-sec tint">
+  <div class="p-sec-num">Section 2 · Where you're naturally strong in the deal cycle</div>
+  <div class="p-h2">You have a specific zone of excellence.</div>
+  <div class="p-lead">Different people are naturally strong at different stages of a sale. Yours is clear — and knowing it helps you double down where you create the most value.</div>
+
+  <div style="margin-bottom:16px">
+    <div style="display:flex;gap:10px;margin-bottom:8px;align-items:center">
+      <div style="width:100px;font-size:12px;font-weight:700;color:var(--ink)">Discovery</div>
+      <div style="flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden"><div style="height:100%;width:84%;background:linear-gradient(90deg,var(--green),#4dc870);border-radius:5px"></div></div>
+      <div style="font-size:13px;font-weight:800;color:var(--green);min-width:36px">84%</div>
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:8px;align-items:center">
+      <div style="width:100px;font-size:12px;font-weight:700;color:var(--ink)">Positioning</div>
+      <div style="flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden"><div style="height:100%;width:85%;background:linear-gradient(90deg,var(--green),#4dc870);border-radius:5px"></div></div>
+      <div style="font-size:13px;font-weight:800;color:var(--green);min-width:36px">85%</div>
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:8px;align-items:center">
+      <div style="width:100px;font-size:12px;font-weight:700;color:var(--ink)">Reframing</div>
+      <div style="flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden"><div style="height:100%;width:82%;background:linear-gradient(90deg,var(--green),#4dc870);border-radius:5px"></div></div>
+      <div style="font-size:13px;font-weight:800;color:var(--green);min-width:36px">82%</div>
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:8px;align-items:center">
+      <div style="width:100px;font-size:12px;font-weight:700;color:var(--ink)">Follow-through</div>
+      <div style="flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden"><div style="height:100%;width:74%;background:linear-gradient(90deg,var(--gold),var(--gold3));border-radius:5px"></div></div>
+      <div style="font-size:13px;font-weight:800;color:var(--amber);min-width:36px">74%</div>
+    </div>
+    <div style="display:flex;gap:10px;margin-bottom:8px;align-items:center">
+      <div style="width:100px;font-size:12px;font-weight:700;color:var(--ink)">Urgency/Close</div>
+      <div style="flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden"><div style="height:100%;width:68%;background:linear-gradient(90deg,var(--gold),var(--gold3));border-radius:5px"></div></div>
+      <div style="font-size:13px;font-weight:800;color:var(--amber);min-width:36px">68%</div>
+    </div>
+    <div style="display:flex;gap:10px;align-items:center">
+      <div style="width:100px;font-size:12px;font-weight:700;color:var(--ink)">Stalled deals</div>
+      <div style="flex:1;height:10px;background:var(--line);border-radius:5px;overflow:hidden"><div style="height:100%;width:60%;background:linear-gradient(90deg,var(--red),#e05050);border-radius:5px"></div></div>
+      <div style="font-size:13px;font-weight:800;color:var(--red);min-width:36px">60%</div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <strong>What this means practically:</strong> You create the most value in deals where discovery and positioning matter — complex, multi-stakeholder, enterprise situations where your ability to reframe the buyer's thinking is a competitive advantage. In high-volume, low-context, sprint-close environments you'll feel the friction. That's not a weakness. That's architecture.
+  </div>
+</div>
+
+<!-- Your development edge -->
+<div class="p-sec">
+  <div class="p-sec-num">Section 3 · Your development edge</div>
+  <div class="p-h2">The one thing that unlocks your next level.</div>
+  <div class="p-lead">This isn't about becoming a different kind of seller. It's about using your existing strength one step further.</div>
+
+  <div class="story-box">
+    "Your reframing moments are powerful. Buyers shift. Clarity arrives. The room changes. And then — <strong>the conversation ends without a committed next step</strong>. Not because you're not capable. Because the natural impulse stops at clarity."
+  </div>
+
+  <p style="font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:16px">The bridge you need to build: <strong>reframing → commitment.</strong> Not urgency through pressure. Urgency through the cost of staying unclear. These are very different things — and the second one is natural for you.</p>
+
+  <div class="pcard-grid">
+    <div class="pcard f">
+      <div class="pcard-label">What to practice</div>
+      <div class="pcard-title">The cost-of-delay question</div>
+      <div class="pcard-body">After every reframing moment, ask: "What happens to this situation if it stays unresolved for another 60 days?" This creates urgency through their problem — not your pressure.</div>
+    </div>
+    <div class="pcard f">
+      <div class="pcard-label">The stalled deal protocol</div>
+      <div class="pcard-title">Three actions in 48 hours</div>
+      <div class="pcard-body">When a deal goes quiet: (1) new angle on the problem, (2) one sharp question you haven't asked, (3) a proposed next step. Don't wait for a signal. Create one.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 30-day plan -->
+<div class="p-sec focus">
+  <div class="p-sec-num">Section 4 · Your 30-day focus</div>
+  <div class="p-h2">Four practices. One clear direction.</div>
+  <div class="p-lead">You don't need to change how you sell. You need to extend it — from clarity to commitment.</div>
+
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div class="plan-row">
+      <div class="plan-week">Week 1<br>Cost of inaction</div>
+      <div class="plan-content">
+        <div class="plan-focus">In every active deal, map the cost of staying stuck.</div>
+        <div class="plan-action">For each deal in your pipeline: write one sentence on what gets worse for the buyer in 30/60/90 days if nothing changes. Use this in your next call.</div>
       </div>
     </div>
-
-    <div class="cover-right">
-      <div style="display:flex;flex-direction:column;gap:18px">
-        <div>
-          <div class="r-label">Report Type</div>
-          <div class="r-val">Individual Pilot · Research Version</div>
-        </div>
-        <div class="r-div"></div>
-        <div>
-          <div class="r-label">Framework</div>
-          <div class="r-val">9 Behavioral Vectors · 3 Operating Zones</div>
-        </div>
-        <div class="r-div"></div>
-        <div>
-          <div class="r-label">Scores in This Report</div>
-          <div class="r-val">Sample placeholders — generated from assessment responses in live version</div>
-        </div>
-        <div class="r-div"></div>
-        <div>
-          <div class="r-label">Primary Use</div>
-          <div class="r-val">Sales Leaders · HR Partners · Coaching</div>
-        </div>
+    <div class="plan-row">
+      <div class="plan-week">Week 2<br>Stakeholder map</div>
+      <div class="plan-content">
+        <div class="plan-focus">Translate your value into every stakeholder's language.</div>
+        <div class="plan-action">Pick one deal. Write the value proposition for CFO, VP Sales, and end user separately. One sentence each. Present in next stakeholder interaction.</div>
       </div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-week">Week 3<br>Stalled protocol</div>
+      <div class="plan-content">
+        <div class="plan-focus">Design your personal stalled-deal protocol.</div>
+        <div class="plan-action">Write down: what are your three moves when a deal goes quiet for 5+ days? Practice them on at least two stalled deals this week.</div>
+      </div>
+    </div>
+    <div class="plan-row">
+      <div class="plan-week">Week 4<br>Reframe → commit</div>
+      <div class="plan-content">
+        <div class="plan-focus">After every strong reframing moment — close to a next step.</div>
+        <div class="plan-action">Use this bridge: "Based on what you've just told me — what's the decision that needs to happen before our next conversation?" Track how often this produces a committed date.</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-      <div class="r-note">
-        <strong>This is a validation pilot.</strong> Scores and patterns shown are illustrative. Your feedback on accuracy, usefulness, and clarity directly shapes the next version of this methodology.
+<!-- Validation questions -->
+<div class="p-sec tint">
+  <div class="p-sec-num">Section 5 · Your feedback matters</div>
+  <div class="p-h2">Does this feel accurate?</div>
+  <div class="p-lead">We're validating this framework. Your honest reaction — especially where this misses — directly improves what we build.</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div style="padding:12px 14px;background:white;border:1px solid var(--line);border-radius:3px;font-size:13px;color:var(--muted)">Did the "complexity → clarity → structure" pattern feel like you?</div>
+    <div style="padding:12px 14px;background:white;border:1px solid var(--line);border-radius:3px;font-size:13px;color:var(--muted)">Is the stalled-deal drop something you actually experience?</div>
+    <div style="padding:12px 14px;background:white;border:1px solid var(--line);border-radius:3px;font-size:13px;color:var(--muted)">Which section felt most accurate to your real day-to-day?</div>
+    <div style="padding:12px 14px;background:white;border:1px solid var(--line);border-radius:3px;font-size:13px;color:var(--muted)">What felt wrong or missing about this picture?</div>
+  </div>
+</div>
+
+<div class="p-footer">
+  <strong>Potential Intelligence™</strong> · Individual Report · Assessment 2ElA6WM<br>
+  This report is a behavioral map, not an evaluation. Read it as a starting point for reflection — not a verdict. · Pilot Stage 2026
+</div>
+
+</div><!-- end participant report -->
+</div>
+
+<!-- ══════════════════════════════════════
+     REPORT 2 — MANAGER
+══════════════════════════════════════ -->
+<div class="report-wrap" id="tab-manager">
+<div class="report">
+
+<div class="m-cover">
+  <div class="m-cover-badge">Manager Intelligence Report · Confidential</div>
+  <div class="m-cover-grid">
+    <div>
+      <div class="m-cover-brand">Potential <em>Intelligence™</em></div>
+      <div class="m-cover-sub">Sales Manager Report · Assessment 2ElA6WM</div>
+      <div class="m-cover-label">Profile type</div>
+      <div class="m-cover-title">Strategic Consultative Seller</div>
+      <div class="m-cover-role">Enterprise Account Executive · 5+ years · Quota 100–120%</div>
+      <div class="m-cover-verdict">
+        <strong>One-line verdict:</strong> This rep creates real value in complex discovery and strategic positioning — and loses momentum when deals stall without a clear path. Your highest-return coaching action is building a stalled-deal protocol with them, not pushing for more urgency.
+      </div>
+    </div>
+    <div class="m-kpi-block">
+      <div class="m-kpi-label">Key Signals</div>
+      <div class="m-kpi-row">
+        <div class="m-kpi-name">Buyer reading</div>
+        <div class="m-kpi-val kv-h">81 · Strong</div>
+      </div>
+      <div class="m-kpi-row">
+        <div class="m-kpi-name">Trust architecture</div>
+        <div class="m-kpi-val kv-h">80 · Strong</div>
+      </div>
+      <div class="m-kpi-row">
+        <div class="m-kpi-name">Execution mechanism</div>
+        <div class="m-kpi-val kv-m">77 · Reliable</div>
+      </div>
+      <div class="m-kpi-row">
+        <div class="m-kpi-name">Urgency / close</div>
+        <div class="m-kpi-val kv-m">68 · Dev zone</div>
+      </div>
+      <div class="m-kpi-row">
+        <div class="m-kpi-name">Stalled deal momentum</div>
+        <div class="m-kpi-val kv-l">60 · ⚠ Gap</div>
       </div>
     </div>
   </div>
 </div>
 <div class="gbar"></div>
 
-<!-- ══════════ SECTION 1 · WHY THIS EXISTS ══════════ -->
-<div class="sec">
-  <div class="ey">Section 1 · Why This Report Exists</div>
-  <h2>Not All Sellers Are Built the Same</h2>
+<!-- Deal routing -->
+<div class="m-sec">
+  <div class="m-sec-ey">Section 1 · Deal Routing</div>
+  <div class="m-h2">Which deals to give this rep — and which to route elsewhere.</div>
+  <div class="m-lead">This isn't about what they're "allowed" to work on. It's about where their natural architecture creates maximum competitive advantage — and where it creates unnecessary friction.</div>
 
-  <div class="opening">
-    <h3>"Same product. Same training. Same manager. Different outcomes."</h3>
-    <p>Behind every consistent top performer is a behavioral architecture — a natural pattern of how they read situations, what gives them energy, and how they move people toward decisions. This report maps that architecture for this person.</p>
+  <div class="arch-snapshot">
+    <div class="arch-card">
+      <div class="arch-label">How they read buyers</div>
+      <div class="arch-title">Strategic Reframing</div>
+      <div class="arch-body">Best used in deals where the buyer is solving the wrong problem, evaluating on weak criteria, or missing the business impact.</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-label">What activates them</div>
+      <div class="arch-title">Complexity → Clarity</div>
+      <div class="arch-body">They perform best when the work requires diagnosis, stakeholder translation, and meaningful business explanation.</div>
+    </div>
+    <div class="arch-card">
+      <div class="arch-label">How they execute</div>
+      <div class="arch-title">Structured Process</div>
+      <div class="arch-body">They maintain commitments well when the path is clear; they need a protocol when the buyer goes silent.</div>
+    </div>
   </div>
 
-  <div class="g2">
-    <div class="card gold">
-      <div class="kk">What This Report Does</div>
-      <div class="ct">Explains how this person naturally creates revenue</div>
-      <div class="cb">Where they read buyers best. What activates their selling energy. How they move conversations forward. Where the environment should support them.</div>
+  <div class="routing-grid">
+    <div class="route-card yes">
+      <div class="route-label">Assign these deals</div>
+      <div class="route-title">Where this rep creates outsized value</div>
+      <div class="route-list">
+        → Complex enterprise discovery where buyer needs help reframing their problem<br><br>
+        → Multi-stakeholder deals requiring different value messaging per role<br><br>
+        → Accounts where a previous rep failed to understand the real problem<br><br>
+        → Expansion conversations with existing customers who trust consultative depth<br><br>
+        → Strategic POC/pilot conversations requiring careful value mapping
+      </div>
     </div>
-    <div class="card blue">
-      <div class="kk">What This Report Does Not Do</div>
-      <div class="ct">Label or evaluate</div>
-      <div class="cb">This is not a performance review and not a personality test. High or low does not mean good or bad — it means <strong style="color:var(--ink2)">natural vs high-effort behavior</strong>. Every pattern has a context where it excels.</div>
+    <div class="route-card no">
+      <div class="route-label">Route elsewhere or support heavily</div>
+      <div class="route-title">Where friction is predictable</div>
+      <div class="route-list">
+        → High-volume outbound sprints requiring 50+ cold touches per week<br><br>
+        → Deals that need aggressive urgency creation from first contact<br><br>
+        → Short-cycle transactional sales where speed > depth<br><br>
+        → Pipeline where most deals are already stalled (will compound the momentum gap)<br><br>
+        → Accounts where the buyer needs emotional energy above analytical clarity
+      </div>
     </div>
-  </div>
-
-  <div class="disclaimer">
-    <strong>Important for pilot participants:</strong> The scores and patterns in this report are sample placeholders illustrating how the framework works. In the live version, scores are generated directly from your assessment responses. The goal of this pilot is to test whether the framework feels <em>accurate, recognizable, and useful</em> — not to produce a final evaluation.
   </div>
 </div>
 
-<!-- ══════════ SECTION 2 · NATURAL SALES PATTERN ══════════ -->
-<div class="sec tint">
-  <div class="ey">Section 2 · Natural Sales Pattern</div>
-  <h2>Four Things to Know About How This Person Sells</h2>
-  <div class="lead">Before diving into vectors and cycles — this is the plain-language summary. What matters most about this person's natural operating pattern in a sales environment.</div>
+<!-- Coaching priorities -->
+<div class="m-sec tint">
+  <div class="m-sec-ey">Section 2 · Coaching Priorities</div>
+  <div class="m-h2">Three specific coaching actions — not general advice.</div>
 
-  <div class="pattern-summary">
-    <div class="ps-item">
-      <div class="ps-label">Natural Sales Style</div>
-      <div class="ps-val">Strategic & Directive Seller</div>
-      <div class="ps-desc">Naturally reads buyers through decision logic and hidden motivations. Moves deals by creating clarity and directing next steps — not through relational warmth or emotional pressure.</div>
-    </div>
-    <div class="ps-item">
-      <div class="ps-label">Best-Fit Environment</div>
-      <div class="ps-val">Complex B2B · Consultative · Strategic Accounts</div>
-      <div class="ps-desc">Performs strongest in enterprise cycles, advisory selling, and account expansion where strategic depth matters more than outbound volume.</div>
-    </div>
-    <div class="ps-div"></div>
-    <div class="ps-item">
-      <div class="ps-label">Main High-Effort Zone</div>
-      <div class="ps-val">Operational Repetition & Emotional Attunement</div>
-      <div class="ps-desc">Sustained administrative tasks and high-EQ relational environments cost more energy over time. This is where process tools and team support create the most value.</div>
-    </div>
-    <div class="ps-item">
-      <div class="ps-label">What to Validate in This Pilot</div>
-      <div class="ps-val">Does this match what you see in real deals?</div>
-      <div class="ps-desc">Does the buyer-reading style feel accurate? Does the high-effort zone show up in real performance patterns? We need your honest reaction — not confirmation.</div>
-    </div>
-  </div>
-
-  <div class="validate-note">
-    <strong>Pilot note:</strong> This summary is generated from the assessment responses. In this validation version, we are testing whether the summary feels accurate and recognizable — both to the participant and to the manager who knows this person's real sales behavior.
-  </div>
-</div>
-
-<!-- ══════════ SECTION 3 · SALES CYCLE ══════════ -->
-<div class="sec">
-  <div class="ey">Section 3 · Sales Cycle Translation</div>
-  <h2>How This Architecture Appears Across the Revenue Process</h2>
-  <div class="lead">This is not a skills assessment. It maps which natural behavioral patterns align with each sales stage — and where the environment or coaching should provide support.</div>
-
-  <div class="cycle-strip">
-    <div class="stile h"><div class="stile-name">Discovery</div><div class="stile-r">Very Strong</div></div>
-    <div class="stile h"><div class="stile-name">Positioning</div><div class="stile-r">Very Strong</div></div>
-    <div class="stile h"><div class="stile-name">Reframing</div><div class="stile-r">Strong</div></div>
-    <div class="stile m"><div class="stile-name">Urgency</div><div class="stile-r">Moderate</div></div>
-    <div class="stile m"><div class="stile-name">Follow-Through</div><div class="stile-r">Needs Cadence</div></div>
-    <div class="stile h"><div class="stile-name">Expansion</div><div class="stile-r">Strong Potential</div></div>
-  </div>
-
-  <table class="cycle-table">
+  <table class="coach-table">
+    <tr><th>Priority</th><th>What to coach</th><th>Why this specifically</th><th>Your script</th></tr>
     <tr>
-      <th style="width:150px">Stage</th>
-      <th>Natural Operating Pattern</th>
-      <th style="width:260px">What to Validate</th>
-      <th style="width:110px">Signal</th>
+      <td><strong>01 · Highest ROI</strong></td>
+      <td><strong>Stalled deal protocol</strong><br><span style="font-size:11px;color:var(--muted)">Momentum Under Uncertainty: 60%</span></td>
+      <td>The assessment shows one Disagree: "In slow deals I continue activity without a clear path." This is the exact moment deals die. They don't lose deals at close — they lose them when silence starts.</td>
+      <td>
+        <div class="script-box">"Show me your three most silent deals. What did you last do, and when? Let's build your protocol for the next 48 hours on each."</div>
+      </td>
     </tr>
     <tr>
-      <td><div class="s-name">Discovery</div><div class="s-sub">Qualification & needs</div></td>
-      <td>Reads buyer psychology and strategic drivers quickly. Likely to uncover real decision logic and hidden blockers before they surface directly.</td>
-      <td>Do buyers often share context with this person they haven't shared elsewhere?</td>
-      <td><span class="sbadge sb-h">Very Strong</span></td>
+      <td><strong>02 · Second priority</strong></td>
+      <td><strong>Reframing → commitment bridge</strong><br><span style="font-size:11px;color:var(--muted)">Urgency: 68% — available, not dominant</span></td>
+      <td>This rep's reframing is their superpower — buyers shift. But the momentum stops at the clarity moment. Teach them to use the reframe as a closing bridge, not an ending.</td>
+      <td>
+        <div class="script-box">"After your next strong reframing moment, I want you to immediately ask: <strong>'Based on this — what decision needs to happen before we talk again?'</strong> Report back what happened."</div>
+      </td>
     </tr>
     <tr>
-      <td><div class="s-name">Positioning</div><div class="s-sub">Value communication</div></td>
-      <td>Strong at making complex value feel clear, logical, and decision-ready. Adapts message to stakeholder frame naturally.</td>
-      <td>Do buyers leave conversations feeling clear about the next step?</td>
-      <td><span class="sbadge sb-h">Very Strong</span></td>
-    </tr>
-    <tr>
-      <td><div class="s-name">Reframing</div><div class="s-sub">Objections & competition</div></td>
-      <td>Can shift buyer thinking and change evaluation criteria — not just re-explain the solution. A natural competitive advantage in complex deals.</td>
-      <td>Does this person typically reframe objections rather than repeat the pitch?</td>
-      <td><span class="sbadge sb-h">Strong</span></td>
-    </tr>
-    <tr>
-      <td><div class="s-name">Urgency</div><div class="s-sub">Decision acceleration</div></td>
-      <td>Creates urgency through strategic logic — connecting inaction to business cost. More effective with external activation (competition, deadlines, coaching) than through emotional pressure.</td>
-      <td>Does this person naturally introduce decision timelines? Or do deals stay open without a clear commitment path?</td>
-      <td><span class="sbadge sb-m">Moderate</span></td>
-    </tr>
-    <tr>
-      <td><div class="s-name">Follow-Through</div><div class="s-sub">Pipeline discipline</div></td>
-      <td>Deal direction and next-step ownership are natural. However, sustained daily operational structure (CRM cadence, repetitive outreach) may cost more energy over time.</td>
-      <td>Does performance improve when process tools and reminders are in place?</td>
-      <td><span class="sbadge sb-m">Needs Cadence</span></td>
-    </tr>
-    <tr>
-      <td><div class="s-name">Expansion</div><div class="s-sub">Account growth</div></td>
-      <td>Strong potential in consultative, long-cycle growth environments. Strategic depth and deal direction are core advantages in existing account development.</td>
-      <td>Does this person perform notably stronger in existing accounts than in cold prospecting?</td>
-      <td><span class="sbadge sb-h">Strong Potential</span></td>
+      <td><strong>03 · Third priority</strong></td>
+      <td><strong>Cost-of-delay language</strong><br><span style="font-size:11px;color:var(--muted)">Creates urgency through problem, not pressure</span></td>
+      <td>Their natural urgency mechanism is through cost of inaction — not emotional pressure. Develop this deliberately. It's both authentic to their style and highly effective in enterprise deals.</td>
+      <td>
+        <div class="script-box">"In this deal — what gets worse for the buyer in 30 days if nothing changes? In 90 days? <strong>Can you quantify that for me?</strong> Now use that in your next call."</div>
+      </td>
     </tr>
   </table>
 </div>
 
-<!-- ══════════ SECTION 4 · STRENGTHS & FRICTION ══════════ -->
-<div class="sec tint">
-  <div class="ey">Section 4 · Where Energy Flows and Where It Costs</div>
-  <h2>Natural Strengths and High-Effort Zones</h2>
-  <div class="lead">These are not fixed traits — they are behavioral tendencies that appear consistently in similar contexts. The goal is to design around strengths and build structure where behavior costs more effort.</div>
+<!-- What NOT to do -->
+<div class="m-sec risk">
+  <div class="m-sec-ey">Section 3 · What NOT to Do</div>
+  <div class="m-h2">Three management mistakes that will cost you this rep's performance.</div>
 
-  <div class="sf-grid">
-    <div class="sf-card s">
-      <div class="sf-label">Natural Strength</div>
-      <div class="sf-title">Strategic Discovery & Problem Diagnosis</div>
-      <div class="sf-body">Reads buyer situations at the level of business logic and decision dynamics — not just stated needs. Creates conversations where buyers share context they haven't shared elsewhere.</div>
+  <div class="risk-flag">
+    <strong>Do not coach them to "push harder" or "be more aggressive."</strong> This rep's trust architecture is built on consultative clarity — not pressure. Pushing them toward pressure-based closing will break their natural trust-building and confuse buyers who've come to expect a consultative experience. You'll get worse results, not better.
+  </div>
+  <div class="risk-flag">
+    <strong>Do not put them in a high-volume SDR-style environment.</strong> Repetitive cold outreach without context or complexity will drain their motivation within 90 days. This is not a motivational problem — it's a behavioral architecture mismatch.
+  </div>
+  <div class="risk-flag">
+    <strong>Do not expect end-of-quarter pressure to fix their urgency gap.</strong> Under pressure they go back to their analytical process, not to urgency creation. The gap needs a protocol installed before the quarter sprint — not during.
+  </div>
+</div>
+
+<!-- Pipeline now -->
+<div class="m-sec">
+  <div class="m-sec-ey">Section 4 · Your Pipeline Right Now</div>
+  <div class="m-h2">Where to look in their current pipeline — based on this profile.</div>
+
+  <div class="pipeline-box critical">
+    <div class="pb-label">⚠ Check immediately</div>
+    <div class="pb-title">Deals that have been quiet for 7+ days</div>
+    <div class="pb-body">Based on the Momentum Under Uncertainty score (60%), these are the deals most at risk of silent death. The rep may have reduced activity while waiting for a buyer signal that isn't coming. Ask them: "What's your next move on [deal] and when does it happen?"</div>
+  </div>
+  <div class="pipeline-box watch">
+    <div class="pb-label">Watch this week</div>
+    <div class="pb-title">Deals post-demo / post-proposal with no committed next step</div>
+    <div class="pb-body">Strong reframing and positioning (82–85%) means demos and proposals went well. But if there's no time-bound commitment after the meeting, the deal is at risk of the natural momentum drop. Review what "next step" was agreed after each recent meeting.</div>
+  </div>
+  <div class="pipeline-box" style="border-color:#aad4b8;background:var(--green2)">
+    <div class="pb-label" style="color:var(--green)">Healthy signal</div>
+    <div class="pb-title">Complex enterprise deals in active discovery</div>
+    <div class="pb-body">These are where this rep creates the most value. If these deals are progressing well — that's the architecture working. Protect this rep's time here. Don't pull them into activity that competes with deep discovery work.</div>
+  </div>
+</div>
+
+<!-- Manager sentence -->
+<div class="m-sec" style="background:var(--ink2);color:white;border-top:none">
+  <div class="m-sec-ey">Section 5 · Your Coaching Sentence</div>
+  <div class="m-h2">One thing to say in your next 1:1.</div>
+  <div style="background:rgba(255,255,255,.07);border-left:3px solid var(--gold2);padding:20px 24px;border-radius:0 4px 4px 0;font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;font-size:22px;font-style:italic;color:rgba(255,255,255,.88);line-height:1.6;margin-bottom:18px">
+    "Your strength is helping the buyer see the problem differently. Your next level is converting that clarity into a committed next step before the deal loses energy."
+  </div>
+  <p style="font-size:13px;color:rgba(255,255,255,.55);line-height:1.65">Then ask: "In your three most active deals right now — what specific commitment does each buyer have with a date attached?" That question surfaces the gap better than any coaching framework.</p>
+</div>
+
+<div class="m-footer">
+  <strong>Potential Intelligence™</strong> · Sales Manager Report · Assessment 2ElA6WM · Confidential<br>
+  For manager use only. This is a coaching hypothesis based on self-reported assessment data, not a standalone performance evaluation.
+</div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     REPORT 3 — HR
+══════════════════════════════════════ -->
+<div class="report-wrap" id="tab-hr">
+<div class="report">
+
+<div class="h-cover">
+  <div class="h-cover-badge">HR &amp; Talent Intelligence Report · Confidential</div>
+  <div class="h-cover-grid">
+    <div>
+      <div class="h-cover-brand">Potential <em>Intelligence™</em></div>
+      <div class="h-cover-sub">HR / Talent Report · Assessment 2ElA6WM</div>
+      <div class="h-cover-name">Assessment 2ElA6WM</div>
+      <div class="h-cover-role">Enterprise Account Executive · 5+ years experience</div>
+      <div class="h-cover-summary">
+        <strong>Talent summary:</strong> High-fit consultative enterprise seller with strong cognitive and trust architecture. Not a classic people-management profile; stronger fit for senior IC, strategic player-coach, or sales methodology / enablement path. Primary retention risk: role simplification or loss of deal complexity. Hiring implication: pair with urgency-driven, operational counterpart for team balance.
+      </div>
     </div>
-    <div class="sf-card f">
-      <div class="sf-label">High-Effort Zone</div>
-      <div class="sf-title">Repetitive Administrative Cadence</div>
-      <div class="sf-body">Daily CRM entry, repetitive outreach sequences, and structured activity tracking require sustained effort that is not energetically natural. Performance may decline as administrative load grows.</div>
+    <div class="h-signal-panel">
+      <div class="h-signal-label">HR Signals</div>
+      <div class="h-signal-item">
+        <div class="h-signal-name">Role fit: current</div>
+        <div class="h-signal-val sv-h">High · 84%</div>
+      </div>
+      <div class="h-signal-item">
+        <div class="h-signal-name">Leadership path</div>
+        <div class="h-signal-val sv-m">Player-Coach</div>
+      </div>
+      <div class="h-signal-item">
+        <div class="h-signal-name">Retention risk</div>
+        <div class="h-signal-val sv-m">Moderate</div>
+      </div>
+      <div class="h-signal-item">
+        <div class="h-signal-name">Scale potential</div>
+        <div class="h-signal-val sv-h">High (IC path)</div>
+      </div>
+      <div class="h-signal-item">
+        <div class="h-signal-name">Burnout signal</div>
+        <div class="h-signal-val sv-w">Watch</div>
+      </div>
     </div>
-    <div class="sf-card s">
-      <div class="sf-label">Natural Strength</div>
-      <div class="sf-title">Consultative Influence & Reframing</div>
-      <div class="sf-body">Changes how buyers understand their problem — not just explains the solution better. Strongest in competitive and complex deal environments where strategic framing creates differentiation.</div>
+  </div>
+</div>
+<div class="gbar"></div>
+
+<!-- Role fit matrix -->
+<div class="h-sec">
+  <div class="h-sec-ey">Section 1 · Role Fit Analysis</div>
+  <div class="h-h2">Where this behavioral architecture creates value — and where it creates friction.</div>
+  <div class="h-lead">Role fit is not about capability. It's about how well the role's daily demands match what this person naturally does and what energizes them. High misalignment can lead to performance drop and disengagement even when the person is talented.</div>
+
+  <div class="arch-snapshot">
+    <div class="arch-card">
+      <div class="arch-label">Role-fit driver</div>
+      <div class="arch-title">Strategic buyer diagnosis</div>
+      <div class="arch-body">Strong fit where the role requires problem framing, stakeholder interpretation, and advisory selling.</div>
     </div>
-    <div class="sf-card f">
-      <div class="sf-label">High-Effort Zone</div>
-      <div class="sf-title">Sustained Emotional Attunement at Volume</div>
-      <div class="sf-body">Deep relational warmth across many relationships simultaneously requires energy this pattern spends elsewhere. Performs better in strategic relationships than in high-volume empathetic support contexts.</div>
+    <div class="arch-card">
+      <div class="arch-label">Engagement driver</div>
+      <div class="arch-title">Meaningful complexity</div>
+      <div class="arch-body">Motivation is likely to hold when the role contains enough depth, autonomy, and strategic customer work.</div>
     </div>
-    <div class="sf-card s">
-      <div class="sf-label">Natural Strength</div>
-      <div class="sf-title">Deal Ownership & Next-Step Direction</div>
-      <div class="sf-body">When engaged, naturally creates clarity around what happens next and keeps deals moving through direction — not just persuasion. Pipeline ownership is a core behavior, not a learned discipline.</div>
+    <div class="arch-card">
+      <div class="arch-label">Risk driver</div>
+      <div class="arch-title">Low-context velocity</div>
+      <div class="arch-body">Risk increases when the role becomes repetitive, transactional, or pressure-driven without room for diagnosis.</div>
     </div>
-    <div class="sf-card f">
-      <div class="sf-label">High-Effort Zone</div>
-      <div class="sf-title">Pure Pressure-Based Velocity Cultures</div>
-      <div class="sf-body">Environments built primarily around closing pressure, transactional speed, and aggressive urgency tend to drain this pattern rather than amplify it. Performance risk in high-activity, low-relationship sales cultures.</div>
+  </div>
+
+  <div class="fit-matrix">
+    <div class="fit-card strong">
+      <div class="fit-label">Strong Fit</div>
+      <div class="fit-role">Enterprise AE</div>
+      <div class="fit-why">Complex discovery, multi-stakeholder, strategic positioning. This profile's natural architecture maps directly to what enterprise sales requires.</div>
+    </div>
+    <div class="fit-card strong">
+      <div class="fit-label">Strong Fit</div>
+      <div class="fit-role">Strategic Accounts / AM</div>
+      <div class="fit-why">Account expansion and long-cycle relationship development. Consultative trust architecture creates strong customer loyalty and expansion potential.</div>
+    </div>
+    <div class="fit-card strong">
+      <div class="fit-label">Strong Fit</div>
+      <div class="fit-role">Solution Consultant / Pre-Sales</div>
+      <div class="fit-why">Translating complexity into business value is the core competency here. High messaging and reframing strength make this a natural fit.</div>
+    </div>
+    <div class="fit-card mod">
+      <div class="fit-label">Moderate Fit</div>
+      <div class="fit-role">Mid-Market AE</div>
+      <div class="fit-why">Works well if deal cycle is 3+ months and discovery matters. Will struggle in mid-market roles that prioritize velocity over depth.</div>
+    </div>
+    <div class="fit-card low">
+      <div class="fit-label">Low Fit</div>
+      <div class="fit-role">SDR / High-Volume BDR</div>
+      <div class="fit-why">Repetitive high-volume outbound without context will drain motivation within 60–90 days. Architecture not suited to cold sequence execution at scale.</div>
+    </div>
+    <div class="fit-card low">
+      <div class="fit-label">Low Fit</div>
+      <div class="fit-role">Transactional / SMB Velocity</div>
+      <div class="fit-why">Short cycles requiring urgency-first selling conflict with this person's natural consultative motion. Performance friction and motivation risk are high.</div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ SECTION 5 · ENVIRONMENT FIT ══════════ -->
-<div class="sec">
-  <div class="ey">Section 5 · Environment Fit</div>
-  <h2>Where This Pattern Performs Best — and Where to Monitor</h2>
-  <div class="lead">The same person can be a top performer in one environment and underperform in another — based on how well the role aligns with their natural behavioral architecture. This is not about effort. It is about fit.</div>
+<!-- Leadership signal -->
+<div class="h-sec tint">
+  <div class="h-sec-ey">Section 2 · Leadership Readiness Signal</div>
+  <div class="h-h2">What kind of leadership path fits this profile?</div>
+  <div class="h-lead">Leadership readiness here should not be reduced to “manager / not manager.” This profile shows stronger potential for strategic influence, deal coaching, and methodology contribution than for classical day-to-day people management.</div>
 
-  <div class="env-grid">
-    <div class="env-card fit">
-      <div class="env-label">Likely Stronger Performance</div>
-      <div class="env-title">Best-Fit Revenue Environments</div>
-      <div class="env-item"><div class="env-dot">✓</div>Enterprise B2B with complex, multi-stakeholder cycles</div>
-      <div class="env-item"><div class="env-dot">✓</div>Consultative and advisory selling contexts</div>
-      <div class="env-item"><div class="env-dot">✓</div>Strategic account management and expansion</div>
-      <div class="env-item"><div class="env-dot">✓</div>Founder-led or high-autonomy sales roles</div>
-      <div class="env-item"><div class="env-dot">✓</div>Deals where reframing and strategic depth create advantage</div>
-      <div class="env-item"><div class="env-dot">✓</div>C-suite and economic buyer conversations</div>
-    </div>
-
-    <div class="env-card risk">
-      <div class="env-label">Monitor Carefully</div>
-      <div class="env-title">Environments to Evaluate With Care</div>
-      <div class="env-item"><div class="env-dot">→</div>High-volume transactional outbound roles</div>
-      <div class="env-item"><div class="env-dot">→</div>Extreme activity-metric cultures (100+ daily touches)</div>
-      <div class="env-item"><div class="env-dot">→</div>Rigid script-based or heavily process-constrained sales systems</div>
-      <div class="env-item"><div class="env-dot">→</div>Roles where administrative load significantly exceeds selling time</div>
-      <div class="env-item"><div class="env-dot">→</div>Pure pressure-closing or fear-based sales cultures</div>
-      <div class="env-item"><div class="env-dot">→</div>Short-cycle, high-frequency, low-relationship deal environments</div>
+  <div class="leadership-box yes" style="border-left:5px solid var(--gold2);border-color:#d0bc8c;background:var(--amber2)">
+    <div class="lb-label" style="color:var(--amber)">Signal: Strategic Leadership Potential · Not Classic People Management</div>
+    <div class="lb-title">Strong candidate for Senior IC, Strategic Player-Coach, or Sales Methodology roles</div>
+    <div class="lb-body">
+      This profile shows strong strategic direction capability: the person can see hidden decision logic, reframe problems, and help others think more clearly about complex deals. However, the execution style is more system-building and process-design oriented than daily people-management oriented.<br><br>
+      <strong>Recommended path:</strong> Senior Enterprise AE → Player-Coach on complex deals → Enablement / Sales Methodology contribution. This profile can design strong sales playbooks and coach on deal strategy, but managing daily pipeline activity may feel more costly and less natural.<br><br>
+      <strong>Promotion risk:</strong> If promoted into a classic Sales Manager role mainly as performance recognition, without redesigning the role around strategic coaching and methodology, there is an elevated risk of disengagement or performance decline.
     </div>
   </div>
 </div>
 
-<!-- ══════════ SECTION 6 · VECTOR DISTRIBUTION ══════════ -->
-<div class="sec tint">
-  <div class="ey">Section 6 · Deeper Diagnostic · Vector Distribution</div>
-  <h2>The Behavioral Architecture Behind This Pattern</h2>
-  <div class="lead">This section shows the nine behavioral vectors underlying the pattern summary. Vectors are grouped into three operating zones. Levels shown are sample placeholders — in the live version, they are calculated directly from assessment responses.</div>
+<!-- Retention risk -->
+<div class="h-sec">
+  <div class="h-sec-ey">Section 3 · Retention Risk Analysis</div>
+  <div class="h-h2">What would cause this person to disengage or leave.</div>
+  <div class="h-lead">Retention risk for this profile is not primarily financial. It is environmental — driven by role design and management approach. Knowing the specific risk factors allows targeted intervention before they become departure conversations.</div>
 
-  <div class="vec-note">
-    <strong>How to read this section:</strong> High / Medium / Support Needed does not mean good / average / weak. It means: how naturally and sustainably does this behavior show up — especially under pressure? Every zone has a role in sales. The framework helps design environments where the right behaviors are in play at the right time.
-  </div>
-
-  <div class="vgrid">
-
-    <div class="vcard c">
-      <div class="v-zone">Core Zone · Natural & Sustainable</div>
-      <div class="v-level vl-high">High</div>
-      <div class="v-track"><div class="v-fill vfg" style="width:88%"></div></div>
-      <div class="v-name">Strategic Reframing</div>
-      <div class="v-desc">Shifting how buyers understand their problem. Changing decision frames, breaking assumptions, repositioning competitive evaluation.</div>
-      <div class="v-sales"><strong>In sales:</strong> Strong at objection reframing, reviving stalled deals, and changing how the buyer evaluates options.</div>
+  <div style="margin-bottom:4px">
+    <div class="retention-row">
+      <div class="ret-icon">🔴</div>
+      <div>
+        <div class="ret-title">Role simplification or loss of deal complexity</div>
+        <div class="ret-body">This person is energized by complexity becoming clarity. If their role shifts toward simpler, more transactional deals — through territory change, product simplification, or market shift — motivation will drop before performance does. The signal to watch: decreasing deal depth, not decreasing activity.</div>
+      </div>
     </div>
-
-    <div class="vcard c">
-      <div class="v-zone">Core Zone · Natural & Sustainable</div>
-      <div class="v-level vl-high">High</div>
-      <div class="v-track"><div class="v-fill vfg" style="width:84%"></div></div>
-      <div class="v-name">Action Direction</div>
-      <div class="v-desc">Converting goals into clear next steps. Assigning ownership, maintaining deal momentum, and driving commitments forward.</div>
-      <div class="v-sales"><strong>In sales:</strong> Natural pipeline ownership and next-step discipline. Deals move because direction is created — not waited for.</div>
+    <div class="retention-row">
+      <div class="ret-icon">🔴</div>
+      <div>
+        <div class="ret-title">Manager who coaches through pressure tactics</div>
+        <div class="ret-body">A manager who repeatedly pushes "close harder," "more calls," or "more urgency" without acknowledging the consultative strength will create a values conflict. This profile will disengage rather than comply. The exit may be gradual and quiet — not a dramatic resignation.</div>
+      </div>
     </div>
-
-    <div class="vcard c">
-      <div class="v-zone">Core Zone · Natural & Sustainable</div>
-      <div class="v-level vl-high">High</div>
-      <div class="v-track"><div class="v-fill vfg" style="width:81%"></div></div>
-      <div class="v-name">Meaning Amplification</div>
-      <div class="v-desc">Translating complex value into clear, decision-ready language. Adapting message to different stakeholder roles and frames.</div>
-      <div class="v-sales"><strong>In sales:</strong> Strong at value communication, multi-stakeholder alignment, and making complex solutions feel obvious.</div>
+    <div class="retention-row">
+      <div class="ret-icon">🟡</div>
+      <div>
+        <div class="ret-title">Promotion to management without role redesign</div>
+        <div class="ret-body">Being promoted to manage a team sounds like recognition — but if the role requires daily pipeline oversight, activity coaching, and operational management, it removes what energizes this person and replaces it with what drains them. Watch for post-promotion decline.</div>
+      </div>
     </div>
-
-    <div class="vcard s">
-      <div class="v-zone">Support Zone · Context-Dependent</div>
-      <div class="v-level vl-mid">Medium</div>
-      <div class="v-track"><div class="v-fill vfa" style="width:72%"></div></div>
-      <div class="v-name">Drive Activation</div>
-      <div class="v-desc">Creating urgency, competitive intensity, and the emotional energy that accelerates buyer decisions.</div>
-      <div class="v-sales"><strong>In sales:</strong> Available when activated by competition, deadlines, or management coaching — benefits from external triggers rather than internal urgency drive.</div>
-    </div>
-
-    <div class="vcard s">
-      <div class="v-zone">Support Zone · Context-Dependent</div>
-      <div class="v-level vl-mid">Medium</div>
-      <div class="v-track"><div class="v-fill vfa" style="width:67%"></div></div>
-      <div class="v-name">Distribution & Adoption</div>
-      <div class="v-desc">Scaling practical value through implementation follow-through, repetition, and sustained adoption across buyer organizations.</div>
-      <div class="v-sales"><strong>In sales:</strong> Strong in expansion selling and CS contexts — most effective when process cadence tools reduce the operational cost.</div>
-    </div>
-
-    <div class="vcard s">
-      <div class="v-zone">Support Zone · Context-Dependent</div>
-      <div class="v-level vl-mid">Medium</div>
-      <div class="v-track"><div class="v-fill vfa" style="width:64%"></div></div>
-      <div class="v-name">Expressive Influence</div>
-      <div class="v-desc">Creating engagement through vocal energy, presence, charisma, and the emotional quality of live sales conversations.</div>
-      <div class="v-sales"><strong>In sales:</strong> Available in high-stakes presentations — performs better with a prepared, motivated audience than in cold, low-context situations.</div>
-    </div>
-
-    <div class="vcard e">
-      <div class="v-zone">High-Effort Zone · Needs Support</div>
-      <div class="v-level vl-sup">Support Needed</div>
-      <div class="v-track"><div class="v-fill vfe" style="width:52%"></div></div>
-      <div class="v-name">Operational Architecture</div>
-      <div class="v-desc">Maintaining process discipline, CRM hygiene, repetitive activity cadence, and consistent operational structure across many parallel tasks.</div>
-      <div class="v-sales"><strong>In sales:</strong> High cognitive cost in repetitive, administrative-heavy environments. Tools, automation, and structured reminders significantly reduce energy drain.</div>
-    </div>
-
-    <div class="vcard e">
-      <div class="v-zone">High-Effort Zone · Needs Support</div>
-      <div class="v-level vl-sup">Support Needed</div>
-      <div class="v-track"><div class="v-fill vfe" style="width:44%"></div></div>
-      <div class="v-name">Experience & Emotional Design</div>
-      <div class="v-desc">Creating deep emotional resonance, empathetic attunement, and the kind of sustained relational warmth that builds trust through feeling rather than logic.</div>
-      <div class="v-sales"><strong>In sales:</strong> Can activate emotional connection in individual relationships — but sustained high-EQ environments across many accounts are energetically expensive.</div>
-    </div>
-
-    <div class="vcard e">
-      <div class="v-zone">High-Effort Zone · Needs Support</div>
-      <div class="v-level vl-sup">Support Needed</div>
-      <div class="v-track"><div class="v-fill vfe" style="width:39%"></div></div>
-      <div class="v-name">Conceptual Innovation</div>
-      <div class="v-desc">Generating original frameworks, intellectual models, and entirely new ways of structuring complex problems from first principles.</div>
-      <div class="v-sales"><strong>In sales:</strong> Performs better with pre-built value narratives and proven frameworks than in situations requiring real-time intellectual invention.</div>
-    </div>
-
-  </div>
-
-  <div class="zone-legend">
-    <div class="zl-item c">
-      <div class="zl-title">Core Zone</div>
-      <div class="zl-desc">Natural, fast, and energetically sustainable. Primary source of consistent performance and competitive differentiation.</div>
-    </div>
-    <div class="zl-item s">
-      <div class="zl-title">Support Zone</div>
-      <div class="zl-desc">Available with the right context, activation, or environment. Performance here is more variable — responsive to coaching and circumstance.</div>
-    </div>
-    <div class="zl-item e">
-      <div class="zl-title">High-Effort Zone</div>
-      <div class="zl-desc">Requires more energy to sustain, especially under pressure. Design the role and tools to reduce time spent here — not to eliminate these behaviors.</div>
+    <div class="retention-row">
+      <div class="ret-icon">🟡</div>
+      <div>
+        <div class="ret-title">Prolonged high-volume low-context environments</div>
+        <div class="ret-body">Short sprints are manageable. But if the role shifts to sustained high-volume outbound — 60+ cold touches per day, repetitive sequences, limited discovery opportunity — the behavioral cost will show in motivation and performance within 90 days.</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ SECTION 7 · VALIDATION ══════════ -->
-<div class="sec">
-  <div class="ey">Section 7 · Your Feedback</div>
-  <h2>This Is the Most Important Part of the Pilot</h2>
-  <div class="lead">We are not testing whether the report is perfect. We are testing whether it is accurate, useful, and recognizable. There are no right answers — honest reactions, including disagreement, are the most valuable input we can receive.</div>
+<!-- Team pairing -->
+<div class="h-sec tint">
+  <div class="h-sec-ey">Section 4 · Team Architecture</div>
+  <div class="h-h2">Who complements this profile — and who creates conflict.</div>
+  <div class="h-lead">Team composition intelligence: use this to design pairings, pods, or account team structures that create behavioral complementarity.</div>
 
-  <div class="q-grid">
-    <div class="q-box">
-      <div class="q-title">For the Assessment Participant</div>
-      <div class="q-item"><div class="q-n">1</div>Which part of the report felt most accurate to how you actually sell?</div>
-      <div class="q-item"><div class="q-n">2</div>Which parts did not resonate — or felt wrong?</div>
-      <div class="q-item"><div class="q-n">3</div>Did the Sales Cycle map reflect your real experience across those stages?</div>
-      <div class="q-item"><div class="q-n">4</div>Did the Natural Sales Pattern summary feel like you?</div>
-      <div class="q-item"><div class="q-n">5</div>Would you share this report with your manager? Why or why not?</div>
-      <div class="q-item"><div class="q-n">6</div>What would make this report more useful to you personally?</div>
+  <table class="h-table">
+    <tr><th>Relationship</th><th>Profile type</th><th>How they work together</th><th>Watch for</th></tr>
+    <tr>
+      <td><strong>Ideal complement</strong></td>
+      <td>High urgency, operations-driven AE (Activation Driver + Operations Director dominant)</td>
+      <td>This rep opens and deepens the deal; the urgency-driver closes and maintains pipeline velocity. In a pod: let this rep own discovery and positioning, let the complement own closing motion and activity cadence.</td>
+      <td>Clear ownership handoff points — both wanting to "do the whole deal" creates duplication.</td>
+    </tr>
+    <tr>
+      <td><strong>Good pairing</strong></td>
+      <td>Strong execution / ops profile (SDR or CS with high Adoption Builder)</td>
+      <td>This rep creates strategic value; the ops profile systematizes follow-through and adoption. Good for expansion pod structures where the AE brings strategy and the CS brings operational consistency.</td>
+      <td>This rep may undervalue the ops profile's contribution — coach for mutual respect of different value creation styles.</td>
+    </tr>
+    <tr>
+      <td><strong>Friction risk</strong></td>
+      <td>Another consultative, analytical seller on the same account</td>
+      <td>Two discovery-and-depth profiles on the same account creates a "too many strategists" dynamic — lots of insight, not enough movement.</td>
+      <td>Monitor deal velocity. If two similar profiles share an account, assign explicit role separation: one owns insight, one owns action.</td>
+    </tr>
+  </table>
+</div>
+
+<!-- Hiring implication -->
+<div class="h-sec dark">
+  <div class="h-sec-ey">Section 5 · Hiring Intelligence</div>
+  <div class="h-h2">What this profile tells you about your next hire.</div>
+  <div class="h-lead">Now that you have behavioral data on one team member, you can use it to make smarter adjacent hiring decisions.</div>
+
+  <div class="g2" style="gap:14px">
+    <div class="card">
+      <div class="kicker">If you want more like this</div>
+      <div class="ct">What to look for in interviews</div>
+      <div class="cb">
+        → Ask: "Walk me through a deal where you helped the buyer see their problem differently." Strong answer = specific reframing story, not just "I listened well."<br><br>
+        → Ask: "What energizes you most in a sales role?" Strong answer = complexity, depth, meaning. Weak answer = targets, competition, money alone.<br><br>
+        → Ask: "What do you do when a deal goes quiet for two weeks?" Listen for protocol vs. passive waiting.
+      </div>
     </div>
-
-    <div class="q-box">
-      <div class="q-title">For the Sales Leader or HR Partner</div>
-      <div class="q-item"><div class="q-n">1</div>Does this pattern match how this person actually sells in real deals?</div>
-      <div class="q-item"><div class="q-n">2</div>Did the report surface strengths you already recognized?</div>
-      <div class="q-item"><div class="q-n">3</div>Did the High-Effort Zones match what you have observed in practice?</div>
-      <div class="q-item"><div class="q-n">4</div>Would this change how you approach the next 1:1 or coaching session?</div>
-      <div class="q-item"><div class="q-n">5</div>Which section felt most immediately useful for a real management decision?</div>
-      <div class="q-item"><div class="q-n">6</div>What is missing that you would want a tool like this to provide?</div>
+    <div class="card">
+      <div class="kicker">If you want to balance this profile</div>
+      <div class="ct">What the team needs next</div>
+      <div class="cb">
+        → You need urgency and execution energy: look for high Drive & Urgency, Operations Director profile. Interview signal: "I check my pipeline every morning and I always know what the next move is."<br><br>
+        → You need closing velocity: someone who is comfortable creating pressure, asking for the decision, and running a tight end-of-quarter motion.<br><br>
+        → You need activity discipline: someone who maintains cadence without needing clarity as activation.
+      </div>
     </div>
   </div>
 
-  <div class="callout">
-    <h3>A note on this pilot</h3>
-    <p>This report is a behavioral hypothesis — not a final evaluation. The methodology is in active development, and your reaction to it is the most important data we have. No single vector score defines a person's commercial potential. The value of this framework is in the pattern — how vectors combine, how zones interact, and how architecture aligns with the sales environment. That is what we are testing together.</p>
+  <div class="hiring-box" style="margin-top:16px;background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.15)">
+    <h4 style="color:#88b4e8">HR recommendation summary</h4>
+    <p style="color:rgba(255,255,255,.68)">Keep this person in enterprise or strategic AE roles where their architecture creates competitive advantage. Develop toward Player-Coach or Enablement rather than traditional management. Watch for role simplification as primary retention risk. Balance the team with at least one urgency-driven, operationally oriented counterpart to complement the consultative depth this profile brings.</p>
   </div>
 </div>
 
-<!-- ══════════ FOOTER ══════════ -->
-<div class="footer">
-  <strong>Potential Intelligence™</strong> · Sales Architecture Pilot Report · Validation Edition<br>
-  Revenue Behavior Mapping · Individual Assessment · Confidential Research Version<br><br>
-  <span style="font-size:12px">Framework: 9 Behavioral Vectors · 3 Operating Zones · Natural Sales Architecture<br>
-  Scores shown are sample placeholders. Live scores are generated from individual assessment responses.<br>
-  This report is designed for pilot feedback and methodology validation — not for performance evaluation.</span>
+<!-- HR validation -->
+<div class="h-sec tint">
+  <div class="h-sec-ey">Section 6 · Validation Questions</div>
+  <div class="h-h2">From HR perspective — does this match what you observe?</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div style="padding:12px 14px;background:white;border:1px solid var(--line);border-radius:3px;font-size:13px;color:var(--muted)">Does the role fit analysis match this person's actual performance pattern?</div>
+    <div style="padding:12px 14px;background:white;border:1px solid var(--line);border-radius:3px;font-size:13px;color:var(--muted)">Does the retention risk section reflect risks you already see?</div>
+    <div style="padding:12px 14px;background:white;border:1px solid var(--line);border-radius:3px;font-size:13px;color:var(--muted)">Would the team pairing recommendation change how you structure any current team?</div>
+    <div style="padding:12px 14px;background:white;border:1px solid var(--line);border-radius:3px;font-size:13px;color:var(--muted)">Would the hiring intelligence section inform your next open AE req?</div>
+  </div>
+</div>
+
+<div class="h-footer">
+  <strong>Potential Intelligence™</strong> · HR & Talent Report · Assessment 2ElA6WM · Strictly Confidential<br>
+  For authorized HR and Talent use only. Use as one input for development, role-fit, and coaching conversations — not as a standalone employment decision tool.
 </div>
 
 </div>
+</div>
+
+<script>
+function showTab(tab) {
+  document.querySelectorAll('.report-wrap').forEach(r => r.classList.remove('visible'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('visible');
+  event.target.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>
