@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Potential Intelligence™ | Behavioral Sales Architecture</title>
   <meta name="description" content="Potential Intelligence™ helps leaders understand why capable people perform differently — through behavioral sales architecture, trust patterns, execution style, and role fit." />
+
   <style>
     :root {
       --black: #050609;
@@ -17,12 +18,13 @@
       --muted: #b8bec9;
       --dim: #89919f;
       --line: rgba(201,155,46,.34);
-      --red: #e0a93a;
       --green: #bcd7b2;
     }
 
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       background:
@@ -35,9 +37,13 @@
     }
 
     a { color: inherit; text-decoration: none; }
-    .wrap { width: min(1180px, 88vw); margin: 0 auto; }
+
+    .wrap {
+      width: min(1180px, 88vw);
+      margin: 0 auto;
+    }
+
     .gold { color: var(--gold2); }
-    .serif { font-family: Georgia, 'Times New Roman', serif; }
 
     .nav {
       position: sticky;
@@ -47,6 +53,7 @@
       border-bottom: 1px solid rgba(255,255,255,.07);
       backdrop-filter: blur(14px);
     }
+
     .nav-inner {
       width: min(1220px, 92vw);
       margin: 0 auto;
@@ -56,13 +63,19 @@
       justify-content: space-between;
       gap: 24px;
     }
+
     .logo {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 24px;
       letter-spacing: .4px;
       white-space: nowrap;
     }
-    .logo em { color: var(--gold); font-style: normal; }
+
+    .logo em {
+      color: var(--gold);
+      font-style: normal;
+    }
+
     .nav-links {
       display: flex;
       gap: 24px;
@@ -70,6 +83,7 @@
       font-size: 14px;
       color: var(--muted);
     }
+
     .nav-links a:hover { color: var(--gold2); }
 
     .btn {
@@ -86,20 +100,24 @@
       cursor: pointer;
       border: 1px solid transparent;
     }
+
     .btn-primary {
       background: linear-gradient(135deg, #f0c65b 0%, #b8861d 100%);
       color: #07080b;
       box-shadow: 0 16px 42px rgba(201,155,46,.28);
     }
+
     .btn-primary:hover {
       transform: translateY(-1px);
       box-shadow: 0 20px 54px rgba(201,155,46,.38);
     }
+
     .btn-outline {
       border-color: var(--line);
       color: var(--text);
       background: rgba(255,255,255,.03);
     }
+
     .btn-outline:hover {
       border-color: rgba(240,198,91,.62);
       transform: translateY(-1px);
@@ -122,6 +140,7 @@
       padding: 86px 0 76px;
       overflow: hidden;
     }
+
     .hero:before {
       content: "";
       position: absolute;
@@ -131,6 +150,7 @@
         radial-gradient(circle at 82% 38%, rgba(240,198,91,.16), transparent 24%);
       pointer-events: none;
     }
+
     .hero:after {
       content: "";
       position: absolute;
@@ -145,6 +165,7 @@
       mask-image: radial-gradient(ellipse at center, #000 0%, transparent 72%);
       pointer-events: none;
     }
+
     .hero-inner {
       position: relative;
       z-index: 2;
@@ -153,6 +174,7 @@
       align-items: center;
       gap: 54px;
     }
+
     h1 {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: clamp(48px, 6.8vw, 92px);
@@ -161,13 +183,21 @@
       margin: 0 0 28px;
       max-width: 850px;
     }
+
     .hero-sub {
       font-size: clamp(19px, 2vw, 24px);
       color: var(--muted);
       margin: 0 0 34px;
       max-width: 690px;
     }
-    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 20px; }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
     .micro {
       color: var(--dim);
       font-size: 14px;
@@ -181,12 +211,14 @@
       gap: 12px;
       max-width: 720px;
     }
+
     .proof-pill {
       border: 1px solid rgba(201,155,46,.22);
       background: rgba(17,23,33,.68);
       border-radius: 16px;
       padding: 14px 16px;
     }
+
     .proof-pill b {
       display: block;
       color: var(--gold2);
@@ -194,7 +226,11 @@
       font-size: 20px;
       margin-bottom: 2px;
     }
-    .proof-pill span { color: var(--muted); font-size: 13px; }
+
+    .proof-pill span {
+      color: var(--muted);
+      font-size: 13px;
+    }
 
     .report-card {
       border: 1px solid var(--line);
@@ -205,6 +241,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .report-card:before {
       content: "";
       position: absolute;
@@ -215,18 +252,23 @@
       border-radius: 50%;
       background: radial-gradient(circle, rgba(240,198,91,.24), transparent 62%);
     }
+
     .rc-head {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 18px;
       margin-bottom: 20px;
+      position: relative;
+      z-index: 2;
     }
+
     .rc-title {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 28px;
       line-height: 1.08;
     }
+
     .rc-badge {
       border: 1px solid var(--line);
       color: var(--gold2);
@@ -236,6 +278,7 @@
       letter-spacing: 1px;
       text-transform: uppercase;
     }
+
     .rc-quote {
       background: rgba(255,255,255,.04);
       border-left: 3px solid var(--gold);
@@ -244,38 +287,55 @@
       color: #e9e5dc;
       margin-bottom: 22px;
       font-size: 16px;
+      position: relative;
+      z-index: 2;
     }
+
     .bar-row {
       margin: 15px 0;
+      position: relative;
+      z-index: 2;
     }
+
     .bar-label {
       display: flex;
       justify-content: space-between;
       color: var(--muted);
       font-size: 13px;
       margin-bottom: 8px;
+      gap: 12px;
     }
+
     .track {
       height: 9px;
       background: rgba(255,255,255,.08);
       border-radius: 999px;
       overflow: hidden;
     }
+
     .fill {
       height: 100%;
       background: linear-gradient(90deg, #9b711b, #f0c65b);
       border-radius: 999px;
     }
+
     .rc-foot {
       margin-top: 22px;
       color: var(--dim);
       font-size: 13px;
       border-top: 1px solid rgba(255,255,255,.08);
       padding-top: 16px;
+      position: relative;
+      z-index: 2;
     }
 
     section { padding: 96px 0; }
-    .section-head { max-width: 860px; margin-bottom: 44px; }
+
+    .section-head {
+      max-width: 860px;
+      margin-bottom: 44px;
+    }
+
     h2 {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: clamp(36px, 4.9vw, 64px);
@@ -283,6 +343,7 @@
       letter-spacing: -.5px;
       margin: 0 0 18px;
     }
+
     .lead {
       color: var(--muted);
       font-size: 20px;
@@ -296,6 +357,7 @@
       gap: 22px;
       align-items: stretch;
     }
+
     .quote-box {
       border: 1px solid var(--line);
       border-radius: 28px;
@@ -305,18 +367,24 @@
         linear-gradient(180deg, rgba(17,23,33,.85), rgba(9,12,17,.88));
       min-height: 100%;
     }
+
     .quote-large {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: clamp(30px, 4vw, 52px);
       line-height: 1.05;
       margin-bottom: 22px;
     }
-    .quote-caption { color: var(--muted); font-size: 18px; }
+
+    .quote-caption {
+      color: var(--muted);
+      font-size: 18px;
+    }
 
     .pain-list {
       display: grid;
       gap: 14px;
     }
+
     .pain-row {
       border: 1px solid rgba(201,155,46,.22);
       background: rgba(17,23,33,.66);
@@ -326,6 +394,7 @@
       grid-template-columns: 46px 1fr;
       gap: 16px;
     }
+
     .pain-num {
       width: 46px;
       height: 46px;
@@ -337,12 +406,14 @@
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 20px;
     }
+
     .pain-row h3 {
       margin: 0 0 6px;
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 24px;
       line-height: 1.16;
     }
+
     .pain-row p {
       margin: 0;
       color: var(--muted);
@@ -353,11 +424,13 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
+
     .grid4 {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
     }
+
     .card {
       border: 1px solid rgba(201,155,46,.22);
       background: linear-gradient(180deg, rgba(17,23,33,.78), rgba(10,14,20,.84));
@@ -365,6 +438,7 @@
       padding: 28px;
       min-height: 230px;
     }
+
     .card .kk {
       color: var(--gold);
       letter-spacing: 2px;
@@ -373,12 +447,14 @@
       font-weight: 700;
       margin-bottom: 16px;
     }
+
     .card h3 {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 27px;
       line-height: 1.12;
       margin: 0 0 12px;
     }
+
     .card p {
       color: var(--muted);
       margin: 0;
@@ -391,40 +467,51 @@
       border-top: 1px solid rgba(255,255,255,.06);
       border-bottom: 1px solid rgba(255,255,255,.06);
     }
+
     .trust-layout {
       display: grid;
       grid-template-columns: .9fr 1.1fr;
       gap: 36px;
       align-items: start;
     }
+
     .trust-panel {
       border: 1px solid var(--line);
       border-radius: 30px;
       padding: 34px;
       background: rgba(17,23,33,.72);
     }
+
     .trust-panel h3 {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 34px;
       margin: 0 0 14px;
     }
-    .trust-panel p { color: var(--muted); margin: 0; font-size: 18px; }
+
+    .trust-panel p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 18px;
+    }
 
     .compare {
       display: grid;
       gap: 14px;
     }
+
     .compare-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
     }
+
     .mini {
       border: 1px solid rgba(201,155,46,.20);
       border-radius: 18px;
       padding: 18px;
       background: rgba(7,9,13,.72);
     }
+
     .mini b {
       display: block;
       color: var(--gold2);
@@ -432,15 +519,20 @@
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 19px;
     }
-    .mini span { color: var(--muted); }
+
+    .mini span {
+      color: var(--muted);
+    }
 
     .process {
       counter-reset: step;
     }
+
     .step {
       position: relative;
       min-height: 210px;
     }
+
     .step:before {
       counter-increment: step;
       content: "0" counter(step);
@@ -456,17 +548,20 @@
       grid-template-columns: 1fr 1fr;
       gap: 22px;
     }
+
     .person {
       border: 1px solid var(--line);
       border-radius: 28px;
       background: rgba(17,23,33,.74);
       padding: 32px;
     }
+
     .person-name {
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 32px;
       margin-bottom: 6px;
     }
+
     .person-role {
       color: var(--gold2);
       font-size: 14px;
@@ -474,7 +569,11 @@
       text-transform: uppercase;
       margin-bottom: 16px;
     }
-    .person p { color: var(--muted); margin: 0; }
+
+    .person p {
+      color: var(--muted);
+      margin: 0;
+    }
 
     .doc-strip {
       display: grid;
@@ -482,6 +581,7 @@
       gap: 18px;
       margin-top: 28px;
     }
+
     .doc {
       background: #f4efe5;
       color: #1c2230;
@@ -490,12 +590,14 @@
       min-height: 180px;
       border: 1px solid rgba(201,155,46,.40);
     }
+
     .doc b {
       display: block;
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 22px;
       margin-bottom: 8px;
     }
+
     .doc span {
       color: #555d6d;
     }
@@ -505,17 +607,20 @@
       gap: 12px;
       max-width: 960px;
     }
+
     details {
       border: 1px solid rgba(201,155,46,.22);
       border-radius: 18px;
       padding: 20px 22px;
       background: rgba(17,23,33,.60);
     }
+
     summary {
       cursor: pointer;
       font-family: Georgia, 'Times New Roman', serif;
       font-size: 22px;
     }
+
     details p {
       color: var(--muted);
       margin: 14px 0 0;
@@ -524,6 +629,7 @@
     .cta {
       padding: 96px 0 110px;
     }
+
     .cta-box {
       border: 1px solid var(--line);
       border-radius: 34px;
@@ -536,18 +642,24 @@
       gap: 38px;
       align-items: center;
     }
-    .cta-box h2 { margin-bottom: 16px; }
+
+    .cta-box h2 {
+      margin-bottom: 16px;
+    }
+
     .cta-box p {
       color: var(--muted);
       font-size: 19px;
       margin: 0 0 26px;
     }
+
     .cta-checks {
       display: grid;
       gap: 10px;
       color: var(--muted);
       font-size: 15px;
     }
+
     .cta-checks span:before {
       content: "✓";
       color: var(--gold2);
@@ -560,6 +672,7 @@
       color: var(--dim);
       font-size: 14px;
     }
+
     .footer-inner {
       display: flex;
       justify-content: space-between;
@@ -569,38 +682,86 @@
 
     @media (max-width: 980px) {
       .nav-links { display: none; }
+
       .hero-inner,
       .pain-grid,
       .trust-layout,
       .about,
-      .cta-box { grid-template-columns: 1fr; }
-      .grid3, .grid4, .doc-strip { grid-template-columns: 1fr; }
-      .hero-proof { grid-template-columns: 1fr; }
-      .compare-row { grid-template-columns: 1fr; }
-      .hero { padding-top: 62px; }
-      .report-card { margin-top: 12px; }
+      .cta-box {
+        grid-template-columns: 1fr;
+      }
+
+      .grid3,
+      .grid4,
+      .doc-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-proof {
+        grid-template-columns: 1fr;
+      }
+
+      .compare-row {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 62px;
+      }
+
+      .report-card {
+        margin-top: 12px;
+      }
     }
 
     @media (max-width: 560px) {
-      .wrap { width: min(92vw, 1180px); }
-      .nav-inner { width: 92vw; height: 68px; }
-      .logo { font-size: 19px; }
-      section { padding: 72px 0; }
-      .hero { min-height: auto; }
-      .card, .person, .quote-box, .trust-panel, .cta-box { padding: 24px; }
-      .btn { width: 100%; }
+      .wrap {
+        width: min(92vw, 1180px);
+      }
+
+      .nav-inner {
+        width: 92vw;
+        height: 68px;
+      }
+
+      .logo {
+        font-size: 19px;
+      }
+
+      section {
+        padding: 72px 0;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .card,
+      .person,
+      .quote-box,
+      .trust-panel,
+      .cta-box {
+        padding: 24px;
+      }
+
+      .btn {
+        width: 100%;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <nav class="nav" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="#top" class="logo">Potential <em>Intelligence™</em></a>
+
       <div class="nav-links">
         <a href="#pain">Problem</a>
         <a href="#trust">Trust</a>
         <a href="#method">Method</a>
+        <a href="reports/sample_report.html">Sample Report</a>
         <a href="#about">About</a>
         <a href="#faq">FAQ</a>
         <a href="https://tally.so/r/b5Ka97" target="_blank" rel="noopener" class="btn btn-primary">Request Access</a>
@@ -610,21 +771,27 @@
 
   <header class="hero" id="top">
     <div class="wrap hero-inner">
+
       <div>
         <div class="eyebrow">Founder-led validation · Behavioral sales architecture</div>
+
         <h1>Why do strong people <span class="gold">perform so differently</span> in the same role?</h1>
+
         <p class="hero-sub">
           Same product. Same training. Same CRM. Same quota. Different outcomes.
           Potential Intelligence™ helps leaders see the hidden behavioral patterns behind performance, trust, execution, and role fit.
         </p>
+
         <div class="hero-buttons">
           <a href="https://tally.so/r/b5Ka97" target="_blank" rel="noopener" class="btn btn-primary">Request Access</a>
-          <a href="#pain" class="btn btn-outline">See the pain</a>
+          <a href="reports/sample_report.html" class="btn btn-outline">View Sample Report</a>
         </div>
+
         <p class="micro">
           Currently validating with selected founders, Sales/GTM leaders, RevOps, HR, and People teams.
           The assessment is not public. Access is shared after a short fit conversation.
         </p>
+
         <div class="hero-proof">
           <div class="proof-pill"><b>10–15 min</b><span>lightweight participant reflection</span></div>
           <div class="proof-pill"><b>No labels</b><span>not a personality test or evaluation</span></div>
@@ -632,39 +799,50 @@
         </div>
       </div>
 
-      <aside class="report-card" aria-label="Sample report card">
+      <aside class="report-card" aria-label="Interactive sample report preview">
         <div class="rc-head">
           <div>
-            <div class="rc-title">Execution Pattern<br>Snapshot</div>
-            <div style="color:var(--muted);font-size:13px;margin-top:5px;">Pilot output · sample structure</div>
+            <div class="rc-title">Sales Architecture<br>Sample Report</div>
+            <div style="color:var(--muted);font-size:13px;margin-top:5px;">
+              Participant · Manager · HR/Talent views
+            </div>
           </div>
-          <div class="rc-badge">Pilot</div>
+          <div class="rc-badge">Demo</div>
         </div>
+
         <div class="rc-quote">
-          “Builds trust through strategic discovery and consultative influence — may need structure around cadence, urgency, and follow-through.”
+          “See how one assessment turns into participant insight, manager coaching actions, and HR role-fit intelligence.”
         </div>
+
         <div class="bar-row">
-          <div class="bar-label"><span>Trust Creation</span><span>88%</span></div>
+          <div class="bar-label"><span>Participant Insight</span><span>Self-awareness</span></div>
           <div class="track"><div class="fill" style="width:88%"></div></div>
         </div>
+
         <div class="bar-row">
-          <div class="bar-label"><span>Strategic Reframing</span><span>84%</span></div>
+          <div class="bar-label"><span>Manager Action View</span><span>Coaching</span></div>
           <div class="track"><div class="fill" style="width:84%"></div></div>
         </div>
+
         <div class="bar-row">
-          <div class="bar-label"><span>Action Direction</span><span>71%</span></div>
-          <div class="track"><div class="fill" style="width:71%"></div></div>
+          <div class="bar-label"><span>HR / Talent View</span><span>Role fit</span></div>
+          <div class="track"><div class="fill" style="width:78%"></div></div>
         </div>
-        <div class="bar-row">
-          <div class="bar-label"><span>Operational Rhythm</span><span>52%</span></div>
-          <div class="track"><div class="fill" style="width:52%"></div></div>
+
+        <div class="rc-foot">
+          One assessment. Three business views: self-awareness, manager action, and talent decisions.
+          <br><br>
+          <a href="reports/sample_report.html" class="btn btn-primary" style="width:100%;min-height:46px;">
+            View Interactive Sample Report
+          </a>
         </div>
-        <div class="rc-foot">The goal is not to judge the person. The goal is to understand the pattern that affects performance.</div>
       </aside>
+
     </div>
   </header>
 
   <main>
+
     <section id="pain">
       <div class="wrap">
         <div class="section-head">
@@ -693,6 +871,7 @@
                 <p>Two people have similar experience, but one creates momentum and the other stalls.</p>
               </div>
             </div>
+
             <div class="pain-row">
               <div class="pain-num">2</div>
               <div>
@@ -700,6 +879,7 @@
                 <p>Some people build credibility naturally. Others work hard but still fail to create confidence.</p>
               </div>
             </div>
+
             <div class="pain-row">
               <div class="pain-num">3</div>
               <div>
@@ -707,6 +887,7 @@
                 <p>“Be more proactive” does not help when the real issue is energy, role fit, decision style, or execution rhythm.</p>
               </div>
             </div>
+
             <div class="pain-row">
               <div class="pain-num">4</div>
               <div>
@@ -721,6 +902,7 @@
 
     <section id="trust" class="trust-section">
       <div class="wrap">
+
         <div class="trust-layout">
           <div class="section-head" style="margin-bottom:0">
             <div class="eyebrow">Trust is not soft</div>
@@ -752,6 +934,7 @@
               <span>The person’s natural style makes others feel understood, oriented, respected, and ready to act.</span>
             </div>
           </div>
+
           <div class="compare-row">
             <div class="mini">
               <b>Generic coaching</b>
@@ -763,6 +946,7 @@
             </div>
           </div>
         </div>
+
       </div>
     </section>
 
@@ -782,16 +966,55 @@
             <h3>How behaviors combine</h3>
             <p>Not isolated traits — but how perception, motivation, trust, energy, and execution interact under real work pressure.</p>
           </div>
+
           <div class="card">
             <div class="kk">Role-linked</div>
             <h3>Fit depends on context</h3>
             <p>A person may struggle in one role and thrive in another because the execution environment changes the energy cost.</p>
           </div>
+
           <div class="card">
             <div class="kk">Non-judgmental</div>
             <h3>Natural vs high-effort</h3>
             <p>High or low does not mean good or bad. It shows what is sustainable, draining, hidden, or underused.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sample">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Sample output</div>
+          <h2>See what leaders receive after the assessment.</h2>
+          <p class="lead">
+            One assessment can produce different views for the participant, the sales manager, and HR/Talent.
+            The goal is to turn insight into coaching, role-fit decisions, and better performance conversations.
+          </p>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <div class="kk">Participant View</div>
+            <h3>Personal insight</h3>
+            <p>Helps the seller understand their natural sales architecture, strengths, friction points, and next development edge.</p>
+          </div>
+
+          <div class="card">
+            <div class="kk">Manager View</div>
+            <h3>Coaching actions</h3>
+            <p>Shows which deals to assign, what to coach, what not to do, and where to look in the current pipeline.</p>
+          </div>
+
+          <div class="card">
+            <div class="kk">HR / Talent View</div>
+            <h3>Role-fit intelligence</h3>
+            <p>Supports role fit, development path, retention risk, team composition, and hiring calibration.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:28px;">
+          <a href="reports/sample_report.html" class="btn btn-primary">Open Interactive Sample Report</a>
         </div>
       </div>
     </section>
@@ -809,11 +1032,13 @@
             <h3>Understand why reps perform differently</h3>
             <p>Improve coaching precision, pipeline conversations, trust-building, urgency, and follow-through.</p>
           </div>
+
           <div class="card">
             <div class="kk">HR & Talent partners</div>
             <h3>See fit beyond resumes</h3>
             <p>Support role fit, onboarding, development plans, learning design, and team composition before friction becomes expensive.</p>
           </div>
+
           <div class="card">
             <div class="kk">Founders & Operators</div>
             <h3>Build roles around natural strengths</h3>
@@ -838,14 +1063,17 @@
             <h3>Request access</h3>
             <p>Share your name, work email, company, and the area you are curious to explore.</p>
           </div>
+
           <div class="card step">
             <h3>Discovery call</h3>
             <p>We clarify the business question: sales performance, role fit, trust, onboarding, coaching, or team dynamics.</p>
           </div>
+
           <div class="card step">
             <h3>Private assessment</h3>
             <p>Selected participants receive individual links and complete a 10–15 minute reflection.</p>
           </div>
+
           <div class="card step">
             <h3>Insights and feedback</h3>
             <p>We review what resonated, what was useful, what was unclear, and where the insight could help in practice.</p>
@@ -857,10 +1085,12 @@
             <b>Pilot Overview</b>
             <span>A clear business document that explains the pilot, objectives, structure, use cases, boundaries, and expected deliverables.</span>
           </div>
+
           <div class="doc">
             <b>Participant Guide</b>
             <span>A friendly guide that explains why people are invited, how to answer, privacy notes, and why the process is not scary.</span>
           </div>
+
           <div class="doc">
             <b>Pilot Agreement</b>
             <span>A practical mutual understanding covering scope, confidentiality, data handling, IP, responsible use, and California governing law.</span>
@@ -888,6 +1118,7 @@
               Asselya has built competency frameworks, diagnostic tools, and workforce development solutions for corporate and government clients.
             </p>
           </div>
+
           <div class="person">
             <div class="person-name">Nurlan Zhanybek</div>
             <div class="person-role">Sales Validation Advisor</div>
@@ -912,18 +1143,22 @@
             <summary>Is this a personality test?</summary>
             <p>No. The goal is not to label people. The pilot explores behavioral patterns that affect motivation, trust, energy, execution, and role fit in a work context.</p>
           </details>
+
           <details>
             <summary>Is this a performance evaluation?</summary>
             <p>No. It should not be used as the sole basis for employment decisions. The purpose is reflection, development, better conversations, and practical insight.</p>
           </details>
+
           <details>
             <summary>Why is the assessment not public?</summary>
             <p>Because pilot data should stay clean. Access is shared after a fit conversation, and participant links can be individualized for data integrity and responsible use.</p>
           </details>
+
           <details>
             <summary>How long does the assessment take?</summary>
             <p>Usually around 10–15 minutes. The pilot is intentionally lightweight so teams can test value without a heavy implementation.</p>
           </details>
+
           <details>
             <summary>What are you validating?</summary>
             <p>Whether the insight resonates, whether it is useful, which use cases matter most, and whether leaders would use it in real coaching, hiring, onboarding, and performance conversations.</p>
@@ -944,6 +1179,7 @@
             </p>
             <a href="https://tally.so/r/b5Ka97" target="_blank" rel="noopener" class="btn btn-primary">Request Access</a>
           </div>
+
           <div class="cta-checks">
             <span>Founder-led validation</span>
             <span>Private assessment access</span>
@@ -953,6 +1189,7 @@
         </div>
       </div>
     </section>
+
   </main>
 
   <footer class="footer">
