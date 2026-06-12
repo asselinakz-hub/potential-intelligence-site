@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sales Ramp Diagnostic | Potential Intelligence™</title>
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --panel: #121621;
+      --panel2: #171c29;
+      --text: #f7f1e6;
+      --muted: #c5cad4;
+      --dim: #8a92a1;
+      --gold: #e7b64b;
+      --gold2: #f4cf75;
+      --line: rgba(255,255,255,.13);
+      --max: 920px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 80% -10%, rgba(231,182,75,.12), transparent 32%), var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    .wrap { width: min(var(--max), 90vw); margin: 0 auto; }
+    header { padding: 48px 0 24px; }
+    .brand { font-weight: 900; font-size: 22px; margin-bottom: 36px; }
+    .brand span { color: var(--gold); }
+    .eyebrow {
+      display: inline-flex;
+      color: var(--gold2);
+      background: rgba(231,182,75,.10);
+      border: 1px solid rgba(231,182,75,.20);
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    h1 { margin: 0; font-size: clamp(40px, 6vw, 66px); line-height: .98; letter-spacing: -.055em; }
+    .gold { color: var(--gold); }
+    .subtitle { max-width: 720px; color: var(--muted); font-size: 21px; margin: 20px 0 0; }
+    .card {
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 28px;
+      margin: 22px 0;
+    }
+    h2 { margin: 0 0 18px; font-size: 28px; letter-spacing: -.03em; }
+    label, legend, .q-title { color: var(--text); font-weight: 800; display: block; margin: 22px 0 10px; }
+    .hint { color: var(--dim); font-size: 14px; margin-top: -4px; }
+    input[type="text"], input[type="email"], select, textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.16);
+      background: #f7f1e6;
+      color: #10131b;
+      border-radius: 14px;
+      padding: 14px 15px;
+      font-size: 16px;
+      outline: none;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    .options { display: grid; gap: 10px; margin-top: 10px; }
+    .option {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.035);
+      border-radius: 14px;
+      padding: 12px 14px;
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .option:hover { border-color: rgba(231,182,75,.45); background: rgba(231,182,75,.07); }
+    .option input { margin-top: 4px; accent-color: var(--gold); }
+    .option span { color: var(--muted); }
+    .btn {
+      border: 0;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 52px;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+      background: var(--gold);
+      color: #10131b;
+      text-decoration: none;
+    }
+    .btn:hover { background: var(--gold2); }
+    .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--line); }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+    .result { display: none; }
+    .result.show { display: block; }
+    .result-title { color: var(--gold2); font-weight: 900; text-transform: uppercase; letter-spacing: .08em; font-size: 13px; }
+    .result h2 { font-size: clamp(32px, 5vw, 48px); margin-top: 10px; }
+    .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0; }
+    .pill { border: 1px solid rgba(231,182,75,.24); background: rgba(231,182,75,.10); color: var(--gold2); padding: 8px 11px; border-radius: 999px; font-size: 13px; font-weight: 800; }
+    .recommendation { background: var(--panel2); border: 1px solid var(--line); border-radius: 18px; padding: 18px; margin-top: 16px; }
+    ul { color: var(--muted); padding-left: 20px; }
+    li { margin: 8px 0; }
+    footer { color: var(--dim); padding: 30px 0 44px; font-size: 14px; }
+    @media(max-width: 720px) { .card { padding: 20px; } .actions .btn { width: 100%; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand">Potential <span>Intelligence™</span></div>
+      <div class="eyebrow">5-minute diagnostic</div>
+      <h1>Find where sales execution <span class="gold">may be breaking.</span></h1>
+      <p class="subtitle">Answer a few quick questions and get a possible friction pattern for sales ramp, coaching, or execution consistency.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <form id="diagnosticForm" class="card">
+      <h2>Sales Ramp Diagnostic</h2>
+
+      <label for="name">Your name</label>
+      <input id="name" name="name" type="text" placeholder="Your name" />
+
+      <label for="email">Work email</label>
+      <input id="email" name="email" type="email" placeholder="name@company.com" />
+
+      <label for="role">What best describes your role?</label>
+      <select id="role" name="role" required>
+        <option value="">Choose one</option>
+        <option>VP Sales / Head of Sales</option>
+        <option>Sales Manager</option>
+        <option>CRO / Revenue Leader</option>
+        <option>Founder</option>
+        <option>Sales Enablement</option>
+        <option>HR / People / L&D</option>
+        <option>Other</option>
+      </select>
+
+      <div class="q-title">What is your biggest sales ramp challenge right now?</div>
+      <div class="options" data-question="challenge">
+        <label class="option"><input type="radio" name="challenge" value="structure" required><span>New hires take too long to become productive</span></label>
+        <label class="option"><input type="radio" name="challenge" value="momentum"><span>Reps know the process but do not execute consistently</span></label>
+        <label class="option"><input type="radio" name="challenge" value="momentum"><span>Reps create interest but do not move deals forward</span></label>
+        <label class="option"><input type="radio" name="challenge" value="trust"><span>Reps struggle to create enough buyer confidence</span></label>
+        <label class="option"><input type="radio" name="challenge" value="pressure"><span>Reps avoid difficult conversations</span></label>
+        <label class="option"><input type="radio" name="challenge" value="fit"><span>Performance varies too much between similar reps</span></label>
+      </div>
+
+      <div class="q-title">When a rep is not ramping, what do you usually try first?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="first_try" value="structure" required><span>More training</span></label>
+        <label class="option"><input type="radio" name="first_try" value="structure"><span>More activity targets</span></label>
+        <label class="option"><input type="radio" name="first_try" value="structure"><span>More manager check-ins</span></label>
+        <label class="option"><input type="radio" name="first_try" value="pressure"><span>More pressure / accountability</span></label>
+        <label class="option"><input type="radio" name="first_try" value="fit"><span>Pairing with a stronger rep</span></label>
+        <label class="option"><input type="radio" name="first_try" value="unknown"><span>I’m not sure</span></label>
+      </div>
+
+      <div class="q-title">Where do deals most often lose momentum?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="stage" value="trust" required><span>Prospecting / first contact</span></label>
+        <label class="option"><input type="radio" name="stage" value="trust"><span>Discovery</span></label>
+        <label class="option"><input type="radio" name="stage" value="momentum"><span>After a positive first conversation</span></label>
+        <label class="option"><input type="radio" name="stage" value="momentum"><span>Follow-up / next step</span></label>
+        <label class="option"><input type="radio" name="stage" value="pressure"><span>Pricing / negotiation</span></label>
+        <label class="option"><input type="radio" name="stage" value="pressure"><span>Closing</span></label>
+        <label class="option"><input type="radio" name="stage" value="unknown"><span>Hard to tell</span></label>
+      </div>
+
+      <div class="q-title">Which statement feels most familiar?</div>
+      <div class="options">
+        <label class="option"><input type="radio" name="familiar" value="momentum" required><span>They know what to do, but they don’t do it consistently.</span></label>
+        <label class="option"><input type="radio" name="familiar" value="momentum"><span>They are active, but deals don’t move.</span></label>
+        <label class="option"><input type="radio" name="familiar" value="pressure"><span>They are good with people, but avoid closing.</span></label>
+        <label class="option"><input type="radio" name="familiar" value="trust"><span>They understand the product, but don’t create urgency or confidence.</span></label>
+        <label class="option"><input type="radio" name="familiar" value="structure"><span>They need too much manager direction.</span></label>
+        <label class="option"><input type="radio" name="familiar" value="fit"><span>They looked strong in interview but struggle in the role.</span></label>
+      </div>
+
+      <label for="usefulness">How useful would it be to know where each rep’s execution breaks?</label>
+      <select id="usefulness" name="usefulness" required>
+        <option value="">Choose one</option>
+        <option value="1">1 — not useful</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 — very useful</option>
+      </select>
+
+      <label for="pilot">Would you be open to testing a free pilot with 1–3 reps?</label>
+      <select id="pilot" name="pilot" required>
+        <option value="">Choose one</option>
+        <option>Yes, I’d like to test it</option>
+        <option>Maybe, send me more information</option>
+        <option>Not now</option>
+        <option>I’m not the right person</option>
+      </select>
+
+      <div class="actions">
+        <button class="btn" type="submit">See my diagnostic result</button>
+        <a class="btn btn-secondary" href="index.html">Back to landing</a>
+      </div>
+    </form>
+
+    <section id="result" class="card result">
+      <div class="result-title">Possible friction pattern</div>
+      <h2 id="resultTitle">Momentum Breakdown</h2>
+      <p id="resultText" class="subtitle"></p>
+      <div class="pill-row" id="pillRow"></div>
+      <div class="recommendation">
+        <strong>What to try next:</strong>
+        <ul id="nextSteps"></ul>
+      </div>
+      <div class="actions">
+        <a id="mailto" class="btn" href="#">Request a small team pilot</a>
+        <a class="btn btn-secondary" href="reports/manager_report.html">View Manager Action sample</a>
+      </div>
+      <p class="hint">This is a validation-stage signal, not a performance evaluation or employment decision tool.</p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    Potential Intelligence™ · Sales Ramp Diagnostic · Founder-led validation
+  </footer>
+
+<script>
+  const patterns = {
+    momentum: {
+      title: "Momentum Breakdown",
+      text: "Your answers suggest that reps may be able to create interest, but deals slow down after the first positive signal. This may point to follow-up rhythm, next-step commitment, or deal ownership.",
+      pills: ["Follow-up", "Next steps", "Commitment", "Deal movement"],
+      steps: ["Review where warm deals stop moving.", "Coach the rep on explicit next-step commitments.", "Use the next 1:1 to inspect follow-up rhythm, not only activity volume."]
+    },
+    trust: {
+      title: "Trust-Building Gap",
+      text: "Your answers suggest that buyers may not be getting enough clarity, confidence, or credibility early in the conversation. This may not be solved by more activity alone.",
+      pills: ["Discovery", "Buyer confidence", "Trust", "Clarity"],
+      steps: ["Listen to early-stage calls for clarity and buyer confidence.", "Coach discovery depth and buyer reading.", "Test whether the rep can explain the buyer’s problem better than the buyer can."]
+    },
+    pressure: {
+      title: "Pressure Response Issue",
+      text: "Your answers suggest that execution may change when conversations become uncomfortable: pricing, objections, urgency, or closing. The rep may know what to do, but avoid the moment of tension.",
+      pills: ["Objections", "Closing", "Pricing", "Difficult conversations"],
+      steps: ["Identify which uncomfortable conversation the rep avoids most.", "Role-play that specific moment, not the whole sales process.", "Coach calm commitment language instead of adding general pressure."]
+    },
+    structure: {
+      title: "Structure / Manager-Support Mismatch",
+      text: "Your answers suggest that the issue may involve structure, expectations, or manager support. More training may not help if the rep needs clearer decision rules, tighter feedback, or a different 1:1 rhythm.",
+      pills: ["Structure", "Manager support", "Expectations", "1:1 rhythm"],
+      steps: ["Clarify what good execution looks like this week.", "Use shorter feedback loops for the next two weeks.", "Separate lack of knowledge from lack of operating structure."]
+    },
+    fit: {
+      title: "Role-Fit Friction",
+      text: "Your answers suggest that the issue may not be effort alone. There may be friction between the rep’s natural execution pattern and the sales motion, buyer type, or stage of the sales cycle.",
+      pills: ["Role fit", "Sales motion", "Buyer type", "Energy cost"],
+      steps: ["Compare where the rep creates value vs where they consistently lose energy.", "Check whether the sales motion requires behaviors that are high-effort for this person.", "Use the assessment to separate coachable gaps from role-fit friction."]
+    },
+    unknown: {
+      title: "Mixed Execution Signal",
+      text: "Your answers suggest a mixed pattern. That can happen when the manager sees symptoms, but the exact breakdown point is hard to isolate without looking at the rep’s execution pattern directly.",
+      pills: ["Mixed signal", "Needs deeper look", "Manager action", "Pilot fit"],
+      steps: ["Pick one rep and map where execution breaks in the sales cycle.", "Use the full assessment to clarify the pattern.", "Start with a small pilot before making broader changes."]
+    }
+  };
+
+  function getValue(name) {
+    const el = document.querySelector(`[name="${name}"]:checked`) || document.querySelector(`[name="${name}"]`);
+    return el ? el.value : "";
+  }
+
+  function choosePattern() {
+    const scores = { momentum:0, trust:0, pressure:0, structure:0, fit:0, unknown:0 };
+    ["challenge", "first_try", "stage", "familiar"].forEach(name => {
+      const checked = document.querySelector(`[name="${name}"]:checked`);
+      if (checked && scores.hasOwnProperty(checked.value)) scores[checked.value] += 1;
+    });
+    const sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]);
+    return sorted[0][1] === 0 ? "unknown" : sorted[0][0];
+  }
+
+  document.getElementById("diagnosticForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    const patternKey = choosePattern();
+    const p = patterns[patternKey];
+    document.getElementById("resultTitle").textContent = p.title;
+    document.getElementById("resultText").textContent = p.text;
+    document.getElementById("pillRow").innerHTML = p.pills.map(x => `<span class="pill">${x}</span>`).join("");
+    document.getElementById("nextSteps").innerHTML = p.steps.map(x => `<li>${x}</li>`).join("");
+
+    const name = document.getElementById("name").value || "";
+    const email = document.getElementById("email").value || "";
+    const role = document.getElementById("role").value || "";
+    const usefulness = document.getElementById("usefulness").value || "";
+    const pilot = document.getElementById("pilot").value || "";
+    const subject = encodeURIComponent("Potential Intelligence pilot request");
+    const body = encodeURIComponent(`Hi Asselya,\n\nI completed the Sales Ramp Diagnostic.\n\nName: ${name}\nEmail: ${email}\nRole: ${role}\nDiagnostic pattern: ${p.title}\nUsefulness: ${usefulness}/5\nPilot interest: ${pilot}\n\nI would like to learn more about a small team pilot.\n`);
+    document.getElementById("mailto").href = `mailto:asselina.kz@gmail.com?subject=${subject}&body=${body}`;
+
+    document.getElementById("result").classList.add("show");
+    document.getElementById("result").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+</script>
+</body>
+</html>
