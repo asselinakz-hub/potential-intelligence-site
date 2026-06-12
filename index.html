@@ -4,18 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Potential Intelligence™ | Sales Ramp Diagnostic</title>
-  <meta name="description" content="A 5-minute Sales Ramp Diagnostic for sales leaders to see where execution may be breaking before adding more training or pressure." />
+  <meta name="description" content="A 5-minute diagnostic for sales leaders to see where sales execution may be breaking before adding more training or pressure." />
   <style>
     :root {
       --bg: #0b0d12;
       --panel: #121621;
       --panel2: #171c29;
+      --panel-soft: rgba(255,255,255,.045);
       --text: #f7f1e6;
       --muted: #b9bec8;
       --dim: #7f8796;
       --gold: #e7b64b;
       --gold2: #f4cf75;
       --line: rgba(255,255,255,.12);
+      --red-soft: rgba(255,115,115,.10);
+      --green-soft: rgba(98,211,154,.10);
       --max: 1040px;
     }
     * { box-sizing: border-box; }
@@ -59,6 +62,8 @@
       transition: transform .16s ease, background .16s ease;
       background: var(--gold);
       color: #10131b;
+      border: 0;
+      cursor: pointer;
     }
     .btn:hover { transform: translateY(-1px); background: var(--gold2); }
     .hero { padding: 82px 0 54px; }
@@ -91,8 +96,8 @@
     .proof-card { background: rgba(255,255,255,.045); border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
     .proof-card b { display: block; font-size: 22px; margin-bottom: 6px; }
     .proof-card span { color: var(--muted); }
-    section { padding: 68px 0; }
-    .section-head { max-width: 780px; margin-bottom: 28px; }
+    section { padding: 72px 0; }
+    .section-head { max-width: 820px; margin-bottom: 30px; }
     h2 { margin: 0 0 14px; font-size: clamp(34px, 4.5vw, 52px); line-height: 1.05; letter-spacing: -.045em; }
     .lead { color: var(--muted); font-size: 19px; margin: 0; }
     .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
@@ -100,23 +105,129 @@
     .card h3 { margin: 0 0 10px; font-size: 23px; letter-spacing: -.02em; }
     .card p { margin: 0; color: var(--muted); }
     .tag { display: inline-flex; color: var(--gold2); font-size: 12px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px; }
-    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 26px; }
-    .before-after .card { background: var(--panel2); }
-    ul { padding-left: 20px; margin: 12px 0 0; color: var(--muted); }
-    li { margin: 8px 0; }
-    .output { display: grid; grid-template-columns: 1fr; gap: 12px; }
-    .row { display: grid; grid-template-columns: 210px 1fr; gap: 18px; align-items: start; background: rgba(255,255,255,.045); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
-    .row b { color: var(--text); }
-    .row span { color: var(--muted); }
+
+    .comparison { display: grid; grid-template-columns: 1fr auto 1fr; gap: 18px; align-items: stretch; margin-top: 30px; }
+    .compare-card {
+      position: relative;
+      border-radius: 26px;
+      padding: 28px;
+      min-height: 330px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+    .compare-card.traditional {
+      background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.025));
+      border-color: rgba(255,255,255,.13);
+    }
+    .compare-card.intelligence {
+      background: linear-gradient(135deg, rgba(231,182,75,.15), rgba(255,255,255,.045) 48%, rgba(98,211,154,.06));
+      border-color: rgba(231,182,75,.38);
+      box-shadow: 0 24px 60px rgba(231,182,75,.08);
+    }
+    .compare-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+    .traditional .compare-kicker { color: #d8dde8; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.10); }
+    .intelligence .compare-kicker { color: #17130a; background: var(--gold); border: 1px solid rgba(244,207,117,.55); }
+    .compare-card h3 { font-size: 27px; line-height: 1.08; margin: 0 0 16px; letter-spacing: -.035em; }
+    .compare-card ul { list-style: none; padding: 0; margin: 16px 0 0; color: var(--muted); }
+    .compare-card li { display: flex; gap: 10px; margin: 11px 0; }
+    .compare-card li::before { content: "•"; color: var(--dim); font-weight: 900; }
+    .intelligence li::before { content: "✓"; color: var(--gold2); }
+    .compare-footer {
+      margin-top: 22px;
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding-top: 16px;
+      font-size: 14px;
+      font-weight: 850;
+      color: var(--text);
+    }
+    .traditional .compare-footer { color: rgba(255,255,255,.68); }
+    .intelligence .compare-footer { color: var(--gold2); }
+    .bridge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 2px;
+    }
+    .bridge span {
+      display: inline-flex;
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      align-items: center;
+      justify-content: center;
+      background: rgba(231,182,75,.13);
+      border: 1px solid rgba(231,182,75,.34);
+      color: var(--gold2);
+      font-weight: 900;
+      font-size: 22px;
+    }
+
+    .output-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+    .output-card {
+      background: rgba(255,255,255,.045);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 24px;
+      min-height: 210px;
+    }
+    .output-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: rgba(231,182,75,.14);
+      border: 1px solid rgba(231,182,75,.28);
+      color: var(--gold2);
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+    .output-card h3 { margin: 0 0 10px; font-size: 22px; line-height: 1.16; letter-spacing: -.025em; }
+    .output-card p { margin: 0; color: var(--muted); }
+
+    .ramp-card {
+      min-height: 230px;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.025));
+    }
+    .ramp-card .tag { margin-bottom: 16px; }
+    .ramp-card h3 { font-size: 25px; }
+    .definition {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      color: var(--gold2);
+      background: rgba(231,182,75,.09);
+      border: 1px solid rgba(231,182,75,.18);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
     .cta-box { background: linear-gradient(135deg, rgba(231,182,75,.13), rgba(255,255,255,.04)); border: 1px solid rgba(231,182,75,.25); border-radius: 28px; padding: 42px; text-align: center; }
     .cta-box h2 { max-width: 760px; margin: 0 auto 14px; }
     .cta-box p { max-width: 700px; margin: 0 auto 26px; color: var(--muted); font-size: 19px; }
     footer { border-top: 1px solid var(--line); padding: 32px 0 44px; color: var(--dim); font-size: 14px; text-align: center; }
-    @media (max-width: 840px) {
+    @media (max-width: 900px) {
+      .comparison { grid-template-columns: 1fr; }
+      .bridge { padding: 4px 0; }
+      .bridge span { transform: rotate(90deg); }
+      .proof, .grid3, .sample-buttons, .output-grid { grid-template-columns: 1fr; }
       .nav-inner { min-height: auto; padding: 16px 0; align-items: flex-start; flex-direction: column; }
       .btn { width: 100%; }
-      .proof, .grid3, .before-after, .sample-buttons { grid-template-columns: 1fr; }
-      .row { grid-template-columns: 1fr; }
       .hero { padding: 54px 0 38px; }
       section { padding: 54px 0; }
       .cta-box { padding: 30px 22px; }
@@ -134,7 +245,7 @@
 
   <header class="hero">
     <div class="wrap">
-      <div class="eyebrow">Sales Ramp Diagnostic</div>
+      <div class="eyebrow">Sales Execution Diagnostic</div>
       <h1>Same training. Same CRM. <span class="gold">Different sales results.</span></h1>
       <p class="subtitle">
         Your CRM shows who missed quota. Potential Intelligence shows where execution breaks — and what the sales manager should try next week.
@@ -156,8 +267,8 @@
 
       <div class="proof">
         <div class="proof-card"><b>5 min</b><span>Start with a short diagnostic.</span></div>
-        <div class="proof-card"><b>3 outputs</b><span>Rep insight, manager action, coaching signal.</span></div>
-        <div class="proof-card"><b>Next week</b><span>Turn patterns into coaching actions.</span></div>
+        <div class="proof-card"><b>3 outputs</b><span>Friction pattern, coaching angle, pilot fit signal.</span></div>
+        <div class="proof-card"><b>Next week</b><span>Turn patterns into manager actions.</span></div>
       </div>
     </div>
   </header>
@@ -166,19 +277,37 @@
     <section>
       <div class="wrap">
         <div class="section-head">
-          <h2>Before adding more training or pressure, find out where execution actually breaks in the sales cycle.</h2>
-          <p class="lead">When a new sales hire is not ramping, the visible symptom is usually easy to see. The real question is what to try next.</p>
+          <h2>Before adding more training or pressure, find out what kind of problem you actually have.</h2>
+          <p class="lead">When a rep is not ramping, the visible symptom is usually easy to see. The harder question is what the manager should do next.</p>
         </div>
-        <div class="before-after">
-          <div class="card">
-            <span class="tag">Common reaction</span>
+
+        <div class="comparison">
+          <div class="compare-card traditional">
+            <div class="compare-kicker">Traditional approach</div>
             <h3>More of the same</h3>
-            <ul><li>More training</li><li>More activity targets</li><li>More pressure</li><li>Generic 1:1 advice</li><li>Performance plan too late</li></ul>
+            <ul>
+              <li>More training</li>
+              <li>More activity targets</li>
+              <li>More pressure</li>
+              <li>Generic 1:1 coaching</li>
+              <li>Performance plan too late</li>
+            </ul>
+            <div class="compare-footer">Often treats the symptom, not the cause.</div>
           </div>
-          <div class="card">
-            <span class="tag">Potential Intelligence</span>
-            <h3>Better manager action</h3>
-            <ul><li>Find where the rep loses momentum</li><li>Separate skill gap from role-fit friction</li><li>See pressure response and trust-building style</li><li>Give the manager specific coaching questions</li><li>Support execution before the problem becomes expensive</li></ul>
+
+          <div class="bridge"><span>→</span></div>
+
+          <div class="compare-card intelligence">
+            <div class="compare-kicker">Potential Intelligence</div>
+            <h3>Targeted manager action</h3>
+            <ul>
+              <li>See where the rep loses momentum</li>
+              <li>Separate skill gap from role-fit friction</li>
+              <li>Surface pressure response and trust-building style</li>
+              <li>Give the manager specific coaching questions</li>
+              <li>Intervene before the problem becomes expensive</li>
+            </ul>
+            <div class="compare-footer">Helps the manager choose the right intervention.</div>
           </div>
         </div>
       </div>
@@ -187,24 +316,54 @@
     <section>
       <div class="wrap">
         <div class="section-head">
-          <h2>One diagnostic. One simple next step.</h2>
-          <p class="lead">The diagnostic helps qualify whether the issue looks like momentum, trust, pressure response, structure, role fit, or manager-support friction.</p>
+          <h2>One diagnostic. Three practical outputs.</h2>
+          <p class="lead">In 5 minutes, the diagnostic helps qualify where execution may be breaking — and what the manager could try next.</p>
         </div>
-        <div class="output">
-          <div class="row"><b>1. Possible friction pattern</b><span>Where execution may be breaking in the sales cycle.</span></div>
-          <div class="row"><b>2. Manager coaching angle</b><span>What the sales manager could ask, coach, structure, or test next.</span></div>
-          <div class="row"><b>3. Pilot fit signal</b><span>Whether it makes sense to invite 1–3 reps into the full assessment pilot.</span></div>
+
+        <div class="output-grid">
+          <div class="output-card">
+            <div class="output-number">1</div>
+            <h3>Possible friction pattern</h3>
+            <p>Where execution may be breaking: momentum, trust, pressure, structure, or role fit.</p>
+          </div>
+          <div class="output-card">
+            <div class="output-number">2</div>
+            <h3>Manager coaching angle</h3>
+            <p>What the sales manager could ask, coach, structure, or test in the next 1:1.</p>
+          </div>
+          <div class="output-card">
+            <div class="output-number">3</div>
+            <h3>Pilot fit signal</h3>
+            <p>Whether it makes sense to invite 1–3 reps into the full assessment pilot.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section>
       <div class="wrap">
-        <div class="section-head"><h2>Built first for sales ramp.</h2><p class="lead">Sales ramp is painful, measurable, and expensive. It is also where managers need practical signals fast.</p></div>
+        <div class="section-head">
+          <h2>Built first for sales ramp <span class="gold">(time-to-productivity).</span></h2>
+          <p class="lead">Ramp problems are painful, measurable, and expensive. This is where managers need practical signals fast.</p>
+          <div class="definition">Sales ramp = how long it takes a new rep to become productive.</div>
+        </div>
+
         <div class="grid3">
-          <div class="card"><span class="tag">Discovery</span><h3>Trust and buyer reading</h3><p>Does the rep create clarity, credibility, and confidence early in the conversation?</p></div>
-          <div class="card"><span class="tag">Momentum</span><h3>Follow-up and commitment</h3><p>Where does the deal slow down: after interest, after demo, before next step, or near closing?</p></div>
-          <div class="card"><span class="tag">Pressure</span><h3>Execution under discomfort</h3><p>Does pressure mobilize the rep, make them overpush, or make them avoid difficult conversations?</p></div>
+          <div class="card ramp-card">
+            <span class="tag">Buyer trust</span>
+            <h3>Clarity and credibility</h3>
+            <p>Can the rep create clarity, confidence, and credibility early enough?</p>
+          </div>
+          <div class="card ramp-card">
+            <span class="tag">Momentum</span>
+            <h3>Moving deals forward</h3>
+            <p>Does the rep move deals forward — or lose energy after interest, demo, or follow-up?</p>
+          </div>
+          <div class="card ramp-card">
+            <span class="tag">Pressure response</span>
+            <h3>Execution under discomfort</h3>
+            <p>What happens when the rep has to create urgency, handle resistance, or ask for commitment?</p>
+          </div>
         </div>
       </div>
     </section>
@@ -220,6 +379,6 @@
     </section>
   </main>
 
-  <footer><div class="wrap">Potential Intelligence™ · Founder-led validation · Sales Ramp Diagnostic<br />For coaching and research validation only. Not for employment decisions or performance evaluation.</div></footer>
+  <footer><div class="wrap">Potential Intelligence™ · Founder-led validation · Sales Execution Diagnostic<br />For coaching and research validation only. Not for employment decisions or performance evaluation.</div></footer>
 </body>
 </html>
