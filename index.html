@@ -105,6 +105,43 @@
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
     .note { color: var(--dim); font-size: 14px; max-width: 720px; }
 
+    .sample-strip {
+      margin: 28px 0 0;
+      max-width: 880px;
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 18px;
+    }
+    .sample-label {
+      color: var(--dim);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .sample-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .sample-card {
+      display: block;
+      background: rgba(255,255,255,.045);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      padding: 16px;
+      transition: transform .16s ease, border-color .16s ease, background .16s ease;
+    }
+    .sample-card:hover {
+      transform: translateY(-1px);
+      border-color: rgba(231,182,75,.52);
+      background: rgba(231,182,75,.08);
+    }
+    .sample-card b { display:block; font-size:16px; margin-bottom:5px; }
+    .sample-card span { display:block; color: var(--muted); font-size:13px; line-height:1.35; }
+
     .proof {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -130,7 +167,6 @@
     }
     .lead { color: var(--muted); font-size: 19px; margin: 0; }
 
-    .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
     .card {
       background: var(--panel);
@@ -201,7 +237,7 @@
       .nav-inner { height: auto; padding: 16px 0; align-items: flex-start; flex-direction: column; }
       .nav-actions { width: 100%; }
       .nav-actions .btn { width: 100%; }
-      .proof, .grid2, .grid3, .before-after { grid-template-columns: 1fr; }
+      .proof, .grid3, .before-after, .sample-buttons { grid-template-columns: 1fr; }
       .row { grid-template-columns: 1fr; }
       .hero { padding: 58px 0 40px; }
       section { padding: 54px 0; }
@@ -214,7 +250,7 @@
     <div class="wrap nav-inner">
       <div class="brand">Potential <span>Intelligence™</span></div>
       <div class="nav-actions">
-        <a class="btn btn-secondary" href="reports/sample_report.html">View sample</a>
+        <a class="btn btn-secondary" href="reports/manager_report.html">View manager sample</a>
         <a class="btn btn-primary" href="https://tally.so/r/jaGY4J" target="_blank" rel="noopener">Get the Manager Action Report</a>
       </div>
     </div>
@@ -229,11 +265,29 @@
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://tally.so/r/jaGY4J" target="_blank" rel="noopener">Get the Manager Action Report</a>
-        <a class="btn btn-secondary" href="reports/sample_report.html">View sample report</a>
+        <a class="btn btn-secondary" href="reports/manager_report.html">View manager sample</a>
       </div>
       <p class="note">
         Founder-led validation for VP Sales, Sales Managers, GTM leaders, and teams working on sales ramp, coaching, and execution consistency. Not a personality test. Not a performance evaluation.
       </p>
+
+      <div class="sample-strip">
+        <div class="sample-label">View sample report outputs</div>
+        <div class="sample-buttons">
+          <a class="sample-card" href="reports/participant_report.html">
+            <b>Rep Insight</b>
+            <span>What the rep should understand about their execution pattern.</span>
+          </a>
+          <a class="sample-card" href="reports/manager_report.html">
+            <b>Manager Action</b>
+            <span>What the sales manager should ask, coach, structure, or test next.</span>
+          </a>
+          <a class="sample-card" href="reports/talent_report.html">
+            <b>Talent Signal</b>
+            <span>Where role fit, development path, or support mismatch may appear.</span>
+          </a>
+        </div>
+      </div>
 
       <div class="proof">
         <div class="proof-card"><b>5 min</b><span>Start with a short assessment.</span></div>
