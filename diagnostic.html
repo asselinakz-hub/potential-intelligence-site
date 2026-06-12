@@ -354,11 +354,11 @@
       </div>
 
       <div class="field-group">
-        <label class="field-label" for="pilot">Would you be open to testing a free pilot with 1–3 reps?</label>
+        <label class="field-label" for="pilot">Would you be interested in a small paid pilot with 1–3 reps?</label>
         <select id="pilot" name="pilot" required>
           <option value="">Choose one</option>
-          <option>Yes, I’d like to test it</option>
-          <option>Maybe, send me more information</option>
+          <option>Yes, I’d like the paid pilot details</option>
+          <option>Maybe, send me the pilot details</option>
           <option>Not now</option>
           <option>I’m not the right person</option>
         </select>
@@ -379,11 +379,11 @@
         <ul id="nextSteps"></ul>
       </div>
       <div class="pilot-note">
-        <strong>If this pattern resonates, I’d like to invite 1–3 of your reps into the full assessment.</strong><br>
-        You’ll receive a Manager Action Report for each one. Free, no commitment.
+        <strong>If this pattern resonates, the next step is a small paid pilot.</strong><br>
+        3 reps. 3 Manager Action Reports. 1 debrief call. Pilot price: $297.
       </div>
       <div class="actions">
-        <a id="mailto" class="btn" href="#">Request a small team pilot</a>
+        <a id="mailto" class="btn" href="#">Request the $297 pilot</a>
         <a class="btn btn-secondary" href="reports/manager_report.html">View Manager Action sample</a>
         <a class="btn btn-secondary" href="index.html">Back to landing</a>
       </div>
@@ -431,7 +431,7 @@
       title: "Mixed Execution Signal",
       text: "Your answers suggest a mixed pattern. That can happen when the manager sees symptoms, but the exact breakdown point is hard to isolate without looking at the rep’s execution pattern directly.",
       pills: ["Mixed signal", "Needs deeper look", "Manager action", "Pilot fit"],
-      steps: ["Pick one rep and map where execution breaks in the sales cycle.", "Use the full assessment to clarify the pattern.", "Start with a small pilot before making broader changes."]
+      steps: ["Pick one rep and map where execution breaks in the sales cycle.", "Use the full assessment to clarify the pattern.", "Start with a small paid pilot before making broader changes."]
     }
   };
 
@@ -508,9 +508,9 @@
 
     saveDiagnosticResponse(payload);
 
-    const subject = encodeURIComponent("Potential Intelligence pilot request");
+    const subject = encodeURIComponent("Potential Intelligence $297 pilot request");
     const targetEmail = ["asselina.kz", "gmail.com"].join("@");
-    const body = encodeURIComponent(`Hi Asselya,\n\nI completed the Sales Ramp Diagnostic.\n\nName: ${name}\nEmail: ${email}\nRole: ${role}\nTeam size: ${teamSize}\nDiagnostic pattern: ${p.title}\nUsefulness: ${usefulness}/5\nPilot interest: ${pilot}\n\nI would like to learn more about a small team pilot.\n`);
+    const body = encodeURIComponent(`Hi Asselya,\n\nI completed the Sales Ramp Diagnostic.\n\nName: ${name}\nEmail: ${email}\nRole: ${role}\nTeam size: ${teamSize}\nDiagnostic pattern: ${p.title}\nUsefulness: ${usefulness}/5\nPilot interest: ${pilot}\n\nI would like to learn more about the $297 Sales Ramp Pilot.\n`);
     document.getElementById("mailto").href = `mailto:${targetEmail}?subject=${subject}&body=${body}`;
 
     document.getElementById("result").classList.add("show");
