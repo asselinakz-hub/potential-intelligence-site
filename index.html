@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Potential Intelligence™ | Sales Ramp Intelligence</title>
-  <meta name="description" content="Potential Intelligence™ helps sales leaders see where sales execution breaks — and what managers should try next." />
+  <title>Potential Intelligence™ | Sales Ramp Diagnostic</title>
+  <meta name="description" content="A 5-minute Sales Ramp Diagnostic for sales leaders to see where execution may be breaking before adding more training or pressure." />
   <style>
     :root {
       --bg: #0b0d12;
@@ -16,7 +16,8 @@
       --gold: #e7b64b;
       --gold2: #f4cf75;
       --line: rgba(255,255,255,.12);
-      --max: 1060px;
+      --max: 1040px;
+      --diagnostic-url: "https://potential-intelligence-site.streamlit.app";
     }
 
     * { box-sizing: border-box; }
@@ -35,7 +36,7 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      background: rgba(11,13,18,.86);
+      background: rgba(11,13,18,.88);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--line);
     }
@@ -53,27 +54,24 @@
       white-space: nowrap;
     }
     .brand span { color: var(--gold); }
-    .nav-actions { display: flex; gap: 10px; align-items: center; }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 13px 19px;
+      min-height: 52px;
+      padding: 14px 22px;
       border-radius: 999px;
-      font-weight: 800;
-      font-size: 14px;
+      font-weight: 850;
+      font-size: 15px;
       letter-spacing: .01em;
-      transition: transform .16s ease, background .16s ease, border-color .16s ease;
+      transition: transform .16s ease, background .16s ease;
+      background: var(--gold);
+      color: #10131b;
     }
-    .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--gold); color: #10131b; }
-    .btn-primary:hover { background: var(--gold2); }
-    .btn-secondary { border: 1px solid var(--line); color: var(--text); background: rgba(255,255,255,.03); }
-    .btn-secondary:hover { border-color: rgba(231,182,75,.55); }
+    .btn:hover { transform: translateY(-1px); background: var(--gold2); }
 
-    .hero { padding: 76px 0 52px; }
+    .hero { padding: 82px 0 54px; }
     .eyebrow {
       display: inline-flex;
       color: var(--gold2);
@@ -82,7 +80,7 @@
       padding: 7px 12px;
       border-radius: 999px;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 850;
       letter-spacing: .12em;
       text-transform: uppercase;
       margin-bottom: 24px;
@@ -102,21 +100,20 @@
       font-size: clamp(19px, 2.2vw, 24px);
       line-height: 1.45;
     }
-    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
-    .note { color: var(--dim); font-size: 14px; max-width: 760px; margin: 18px 0 0; }
+    .note { color: var(--dim); font-size: 14px; max-width: 760px; margin: 20px 0 0; }
 
     .sample-strip {
-      margin: 24px 0 0;
+      margin: 34px 0 0;
       max-width: 1000px;
-      background: linear-gradient(135deg, rgba(231,182,75,.10), rgba(255,255,255,.035));
-      border: 1px solid rgba(231,182,75,.24);
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--line);
       border-radius: 24px;
-      padding: 20px;
+      padding: 22px;
     }
     .sample-label {
-      color: var(--gold2);
+      color: var(--dim);
       font-size: 13px;
-      font-weight: 900;
+      font-weight: 850;
       letter-spacing: .09em;
       text-transform: uppercase;
       margin-bottom: 14px;
@@ -128,7 +125,7 @@
     }
     .sample-card {
       display: block;
-      min-height: 118px;
+      min-height: 112px;
       background: rgba(11,13,18,.68);
       border: 1px solid rgba(255,255,255,.12);
       border-radius: 18px;
@@ -137,12 +134,8 @@
     }
     .sample-card:hover {
       transform: translateY(-1px);
-      border-color: rgba(231,182,75,.62);
-      background: rgba(231,182,75,.10);
-    }
-    .sample-card.featured {
-      border-color: rgba(231,182,75,.52);
-      background: rgba(231,182,75,.12);
+      border-color: rgba(231,182,75,.56);
+      background: rgba(231,182,75,.08);
     }
     .sample-card b { display:block; font-size:18px; margin-bottom:6px; }
     .sample-card span { display:block; color: var(--muted); font-size:14px; line-height:1.38; }
@@ -162,7 +155,7 @@
     .proof-card b { display: block; font-size: 22px; margin-bottom: 6px; }
     .proof-card span { color: var(--muted); }
 
-    section { padding: 70px 0; }
+    section { padding: 68px 0; }
     .section-head { max-width: 780px; margin-bottom: 28px; }
     h2 {
       margin: 0 0 14px;
@@ -186,7 +179,7 @@
       display: inline-flex;
       color: var(--gold2);
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 850;
       letter-spacing: .12em;
       text-transform: uppercase;
       margin-bottom: 12px;
@@ -239,9 +232,8 @@
     }
 
     @media (max-width: 840px) {
-      .nav-inner { height: auto; padding: 16px 0; align-items: flex-start; flex-direction: column; }
-      .nav-actions { width: 100%; }
-      .nav-actions .btn { width: 100%; }
+      .nav-inner { min-height: auto; padding: 16px 0; align-items: flex-start; flex-direction: column; }
+      .btn { width: 100%; }
       .proof, .grid3, .before-after, .sample-buttons { grid-template-columns: 1fr; }
       .row { grid-template-columns: 1fr; }
       .hero { padding: 54px 0 38px; }
@@ -255,33 +247,30 @@
   <nav class="nav">
     <div class="wrap nav-inner">
       <div class="brand">Potential <span>Intelligence™</span></div>
-      <div class="nav-actions">
-        <a class="btn btn-secondary" href="reports/manager_report.html">View Manager Action</a>
-        <a class="btn btn-primary" href="https://tally.so/r/jaGY4J" target="_blank" rel="noopener">Get the Manager Action Report</a>
-      </div>
+      <a class="btn" href="https://potential-intelligence-site.streamlit.app" target="_blank" rel="noopener">Take the 5-minute Diagnostic</a>
     </div>
   </nav>
 
   <header class="hero">
     <div class="wrap">
-      <div class="eyebrow">Sales Ramp Intelligence</div>
+      <div class="eyebrow">Sales Ramp Diagnostic</div>
       <h1>Same training. Same CRM. <span class="gold">Different sales results.</span></h1>
       <p class="subtitle">
         Your CRM shows who missed quota. Potential Intelligence shows where execution breaks — and what the sales manager should try next week.
       </p>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="https://tally.so/r/jaGY4J" target="_blank" rel="noopener">Get the Manager Action Report</a>
-        <a class="btn btn-secondary" href="reports/manager_report.html">View Manager Action</a>
-      </div>
+      <a class="btn" href="https://potential-intelligence-site.streamlit.app" target="_blank" rel="noopener">Take the 5-minute Diagnostic</a>
+      <p class="note">
+        Founder-led validation for VP Sales, Sales Managers, GTM leaders, and teams working on sales ramp, coaching, and execution consistency. Not a personality test. Not a performance evaluation.
+      </p>
 
       <div class="sample-strip">
-        <div class="sample-label">View the 3 report outputs</div>
+        <div class="sample-label">Optional: view sample report outputs</div>
         <div class="sample-buttons">
           <a class="sample-card" href="reports/participant_report.html">
             <b>👤 Rep Insight</b>
             <span>What the rep should understand about their execution pattern.</span>
           </a>
-          <a class="sample-card featured" href="reports/manager_report.html">
+          <a class="sample-card" href="reports/manager_report.html">
             <b>📊 Manager Action</b>
             <span>What the sales manager should ask, coach, structure, or test next.</span>
           </a>
@@ -292,12 +281,8 @@
         </div>
       </div>
 
-      <p class="note">
-        Founder-led validation for VP Sales, Sales Managers, GTM leaders, and teams working on sales ramp, coaching, and execution consistency. Not a personality test. Not a performance evaluation.
-      </p>
-
       <div class="proof">
-        <div class="proof-card"><b>5 min</b><span>Start with a short assessment.</span></div>
+        <div class="proof-card"><b>5 min</b><span>Start with a short diagnostic.</span></div>
         <div class="proof-card"><b>3 outputs</b><span>Rep insight, manager action, coaching signal.</span></div>
         <div class="proof-card"><b>Next week</b><span>Turn patterns into coaching actions.</span></div>
       </div>
@@ -342,14 +327,14 @@
     <section>
       <div class="wrap">
         <div class="section-head">
-          <h2>One assessment. Three practical outputs.</h2>
-          <p class="lead">The goal is not to label the rep. The goal is to help the manager understand what to try next.</p>
+          <h2>One diagnostic. One simple next step.</h2>
+          <p class="lead">The diagnostic helps qualify whether the issue looks like momentum, trust, pressure response, structure, role fit, or manager-support friction.</p>
         </div>
 
         <div class="output">
-          <div class="row"><b>1. Rep insight</b><span>What the rep should understand about their natural execution pattern, strengths, and friction points.</span></div>
-          <div class="row"><b>2. Manager action</b><span>What the manager should ask, coach, structure, stop doing, or test in the next 1:1.</span></div>
-          <div class="row"><b>3. Coaching signal</b><span>Whether the issue looks more like a skill gap, motivation gap, pressure response, role-fit friction, or manager-support mismatch.</span></div>
+          <div class="row"><b>1. Possible friction pattern</b><span>Where execution may be breaking in the sales cycle.</span></div>
+          <div class="row"><b>2. Manager coaching angle</b><span>What the sales manager could ask, coach, structure, or test next.</span></div>
+          <div class="row"><b>3. Pilot fit signal</b><span>Whether it makes sense to invite 1–3 reps into the full assessment pilot.</span></div>
         </div>
       </div>
     </section>
@@ -383,9 +368,9 @@
     <section>
       <div class="wrap">
         <div class="cta-box">
-          <h2>Want to see what the manager action report could reveal?</h2>
-          <p>Start with the 5-minute assessment. If the insight is useful, you can request a Manager Action Report for a small team pilot.</p>
-          <a class="btn btn-primary" href="https://tally.so/r/jaGY4J" target="_blank" rel="noopener">Get the Manager Action Report</a>
+          <h2>Start with the diagnostic. Then decide if a small team pilot makes sense.</h2>
+          <p>The full Manager Action Report comes after 1–3 reps complete the full assessment voluntarily as part of a small pilot.</p>
+          <a class="btn" href="https://potential-intelligence-site.streamlit.app" target="_blank" rel="noopener">Take the 5-minute Diagnostic</a>
         </div>
       </div>
     </section>
@@ -393,7 +378,7 @@
 
   <footer>
     <div class="wrap">
-      Potential Intelligence™ · Founder-led validation · Sales Ramp Intelligence<br />
+      Potential Intelligence™ · Founder-led validation · Sales Ramp Diagnostic<br />
       For coaching and research validation only. Not for employment decisions or performance evaluation.
     </div>
   </footer>
