@@ -17,7 +17,9 @@
       --line: rgba(255,255,255,.13);
       --max: 920px;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       background: radial-gradient(circle at 80% -10%, rgba(231,182,75,.12), transparent 32%), var(--bg);
@@ -25,11 +27,14 @@
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
       line-height: 1.55;
     }
+
     a { color: inherit; }
     .wrap { width: min(var(--max), 90vw); margin: 0 auto; }
+
     header { padding: 48px 0 20px; }
     .brand { font-weight: 900; font-size: 22px; margin-bottom: 32px; }
     .brand span { color: var(--gold); }
+
     .eyebrow {
       display: inline-flex;
       color: var(--gold2);
@@ -43,19 +48,49 @@
       text-transform: uppercase;
       margin-bottom: 18px;
     }
-    h1 { margin: 0; font-size: clamp(40px, 6vw, 66px); line-height: .98; letter-spacing: -.055em; }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(40px, 6vw, 66px);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
     .gold { color: var(--gold); }
     .subtitle { max-width: 720px; color: var(--muted); font-size: 20px; margin: 18px 0 0; }
+
     .card {
       background: rgba(255,255,255,.045);
       border: 1px solid var(--line);
       border-radius: 24px;
-      padding: 28px;
+      padding: 30px;
       margin: 22px 0;
     }
-    h2 { margin: 0 0 18px; font-size: 28px; letter-spacing: -.03em; }
-    label, legend, .q-title { color: var(--text); font-weight: 800; display: block; margin: 22px 0 10px; }
-    .hint { color: var(--dim); font-size: 14px; margin-top: -4px; }
+
+    h2 {
+      margin: 0 0 10px;
+      font-size: 30px;
+      letter-spacing: -.035em;
+    }
+
+    .form-intro {
+      color: var(--dim);
+      font-size: 15px;
+      margin: 0 0 24px;
+    }
+
+    .field-group {
+      margin: 24px 0 30px;
+    }
+
+    .field-label {
+      color: var(--text);
+      font-size: 17px;
+      font-weight: 780;
+      display: block;
+      margin: 0 0 10px;
+    }
+
     input[type="text"], input[type="email"], select, textarea {
       width: 100%;
       border: 1px solid rgba(255,255,255,.16);
@@ -66,22 +101,88 @@
       font-size: 16px;
       outline: none;
     }
+
     textarea { min-height: 90px; resize: vertical; }
-    .options { display: grid; gap: 10px; margin-top: 10px; }
+
+    .question-block {
+      margin: 44px 0 48px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+
+    .question-kicker {
+      color: var(--gold2);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+    }
+
+    .q-title {
+      color: var(--text);
+      font-size: clamp(23px, 3vw, 30px);
+      line-height: 1.18;
+      font-weight: 850;
+      letter-spacing: -.025em;
+      margin: 0 0 7px;
+    }
+
+    .question-subtitle {
+      color: var(--dim);
+      font-size: 15px;
+      margin: 0 0 22px;
+    }
+
+    .options {
+      display: grid;
+      gap: 13px;
+      margin-top: 0;
+    }
+
     .option {
       display: flex;
-      gap: 10px;
-      align-items: flex-start;
+      gap: 14px;
+      align-items: center;
       border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.035);
-      border-radius: 14px;
-      padding: 12px 14px;
-      color: var(--muted);
+      background: rgba(255,255,255,.032);
+      border-radius: 16px;
+      padding: 16px 18px;
       cursor: pointer;
+      transition: transform .14s ease, border-color .14s ease, background .14s ease, box-shadow .14s ease;
     }
-    .option:hover { border-color: rgba(231,182,75,.45); background: rgba(231,182,75,.07); }
-    .option input { margin-top: 4px; accent-color: var(--gold); }
-    .option span { color: var(--muted); }
+
+    .option:hover {
+      transform: translateY(-1px);
+      border-color: rgba(231,182,75,.45);
+      background: rgba(231,182,75,.06);
+    }
+
+    .option input {
+      flex: 0 0 auto;
+      margin: 0;
+      accent-color: var(--gold);
+      transform: scale(1.08);
+    }
+
+    .option span {
+      color: rgba(247,241,230,.74);
+      font-size: 17px;
+      line-height: 1.38;
+      font-weight: 520;
+    }
+
+    .option.selected {
+      border-color: rgba(231,182,75,.72);
+      background: linear-gradient(180deg, rgba(231,182,75,.11), rgba(255,255,255,.035));
+      box-shadow: 0 0 0 1px rgba(231,182,75,.16), 0 18px 38px rgba(0,0,0,.18);
+    }
+
+    .option.selected span {
+      color: #fffaf0;
+      font-weight: 720;
+    }
+
     .btn {
       border: 0;
       display: inline-flex;
@@ -97,9 +198,11 @@
       color: #10131b;
       text-decoration: none;
     }
+
     .btn:hover { background: var(--gold2); }
     .btn-secondary { background: transparent; color: var(--text); border: 1px solid var(--line); }
-    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+
     .result { display: none; }
     .result.show { display: block; }
     .result-title { color: var(--gold2); font-weight: 900; text-transform: uppercase; letter-spacing: .08em; font-size: 13px; }
@@ -107,10 +210,18 @@
     .pill-row { display: flex; gap: 10px; flex-wrap: wrap; margin: 18px 0; }
     .pill { border: 1px solid rgba(231,182,75,.24); background: rgba(231,182,75,.10); color: var(--gold2); padding: 8px 11px; border-radius: 999px; font-size: 13px; font-weight: 800; }
     .recommendation { background: var(--panel2); border: 1px solid var(--line); border-radius: 18px; padding: 18px; margin-top: 16px; }
+    .hint { color: var(--dim); font-size: 14px; margin-top: 12px; }
     ul { color: var(--muted); padding-left: 20px; }
     li { margin: 8px 0; }
     footer { color: var(--dim); padding: 30px 0 44px; font-size: 14px; }
-    @media(max-width: 720px) { .card { padding: 20px; } .actions .btn { width: 100%; } }
+
+    @media(max-width: 720px) {
+      .card { padding: 22px; }
+      .actions .btn { width: 100%; }
+      .option { padding: 15px 16px; }
+      .option span { font-size: 16px; }
+      .question-block { margin: 36px 0 40px; }
+    }
   </style>
 </head>
 <body>
@@ -126,84 +237,111 @@
   <main class="wrap">
     <form id="diagnosticForm" class="card">
       <h2>Sales Ramp Diagnostic</h2>
+      <p class="form-intro">Choose the answers that feel most true for your team right now. This is not a performance evaluation.</p>
 
-      <label for="name">Your name</label>
-      <input id="name" name="name" type="text" placeholder="Your name" />
-
-      <label for="email">Work email</label>
-      <input id="email" name="email" type="email" placeholder="name@company.com" />
-
-      <label for="role">What best describes your role?</label>
-      <select id="role" name="role" required>
-        <option value="">Choose one</option>
-        <option>VP Sales / Head of Sales</option>
-        <option>Sales Manager</option>
-        <option>CRO / Revenue Leader</option>
-        <option>Founder</option>
-        <option>Sales Enablement</option>
-        <option>HR / People / L&D</option>
-        <option>Other</option>
-      </select>
-
-      <div class="q-title">What is your biggest sales ramp challenge right now?</div>
-      <div class="options" data-question="challenge">
-        <label class="option"><input type="radio" name="challenge" value="structure" required><span>New hires take too long to become productive</span></label>
-        <label class="option"><input type="radio" name="challenge" value="momentum"><span>Reps know the process but do not execute consistently</span></label>
-        <label class="option"><input type="radio" name="challenge" value="momentum"><span>Reps create interest but do not move deals forward</span></label>
-        <label class="option"><input type="radio" name="challenge" value="trust"><span>Reps struggle to create enough buyer confidence</span></label>
-        <label class="option"><input type="radio" name="challenge" value="pressure"><span>Reps avoid difficult conversations</span></label>
-        <label class="option"><input type="radio" name="challenge" value="fit"><span>Performance varies too much between similar reps</span></label>
+      <div class="field-group">
+        <label class="field-label" for="name">Your name</label>
+        <input id="name" name="name" type="text" placeholder="Your name" />
       </div>
 
-      <div class="q-title">When a rep is not ramping, what do you usually try first?</div>
-      <div class="options">
-        <label class="option"><input type="radio" name="first_try" value="structure" required><span>More training</span></label>
-        <label class="option"><input type="radio" name="first_try" value="structure"><span>More activity targets</span></label>
-        <label class="option"><input type="radio" name="first_try" value="structure"><span>More manager check-ins</span></label>
-        <label class="option"><input type="radio" name="first_try" value="pressure"><span>More pressure / accountability</span></label>
-        <label class="option"><input type="radio" name="first_try" value="fit"><span>Pairing with a stronger rep</span></label>
-        <label class="option"><input type="radio" name="first_try" value="unknown"><span>I’m not sure</span></label>
+      <div class="field-group">
+        <label class="field-label" for="email">Work email</label>
+        <input id="email" name="email" type="email" placeholder="name@company.com" />
       </div>
 
-      <div class="q-title">Where do deals most often lose momentum?</div>
-      <div class="options">
-        <label class="option"><input type="radio" name="stage" value="trust" required><span>Prospecting / first contact</span></label>
-        <label class="option"><input type="radio" name="stage" value="trust"><span>Discovery</span></label>
-        <label class="option"><input type="radio" name="stage" value="momentum"><span>After a positive first conversation</span></label>
-        <label class="option"><input type="radio" name="stage" value="momentum"><span>Follow-up / next step</span></label>
-        <label class="option"><input type="radio" name="stage" value="pressure"><span>Pricing / negotiation</span></label>
-        <label class="option"><input type="radio" name="stage" value="pressure"><span>Closing</span></label>
-        <label class="option"><input type="radio" name="stage" value="unknown"><span>Hard to tell</span></label>
+      <div class="field-group">
+        <label class="field-label" for="role">What best describes your role?</label>
+        <select id="role" name="role" required>
+          <option value="">Choose one</option>
+          <option>VP Sales / Head of Sales</option>
+          <option>Sales Manager</option>
+          <option>CRO / Revenue Leader</option>
+          <option>Founder</option>
+          <option>Sales Enablement</option>
+          <option>HR / People / L&D</option>
+          <option>Other</option>
+        </select>
       </div>
 
-      <div class="q-title">Which statement feels most familiar?</div>
-      <div class="options">
-        <label class="option"><input type="radio" name="familiar" value="momentum" required><span>They know what to do, but they don’t do it consistently.</span></label>
-        <label class="option"><input type="radio" name="familiar" value="momentum"><span>They are active, but deals don’t move.</span></label>
-        <label class="option"><input type="radio" name="familiar" value="pressure"><span>They are good with people, but avoid closing.</span></label>
-        <label class="option"><input type="radio" name="familiar" value="trust"><span>They understand the product, but don’t create urgency or confidence.</span></label>
-        <label class="option"><input type="radio" name="familiar" value="structure"><span>They need too much manager direction.</span></label>
-        <label class="option"><input type="radio" name="familiar" value="fit"><span>They looked strong in interview but struggle in the role.</span></label>
+      <div class="question-block">
+        <div class="question-kicker">Question 1 · Sales ramp challenge</div>
+        <div class="q-title">What is your biggest sales ramp challenge right now?</div>
+        <p class="question-subtitle">Choose the pattern that feels most familiar.</p>
+        <div class="options" data-question="challenge">
+          <label class="option"><input type="radio" name="challenge" value="structure" required><span>New hires take too long to become productive</span></label>
+          <label class="option"><input type="radio" name="challenge" value="momentum"><span>Reps know the process but do not execute consistently</span></label>
+          <label class="option"><input type="radio" name="challenge" value="momentum"><span>Reps create interest but do not move deals forward</span></label>
+          <label class="option"><input type="radio" name="challenge" value="trust"><span>Reps struggle to create enough buyer confidence</span></label>
+          <label class="option"><input type="radio" name="challenge" value="pressure"><span>Reps avoid difficult conversations</span></label>
+          <label class="option"><input type="radio" name="challenge" value="fit"><span>Performance varies too much between similar reps</span></label>
+        </div>
       </div>
 
-      <label for="usefulness">How useful would it be to know where each rep’s execution breaks?</label>
-      <select id="usefulness" name="usefulness" required>
-        <option value="">Choose one</option>
-        <option value="1">1 — not useful</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5 — very useful</option>
-      </select>
+      <div class="question-block">
+        <div class="question-kicker">Question 2 · Current manager reaction</div>
+        <div class="q-title">When a rep is not ramping, what do you usually try first?</div>
+        <p class="question-subtitle">This helps separate training, pressure, structure, and role-fit signals.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="first_try" value="structure" required><span>More training</span></label>
+          <label class="option"><input type="radio" name="first_try" value="structure"><span>More activity targets</span></label>
+          <label class="option"><input type="radio" name="first_try" value="structure"><span>More manager check-ins</span></label>
+          <label class="option"><input type="radio" name="first_try" value="pressure"><span>More pressure / accountability</span></label>
+          <label class="option"><input type="radio" name="first_try" value="fit"><span>Pairing with a stronger rep</span></label>
+          <label class="option"><input type="radio" name="first_try" value="unknown"><span>I’m not sure</span></label>
+        </div>
+      </div>
 
-      <label for="pilot">Would you be open to testing a free pilot with 1–3 reps?</label>
-      <select id="pilot" name="pilot" required>
-        <option value="">Choose one</option>
-        <option>Yes, I’d like to test it</option>
-        <option>Maybe, send me more information</option>
-        <option>Not now</option>
-        <option>I’m not the right person</option>
-      </select>
+      <div class="question-block">
+        <div class="question-kicker">Question 3 · Sales cycle breakdown</div>
+        <div class="q-title">Where do deals most often lose momentum?</div>
+        <p class="question-subtitle">Pick the stage where things slow down most often.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="stage" value="trust" required><span>Prospecting / first contact</span></label>
+          <label class="option"><input type="radio" name="stage" value="trust"><span>Discovery</span></label>
+          <label class="option"><input type="radio" name="stage" value="momentum"><span>After a positive first conversation</span></label>
+          <label class="option"><input type="radio" name="stage" value="momentum"><span>Follow-up / next step</span></label>
+          <label class="option"><input type="radio" name="stage" value="pressure"><span>Pricing / negotiation</span></label>
+          <label class="option"><input type="radio" name="stage" value="pressure"><span>Closing</span></label>
+          <label class="option"><input type="radio" name="stage" value="unknown"><span>Hard to tell</span></label>
+        </div>
+      </div>
+
+      <div class="question-block">
+        <div class="question-kicker">Question 4 · Pattern recognition</div>
+        <div class="q-title">Which statement feels most familiar?</div>
+        <p class="question-subtitle">This helps identify the likely friction pattern.</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="familiar" value="momentum" required><span>They know what to do, but they don’t do it consistently.</span></label>
+          <label class="option"><input type="radio" name="familiar" value="momentum"><span>They are active, but deals don’t move.</span></label>
+          <label class="option"><input type="radio" name="familiar" value="pressure"><span>They are good with people, but avoid closing.</span></label>
+          <label class="option"><input type="radio" name="familiar" value="trust"><span>They understand the product, but don’t create urgency or confidence.</span></label>
+          <label class="option"><input type="radio" name="familiar" value="structure"><span>They need too much manager direction.</span></label>
+          <label class="option"><input type="radio" name="familiar" value="fit"><span>They looked strong in interview but struggle in the role.</span></label>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="usefulness">How useful would it be to know where each rep’s execution breaks?</label>
+        <select id="usefulness" name="usefulness" required>
+          <option value="">Choose one</option>
+          <option value="1">1 — not useful</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5 — very useful</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="pilot">Would you be open to testing a free pilot with 1–3 reps?</label>
+        <select id="pilot" name="pilot" required>
+          <option value="">Choose one</option>
+          <option>Yes, I’d like to test it</option>
+          <option>Maybe, send me more information</option>
+          <option>Not now</option>
+          <option>I’m not the right person</option>
+        </select>
+      </div>
 
       <div class="actions">
         <button class="btn" type="submit">See the possible friction pattern</button>
@@ -281,6 +419,18 @@
     const sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]);
     return sorted[0][1] === 0 ? "unknown" : sorted[0][0];
   }
+
+  function refreshSelectedOptions() {
+    document.querySelectorAll(".option").forEach(option => {
+      const input = option.querySelector("input");
+      option.classList.toggle("selected", input && input.checked);
+    });
+  }
+
+  document.querySelectorAll('.option input[type="radio"]').forEach(input => {
+    input.addEventListener("change", refreshSelectedOptions);
+  });
+  refreshSelectedOptions();
 
   document.getElementById("diagnosticForm").addEventListener("submit", function(e) {
     e.preventDefault();
