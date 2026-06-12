@@ -40,7 +40,7 @@
       border-bottom: 1px solid var(--line);
     }
     .nav-inner {
-      height: 72px;
+      min-height: 72px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -73,7 +73,7 @@
     .btn-secondary { border: 1px solid var(--line); color: var(--text); background: rgba(255,255,255,.03); }
     .btn-secondary:hover { border-color: rgba(231,182,75,.55); }
 
-    .hero { padding: 88px 0 58px; }
+    .hero { padding: 76px 0 52px; }
     .eyebrow {
       display: inline-flex;
       color: var(--gold2);
@@ -97,56 +97,61 @@
     .gold { color: var(--gold); }
     .subtitle {
       max-width: 780px;
-      margin: 26px 0 30px;
+      margin: 26px 0 28px;
       color: var(--muted);
       font-size: clamp(19px, 2.2vw, 24px);
       line-height: 1.45;
     }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 18px; }
-    .note { color: var(--dim); font-size: 14px; max-width: 720px; }
+    .note { color: var(--dim); font-size: 14px; max-width: 760px; margin: 18px 0 0; }
 
     .sample-strip {
-      margin: 28px 0 0;
-      max-width: 880px;
-      background: rgba(255,255,255,.035);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 18px;
+      margin: 24px 0 0;
+      max-width: 1000px;
+      background: linear-gradient(135deg, rgba(231,182,75,.10), rgba(255,255,255,.035));
+      border: 1px solid rgba(231,182,75,.24);
+      border-radius: 24px;
+      padding: 20px;
     }
     .sample-label {
-      color: var(--dim);
+      color: var(--gold2);
       font-size: 13px;
-      font-weight: 800;
-      letter-spacing: .08em;
+      font-weight: 900;
+      letter-spacing: .09em;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .sample-buttons {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
+      gap: 12px;
     }
     .sample-card {
       display: block;
-      background: rgba(255,255,255,.045);
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 16px;
-      padding: 16px;
+      min-height: 118px;
+      background: rgba(11,13,18,.68);
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 18px;
+      padding: 18px;
       transition: transform .16s ease, border-color .16s ease, background .16s ease;
     }
     .sample-card:hover {
       transform: translateY(-1px);
-      border-color: rgba(231,182,75,.52);
-      background: rgba(231,182,75,.08);
+      border-color: rgba(231,182,75,.62);
+      background: rgba(231,182,75,.10);
     }
-    .sample-card b { display:block; font-size:16px; margin-bottom:5px; }
-    .sample-card span { display:block; color: var(--muted); font-size:13px; line-height:1.35; }
+    .sample-card.featured {
+      border-color: rgba(231,182,75,.52);
+      background: rgba(231,182,75,.12);
+    }
+    .sample-card b { display:block; font-size:18px; margin-bottom:6px; }
+    .sample-card span { display:block; color: var(--muted); font-size:14px; line-height:1.38; }
 
     .proof {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
-      margin: 42px 0 0;
+      margin: 38px 0 0;
     }
     .proof-card {
       background: rgba(255,255,255,.045);
@@ -239,9 +244,10 @@
       .nav-actions .btn { width: 100%; }
       .proof, .grid3, .before-after, .sample-buttons { grid-template-columns: 1fr; }
       .row { grid-template-columns: 1fr; }
-      .hero { padding: 58px 0 40px; }
+      .hero { padding: 54px 0 38px; }
       section { padding: 54px 0; }
       .cta-box { padding: 30px 22px; }
+      .sample-card { min-height: auto; }
     }
   </style>
 </head>
@@ -250,7 +256,7 @@
     <div class="wrap nav-inner">
       <div class="brand">Potential <span>Intelligence™</span></div>
       <div class="nav-actions">
-        <a class="btn btn-secondary" href="reports/manager_report.html">View manager sample</a>
+        <a class="btn btn-secondary" href="reports/manager_report.html">View Manager Action</a>
         <a class="btn btn-primary" href="https://tally.so/r/jaGY4J" target="_blank" rel="noopener">Get the Manager Action Report</a>
       </div>
     </div>
@@ -265,29 +271,30 @@
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://tally.so/r/jaGY4J" target="_blank" rel="noopener">Get the Manager Action Report</a>
-        <a class="btn btn-secondary" href="reports/manager_report.html">View manager sample</a>
+        <a class="btn btn-secondary" href="reports/manager_report.html">View Manager Action</a>
       </div>
-      <p class="note">
-        Founder-led validation for VP Sales, Sales Managers, GTM leaders, and teams working on sales ramp, coaching, and execution consistency. Not a personality test. Not a performance evaluation.
-      </p>
 
       <div class="sample-strip">
-        <div class="sample-label">View sample report outputs</div>
+        <div class="sample-label">View the 3 report outputs</div>
         <div class="sample-buttons">
           <a class="sample-card" href="reports/participant_report.html">
-            <b>Rep Insight</b>
+            <b>👤 Rep Insight</b>
             <span>What the rep should understand about their execution pattern.</span>
           </a>
-          <a class="sample-card" href="reports/manager_report.html">
-            <b>Manager Action</b>
+          <a class="sample-card featured" href="reports/manager_report.html">
+            <b>📊 Manager Action</b>
             <span>What the sales manager should ask, coach, structure, or test next.</span>
           </a>
           <a class="sample-card" href="reports/talent_report.html">
-            <b>Talent Signal</b>
+            <b>🏢 Talent Signal</b>
             <span>Where role fit, development path, or support mismatch may appear.</span>
           </a>
         </div>
       </div>
+
+      <p class="note">
+        Founder-led validation for VP Sales, Sales Managers, GTM leaders, and teams working on sales ramp, coaching, and execution consistency. Not a personality test. Not a performance evaluation.
+      </p>
 
       <div class="proof">
         <div class="proof-card"><b>5 min</b><span>Start with a short assessment.</span></div>
