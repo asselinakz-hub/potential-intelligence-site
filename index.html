@@ -17,9 +17,7 @@
       --gold2: #f4cf75;
       --line: rgba(255,255,255,.12);
       --max: 1040px;
-      --diagnostic-url: "https://potential-intelligence-site.streamlit.app";
     }
-
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
@@ -31,7 +29,6 @@
     }
     a { color: inherit; text-decoration: none; }
     .wrap { width: min(var(--max), 90vw); margin: 0 auto; }
-
     .nav {
       position: sticky;
       top: 0;
@@ -47,14 +44,8 @@
       align-items: center;
       gap: 20px;
     }
-    .brand {
-      font-weight: 800;
-      letter-spacing: -.02em;
-      font-size: 21px;
-      white-space: nowrap;
-    }
+    .brand { font-weight: 800; letter-spacing: -.02em; font-size: 21px; white-space: nowrap; }
     .brand span { color: var(--gold); }
-
     .btn {
       display: inline-flex;
       align-items: center;
@@ -70,7 +61,6 @@
       color: #10131b;
     }
     .btn:hover { transform: translateY(-1px); background: var(--gold2); }
-
     .hero { padding: 82px 0 54px; }
     .eyebrow {
       display: inline-flex;
@@ -85,152 +75,42 @@
       text-transform: uppercase;
       margin-bottom: 24px;
     }
-    h1 {
-      margin: 0;
-      max-width: 900px;
-      font-size: clamp(46px, 7vw, 78px);
-      line-height: .96;
-      letter-spacing: -.06em;
-    }
+    h1 { margin: 0; max-width: 900px; font-size: clamp(46px, 7vw, 78px); line-height: .96; letter-spacing: -.06em; }
     .gold { color: var(--gold); }
-    .subtitle {
-      max-width: 780px;
-      margin: 26px 0 28px;
-      color: var(--muted);
-      font-size: clamp(19px, 2.2vw, 24px);
-      line-height: 1.45;
-    }
+    .subtitle { max-width: 780px; margin: 26px 0 28px; color: var(--muted); font-size: clamp(19px, 2.2vw, 24px); line-height: 1.45; }
     .note { color: var(--dim); font-size: 14px; max-width: 760px; margin: 20px 0 0; }
-
-    .sample-strip {
-      margin: 34px 0 0;
-      max-width: 1000px;
-      background: rgba(255,255,255,.035);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 22px;
-    }
-    .sample-label {
-      color: var(--dim);
-      font-size: 13px;
-      font-weight: 850;
-      letter-spacing: .09em;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-    .sample-buttons {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-    .sample-card {
-      display: block;
-      min-height: 112px;
-      background: rgba(11,13,18,.68);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 18px;
-      padding: 18px;
-      transition: transform .16s ease, border-color .16s ease, background .16s ease;
-    }
-    .sample-card:hover {
-      transform: translateY(-1px);
-      border-color: rgba(231,182,75,.56);
-      background: rgba(231,182,75,.08);
-    }
+    .sample-strip { margin: 34px 0 0; max-width: 1000px; background: rgba(255,255,255,.035); border: 1px solid var(--line); border-radius: 24px; padding: 22px; }
+    .sample-label { color: var(--dim); font-size: 13px; font-weight: 850; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 14px; }
+    .sample-buttons { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .sample-card { display: block; min-height: 112px; background: rgba(11,13,18,.68); border: 1px solid rgba(255,255,255,.12); border-radius: 18px; padding: 18px; transition: transform .16s ease, border-color .16s ease, background .16s ease; }
+    .sample-card:hover { transform: translateY(-1px); border-color: rgba(231,182,75,.56); background: rgba(231,182,75,.08); }
     .sample-card b { display:block; font-size:18px; margin-bottom:6px; }
     .sample-card span { display:block; color: var(--muted); font-size:14px; line-height:1.38; }
-
-    .proof {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin: 38px 0 0;
-    }
-    .proof-card {
-      background: rgba(255,255,255,.045);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 22px;
-    }
+    .proof { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 38px 0 0; }
+    .proof-card { background: rgba(255,255,255,.045); border: 1px solid var(--line); border-radius: 18px; padding: 22px; }
     .proof-card b { display: block; font-size: 22px; margin-bottom: 6px; }
     .proof-card span { color: var(--muted); }
-
     section { padding: 68px 0; }
     .section-head { max-width: 780px; margin-bottom: 28px; }
-    h2 {
-      margin: 0 0 14px;
-      font-size: clamp(34px, 4.5vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -.045em;
-    }
+    h2 { margin: 0 0 14px; font-size: clamp(34px, 4.5vw, 52px); line-height: 1.05; letter-spacing: -.045em; }
     .lead { color: var(--muted); font-size: 19px; margin: 0; }
-
     .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      padding: 26px;
-      min-height: 190px;
-    }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; padding: 26px; min-height: 190px; }
     .card h3 { margin: 0 0 10px; font-size: 23px; letter-spacing: -.02em; }
     .card p { margin: 0; color: var(--muted); }
-    .tag {
-      display: inline-flex;
-      color: var(--gold2);
-      font-size: 12px;
-      font-weight: 850;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .before-after {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 26px;
-    }
+    .tag { display: inline-flex; color: var(--gold2); font-size: 12px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px; }
+    .before-after { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 26px; }
     .before-after .card { background: var(--panel2); }
     ul { padding-left: 20px; margin: 12px 0 0; color: var(--muted); }
     li { margin: 8px 0; }
-
-    .output {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .row {
-      display: grid;
-      grid-template-columns: 210px 1fr;
-      gap: 18px;
-      align-items: start;
-      background: rgba(255,255,255,.045);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 20px;
-    }
+    .output { display: grid; grid-template-columns: 1fr; gap: 12px; }
+    .row { display: grid; grid-template-columns: 210px 1fr; gap: 18px; align-items: start; background: rgba(255,255,255,.045); border: 1px solid var(--line); border-radius: 18px; padding: 20px; }
     .row b { color: var(--text); }
     .row span { color: var(--muted); }
-
-    .cta-box {
-      background: linear-gradient(135deg, rgba(231,182,75,.13), rgba(255,255,255,.04));
-      border: 1px solid rgba(231,182,75,.25);
-      border-radius: 28px;
-      padding: 42px;
-      text-align: center;
-    }
+    .cta-box { background: linear-gradient(135deg, rgba(231,182,75,.13), rgba(255,255,255,.04)); border: 1px solid rgba(231,182,75,.25); border-radius: 28px; padding: 42px; text-align: center; }
     .cta-box h2 { max-width: 760px; margin: 0 auto 14px; }
     .cta-box p { max-width: 700px; margin: 0 auto 26px; color: var(--muted); font-size: 19px; }
-
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 32px 0 44px;
-      color: var(--dim);
-      font-size: 14px;
-      text-align: center;
-    }
-
+    footer { border-top: 1px solid var(--line); padding: 32px 0 44px; color: var(--dim); font-size: 14px; text-align: center; }
     @media (max-width: 840px) {
       .nav-inner { min-height: auto; padding: 16px 0; align-items: flex-start; flex-direction: column; }
       .btn { width: 100%; }
@@ -247,7 +127,7 @@
   <nav class="nav">
     <div class="wrap nav-inner">
       <div class="brand">Potential <span>Intelligence™</span></div>
-      <a class="btn" href="https://potential-intelligence-site.streamlit.app" target="_blank" rel="noopener">Take the 5-minute Diagnostic</a>
+      <a class="btn" href="diagnostic.html">Take the 5-minute Diagnostic</a>
     </div>
   </nav>
 
@@ -258,7 +138,7 @@
       <p class="subtitle">
         Your CRM shows who missed quota. Potential Intelligence shows where execution breaks — and what the sales manager should try next week.
       </p>
-      <a class="btn" href="https://potential-intelligence-site.streamlit.app" target="_blank" rel="noopener">Take the 5-minute Diagnostic</a>
+      <a class="btn" href="diagnostic.html">Take the 5-minute Diagnostic</a>
       <p class="note">
         Founder-led validation for VP Sales, Sales Managers, GTM leaders, and teams working on sales ramp, coaching, and execution consistency. Not a personality test. Not a performance evaluation.
       </p>
@@ -266,18 +146,9 @@
       <div class="sample-strip">
         <div class="sample-label">Optional: view sample report outputs</div>
         <div class="sample-buttons">
-          <a class="sample-card" href="reports/participant_report.html">
-            <b>👤 Rep Insight</b>
-            <span>What the rep should understand about their execution pattern.</span>
-          </a>
-          <a class="sample-card" href="reports/manager_report.html">
-            <b>📊 Manager Action</b>
-            <span>What the sales manager should ask, coach, structure, or test next.</span>
-          </a>
-          <a class="sample-card" href="reports/talent_report.html">
-            <b>🏢 Talent Signal</b>
-            <span>Where role fit, development path, or support mismatch may appear.</span>
-          </a>
+          <a class="sample-card" href="reports/participant_report.html"><b>👤 Rep Insight</b><span>What the rep should understand about their execution pattern.</span></a>
+          <a class="sample-card" href="reports/manager_report.html"><b>📊 Manager Action</b><span>What the sales manager should ask, coach, structure, or test next.</span></a>
+          <a class="sample-card" href="reports/talent_report.html"><b>🏢 Talent Signal</b><span>Where role fit, development path, or support mismatch may appear.</span></a>
         </div>
       </div>
 
@@ -296,29 +167,16 @@
           <h2>Before adding more training or pressure, find out where execution actually breaks in the sales cycle.</h2>
           <p class="lead">When a new sales hire is not ramping, the visible symptom is usually easy to see. The real question is what to try next.</p>
         </div>
-
         <div class="before-after">
           <div class="card">
             <span class="tag">Common reaction</span>
             <h3>More of the same</h3>
-            <ul>
-              <li>More training</li>
-              <li>More activity targets</li>
-              <li>More pressure</li>
-              <li>Generic 1:1 advice</li>
-              <li>Performance plan too late</li>
-            </ul>
+            <ul><li>More training</li><li>More activity targets</li><li>More pressure</li><li>Generic 1:1 advice</li><li>Performance plan too late</li></ul>
           </div>
           <div class="card">
             <span class="tag">Potential Intelligence</span>
             <h3>Better manager action</h3>
-            <ul>
-              <li>Find where the rep loses momentum</li>
-              <li>Separate skill gap from role-fit friction</li>
-              <li>See pressure response and trust-building style</li>
-              <li>Give the manager specific coaching questions</li>
-              <li>Support execution before the problem becomes expensive</li>
-            </ul>
+            <ul><li>Find where the rep loses momentum</li><li>Separate skill gap from role-fit friction</li><li>See pressure response and trust-building style</li><li>Give the manager specific coaching questions</li><li>Support execution before the problem becomes expensive</li></ul>
           </div>
         </div>
       </div>
@@ -330,7 +188,6 @@
           <h2>One diagnostic. One simple next step.</h2>
           <p class="lead">The diagnostic helps qualify whether the issue looks like momentum, trust, pressure response, structure, role fit, or manager-support friction.</p>
         </div>
-
         <div class="output">
           <div class="row"><b>1. Possible friction pattern</b><span>Where execution may be breaking in the sales cycle.</span></div>
           <div class="row"><b>2. Manager coaching angle</b><span>What the sales manager could ask, coach, structure, or test next.</span></div>
@@ -341,26 +198,11 @@
 
     <section>
       <div class="wrap">
-        <div class="section-head">
-          <h2>Built first for sales ramp.</h2>
-          <p class="lead">Sales ramp is painful, measurable, and expensive. It is also where managers need practical signals fast.</p>
-        </div>
+        <div class="section-head"><h2>Built first for sales ramp.</h2><p class="lead">Sales ramp is painful, measurable, and expensive. It is also where managers need practical signals fast.</p></div>
         <div class="grid3">
-          <div class="card">
-            <span class="tag">Discovery</span>
-            <h3>Trust and buyer reading</h3>
-            <p>Does the rep create clarity, credibility, and confidence early in the conversation?</p>
-          </div>
-          <div class="card">
-            <span class="tag">Momentum</span>
-            <h3>Follow-up and commitment</h3>
-            <p>Where does the deal slow down: after interest, after demo, before next step, or near closing?</p>
-          </div>
-          <div class="card">
-            <span class="tag">Pressure</span>
-            <h3>Execution under discomfort</h3>
-            <p>Does pressure mobilize the rep, make them overpush, or make them avoid difficult conversations?</p>
-          </div>
+          <div class="card"><span class="tag">Discovery</span><h3>Trust and buyer reading</h3><p>Does the rep create clarity, credibility, and confidence early in the conversation?</p></div>
+          <div class="card"><span class="tag">Momentum</span><h3>Follow-up and commitment</h3><p>Where does the deal slow down: after interest, after demo, before next step, or near closing?</p></div>
+          <div class="card"><span class="tag">Pressure</span><h3>Execution under discomfort</h3><p>Does pressure mobilize the rep, make them overpush, or make them avoid difficult conversations?</p></div>
         </div>
       </div>
     </section>
@@ -370,17 +212,12 @@
         <div class="cta-box">
           <h2>Start with the diagnostic. Then decide if a small team pilot makes sense.</h2>
           <p>The full Manager Action Report comes after 1–3 reps complete the full assessment voluntarily as part of a small pilot.</p>
-          <a class="btn" href="https://potential-intelligence-site.streamlit.app" target="_blank" rel="noopener">Take the 5-minute Diagnostic</a>
+          <a class="btn" href="diagnostic.html">Take the 5-minute Diagnostic</a>
         </div>
       </div>
     </section>
   </main>
 
-  <footer>
-    <div class="wrap">
-      Potential Intelligence™ · Founder-led validation · Sales Ramp Diagnostic<br />
-      For coaching and research validation only. Not for employment decisions or performance evaluation.
-    </div>
-  </footer>
+  <footer><div class="wrap">Potential Intelligence™ · Founder-led validation · Sales Ramp Diagnostic<br />For coaching and research validation only. Not for employment decisions or performance evaluation.</div></footer>
 </body>
 </html>
