@@ -457,7 +457,22 @@
   });
   refreshSelectedOptions();
 
-  document.getElementById("diagnosticForm").addEventListener("submit", function(e) {
+  const SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbzNBNWztzQpTZ9f8W-eUL-fBI_6rgOMTcPWduhABl_-Ohr-1AXIy51dJ3zG0znuO1lOvQ/exec";
+
+  async function saveDiagnosticResponse(payload) {
+    try {
+      await fetch(SHEET_ENDPOINT, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload)
+      });
+    } catch (error) {
+      console.warn("Could not save diagnostic response:", error);
+    }
+  }
+
+  document.getElementById("diagnosticForm").addEventListener("submit", async function(e) {
     e.preventDefault();
     const patternKey = choosePattern();
     const p = patterns[patternKey];
@@ -470,8 +485,29 @@
     const email = document.getElementById("email").value || "";
     const role = document.getElementById("role").value || "";
     const teamSize = document.getElementById("team_size").value || "";
+    const challenge = document.querySelector('[name="challenge"]:checked')?.parentElement?.innerText.trim() || "";
+    const firstTry = document.querySelector('[name="first_try"]:checked')?.parentElement?.innerText.trim() || "";
+    const stage = document.querySelector('[name="stage"]:checked')?.parentElement?.innerText.trim() || "";
+    const familiar = document.querySelector('[name="familiar"]:checked')?.parentElement?.innerText.trim() || "";
     const usefulness = document.getElementById("usefulness").value || "";
     const pilot = document.getElementById("pilot").value || "";
+
+    const payload = {
+      name,
+      email,
+      role,
+      team_size: teamSize,
+      challenge,
+      first_try: firstTry,
+      stage,
+      familiar,
+      usefulness,
+      pilot,
+      pattern: p.title
+    };
+
+    saveDiagnosticResponse(payload);
+
     const subject = encodeURIComponent("Potential Intelligence pilot request");
     const targetEmail = ["asselina.kz", "gmail.com"].join("@");
     const body = encodeURIComponent(`Hi Asselya,\n\nI completed the Sales Ramp Diagnostic.\n\nName: ${name}\nEmail: ${email}\nRole: ${role}\nTeam size: ${teamSize}\nDiagnostic pattern: ${p.title}\nUsefulness: ${usefulness}/5\nPilot interest: ${pilot}\n\nI would like to learn more about a small team pilot.\n`);
